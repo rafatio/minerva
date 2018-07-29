@@ -14,7 +14,7 @@ eval "$(rbenv init -)"
 rbenv install 2.5.1
 rbenv rehash
 
-
+# download the repository
 git clone https://github.com/fundominerva/minerva.git
 cd minerva
 
