@@ -1,10 +1,7 @@
 <div class="card">
-  <div class="card-header">
-    Featured
-  </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+    <%= link_to "Dashboard", user_path(current_user), class: "list-group-item" %>
+    <%= link_to "Pagamentos", payments_path, class: "list-group-item" %>
+    <%= link_to "Mentores", mentors_path, class: "list-group-item" %>
   </ul>
 </div>

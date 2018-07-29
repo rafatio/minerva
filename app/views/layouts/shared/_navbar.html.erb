@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Fundo Minerva</a>
+  <%= link_to "Fundo Minerva", user_path(current_user), class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,7 +9,9 @@
     </ul>
 
     <% if user_signed_in? %>
-      <%= current_user.email %>
+      <div class="nav-item">
+        <a class="nav-link disabled" href="#"><%= current_user.email %></a>
+      </div>
       <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-item nav-link' %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-item nav-link'  %>
     <% else %>
