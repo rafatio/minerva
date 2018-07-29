@@ -1,24 +1,39 @@
-# README
+# Getting started
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Mac
 
-Things you may want to cover:
+```
+# install rbenv
+brew install rbenv
 
-* Ruby version
+# add the following to .bashrc, .bash_profile, .zshrc, whatever
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
-* System dependencies
+# install ruby
+rbenv install 2.5.1
+rbenv rehash
 
-* Configuration
 
-* Database creation
+git clone https://github.com/fundominerva/minerva.git
+cd minerva
 
-* Database initialization
+# install project dependencies
+gem install bundler
+bundle install
 
-* How to run the test suite
+# setup database
+rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+# start the application
+rails s
 
-* Deployment instructions
+# setup heroku
+brew install heroku/brew/heroku
+heroku login
 
-* ...
+# deploy
+git remote add production https://git.heroku.com/touts-production.git
+git remote add staging https://git.heroku.com/touts-staging.git
+staging deploy
+```
