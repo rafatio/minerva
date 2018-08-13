@@ -15,7 +15,7 @@
     <% @payments.each do |payment| %>
     <tr>
       <th scope="row"><%= payment.id %></th>
-      <td><%= payment.value %></td>
+      <td><%= format_currency payment.value %></td>
       <td><%= payment.created_at %></td>
     </tr>
 

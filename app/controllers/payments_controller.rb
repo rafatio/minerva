@@ -10,16 +10,20 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    payment = current_user.payments.new(payment_params)
+    @payment = current_user.payments.new(payment_params)
 
     transaction = PagarMe::Transaction.new(
       amount: (params[:payment][:value].to_f * 100), # in cents
-      card_hash: params[:payment][:card_hash],
+      card_number: params[:payment][:card_number],
+      card_holder_name: params[:payment][:card_holder_name]&.camelcase,
+      card_expiration_month: params[:payment][:card_expiration_month],
+      card_expiration_year: params[:payment][:card_expiration_year],
+      card_cvv: params[:payment][:card_cvv],
     )
-    payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
-    raise "Erro no pagamento devido a: #{transaction.status_reason}" unless transaction.status == "paid"
+    @payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
+    raise "Ocorreu um erro no pagamento. Causa: #{transaction.status_reason}" unless transaction.status == "paid"
 
-    if payment.save
+    if @payment.save
       flash[:notice] = "Pagamento criado"
       redirect_to payments_path
     else
@@ -27,8 +31,8 @@ class PaymentsController < ApplicationController
       redirect_to new_payment_path
     end
   rescue => e
-    flash[:error] = e.message
-    redirect_to new_payment_path
+    flash.now[:error] = e.message
+    render :new
   end
 
   private

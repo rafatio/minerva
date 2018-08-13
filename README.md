@@ -1,5 +1,7 @@
 # Getting started
 
+4901720080344448 is a fake credit card. Use it moderately.
+
 ## Mac
 
 ```
@@ -37,3 +39,8 @@ git remote add production https://git.heroku.com/touts-production.git
 git remote add staging https://git.heroku.com/touts-staging.git
 staging deploy
 ```
+
+# TODO:
+
+- permitir que doador contribua sem estar logado (guest checkout)
+- auto formatar o campo valor no form de pagamento (jquery mask)
