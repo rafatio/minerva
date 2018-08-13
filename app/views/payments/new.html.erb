@@ -1,0 +1,54 @@
+<% @tag_title = "Novo pagamento" %>
+
+<%= form_for @payment do |f| %>
+  <%= f.number_field :value, value: 90.00 %>
+
+  <%= f.text_field :card_number, placeholder: "card_number", value: "4901720080344448" %>
+  <%= f.text_field :card_holder_name, placeholder: "card_holder_name", value: "flavinho" %>
+  <%= f.text_field :card_expiration_month, placeholder: "card_expiration_month", value: 10 %>
+  <%= f.text_field :card_expiration_year, placeholder: "card_expiration_year", value: 2020 %>
+  <%= f.text_field :card_cvv, placeholder: "card_cvv", value: 123 %>
+  <%= f.text_field :card_hash %>
+
+  <br/>
+  <input type="submit"></input>
+<% end %>
+
+
+
+<script>
+$(document).ready(function() {
+  var form = $("#new_payment")
+
+  form.submit(function(event) {
+    event.preventDefault();
+
+    var card = {}
+    card.card_holder_name = $("#payment_card_holder_name").val()
+    card.card_expiration_date = $("#payment_card_expiration_month").val() + '/' + $("#payment_card_expiration_year").val()
+    card.card_number = $("#payment_card_number").val()
+    card.card_cvv = $("#payment_card_cvv").val()
+
+    // pega os erros de validação nos campos do form e a bandeira do cartão
+    var cardValidations = pagarme.validate({card: card})
+
+    //Então você pode verificar se algum campo não é válido
+    if(!cardValidations.card.card_number)
+      alert('Oops, número de cartão incorreto')
+
+    //Mas caso esteja tudo certo, você pode seguir o fluxo
+    pagarme.client.connect({ encryption_key: '<%= PagarMe.encryption_key %>' })
+      .then(client => client.security.encrypt(card))
+      .then(card_hash => $("#payment_card_hash").val(card_hash))
+      .then(
+        function() {
+          $("#new_payment").get(0).submit()
+        }
+      )
+      // .then($("#new_payment").get(0).submit())
+      // o próximo passo aqui é enviar o card_hash para seu servidor, e
+      // em seguida criar a transação/assinatura
+    return false
+  })
+});
+</script>

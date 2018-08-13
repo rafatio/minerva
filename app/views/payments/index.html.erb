@@ -1,22 +1,22 @@
 <% @tag_title = "Pagamentos" %>
 <% @tag_subtitle = "Acompanhe aqui seu histórico de pagamentos" %>
 
+<%= link_to "Novo Pagamento", new_payment_path, class: "btn btn-primary" %>
+
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Data</th>
     </tr>
   </thead>
   <tbody>
-    <% 4.times do %>
+    <% @payments.each do |payment| %>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row"><%= payment.id %></th>
+      <td><%= payment.value %></td>
+      <td><%= payment.created_at %></td>
     </tr>
 
     <% end %>

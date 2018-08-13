@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_193414) do
+ActiveRecord::Schema.define(version: 2018_08_12_225241) do
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "value", precision: 8, scale: 2
+    t.text "pagarme_transaction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
