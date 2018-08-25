@@ -26,6 +26,13 @@ $(document).ready(function() {
     pagarme.client.connect({ encryption_key: '<%= PagarMe.encryption_key %>' })
       .then(client => client.security.encrypt(card))
       .then(card_hash => $("#payment_card_hash").val(card_hash))
+      .then(function(){
+        $("#payment_card_holder_name").val('');
+        $("#payment_card_expiration_month").val('');
+        $("#payment_card_expiration_year").val('');
+        $("#payment_card_number").val('');
+        $("#payment_card_cvv").val('');
+      })
       .then(
         function() {
           $("#new_payment").get(0).submit()
