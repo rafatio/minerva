@@ -1,6 +1,6 @@
-# Getting started
-
 4901720080344448 is a fake credit card. Use it moderately.
+
+# Getting started
 
 ## Mac
 

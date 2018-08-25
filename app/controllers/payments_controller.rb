@@ -14,10 +14,14 @@ class PaymentsController < ApplicationController
 
     transaction = PagarMe::Transaction.new(
       amount: (params[:payment][:value].to_f * 100), # in cents
-      card_hash: params[:payment][:card_hash]
+      card_number: params["card-number"],
+      card_holder_name: params["card-holders-name"]&.upcase,
+      card_expiration_month: params["expiry-month"].rjust(2, '0'),
+      card_expiration_year: "20" + params["expiry-year"],
+      card_cvv: params["cvc"],
     )
     @payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
-    
+
     if transaction.status != "paid"
       error_message = ""
       if not transaction.acquirer_response_code.nil?
@@ -35,15 +39,12 @@ class PaymentsController < ApplicationController
     end
 
     if @payment.save
-      flash[:notice] = "Pagamento criado"
+      flash[:notice] = "Pagamento realizado com sucesso"
       redirect_to payments_path
-    else
-      flash[:error] = "Erro no pagamento"
-      redirect_to new_payment_path
     end
   rescue => e
-    flash.now[:error] = e.message
-    render :new
+    flash[:error] = e.message
+    redirect_to new_payment_path
   end
 
   private
@@ -52,4 +53,3 @@ class PaymentsController < ApplicationController
     params.require(:payment).permit(:user_id, :value, :card_hash)
   end
 end
-

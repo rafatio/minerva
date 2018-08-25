@@ -3,16 +3,17 @@
 <%= form_for @payment do |f| %>
   <div class="form-group col-md-6 row">
     <%= f.label :value, "Valor", class: "col-form-label col-3" %>
-    <%= f.text_field :value, placeholder: "500.00", class: "form-control col-9 mb-3", autocomplete: "off" %>
+    <%= f.text_field :value, class: "form-control col-9 mb-3", autocomplete: "off", required: true %>
 
-    <%= f.text_field :card_number, placeholder: "NÚMERO DO CARTÃO", class: "form-control" %>
-    <%= f.text_field :card_holder_name, placeholder: "NOME DO PORTADOR", class: "form-control" %>
-    <%= f.text_field :card_expiration_month, placeholder: "MÊS (MM)", class: "form-control col-4" %>
-    <%= f.text_field :card_expiration_year, placeholder: "ANO (YYYY)", class: "form-control col-4" %>
-    <%= f.text_field :card_cvv, placeholder: "CVV", class: "form-control col-4" %>
-    <%= f.hidden_field :card_hash %>
+    <div class="card-js" data-capture-name="true" data-icon-colour="#158CBA">
+      <input class="name" name="card-holders-name" placeholder="Name on card" required>
+      <input class="expiry-month" name="expiry-month" required>
+      <input class="expiry-year" name="expiry-year" required>
+      <input class="cvc" name="cvc" required>
+    </div>
 
-    <%= f.submit "Confirmar Pagamento", class: "btn btn-block btn-primary" %>
+    <%= f.submit "Confirmar Pagamento", class: "btn btn-block btn-primary mt-3" %>
   </div>
-
 <% end %>
+
+<%= javascript_include_tag "vendor/card-js.min.js" %>
