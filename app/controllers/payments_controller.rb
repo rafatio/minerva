@@ -14,13 +14,10 @@ class PaymentsController < ApplicationController
 
     transaction = PagarMe::Transaction.new(
       amount: (params[:payment][:value].to_f * 100), # in cents
-      card_number: params[:payment][:card_number],
-      card_holder_name: params[:payment][:card_holder_name]&.camelcase,
-      card_expiration_month: params[:payment][:card_expiration_month],
-      card_expiration_year: params[:payment][:card_expiration_year],
-      card_cvv: params[:payment][:card_cvv],
+      card_hash: params[:payment][:card_hash]
     )
     @payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
+
     raise "Ocorreu um erro no pagamento. Causa: #{transaction.status_reason}" unless transaction.status == "paid"
 
     if @payment.save
@@ -38,7 +35,7 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:user_id, :value)
+    params.require(:payment).permit(:user_id, :value, :card_hash)
   end
 end
 
