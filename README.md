@@ -28,7 +28,6 @@ bundle install
 
 # setup database
 rails db:migrate
-rails db:seed
 
 # start the application
 rails s
