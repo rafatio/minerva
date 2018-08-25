@@ -1,6 +1,11 @@
 <% @tag_title = "Contribuições" %>
 <% @tag_subtitle = "Acompanhe aqui seu histórico de contribuições" %>
 
+<% if @payments.empty? %>
+
+<%= link_to "Faça sua primeira contribuição", new_payment_path, class: "btn btn-primary btn-block" %>
+
+<% else %>
 <%= link_to "Nova contribuição", new_payment_path, class: "btn btn-primary" %>
 
 <table class="table">
@@ -22,3 +27,4 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
