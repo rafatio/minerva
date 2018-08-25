@@ -1,5 +1,7 @@
 4901720080344448 is a fake credit card. Use it moderately.
 
+To cause a payment error, use a CVC starting with 6.
+
 # Getting started
 
 ## Mac

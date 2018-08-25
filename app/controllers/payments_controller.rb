@@ -23,15 +23,9 @@ class PaymentsController < ApplicationController
     @payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
 
     if transaction.status != "paid"
-      error_message = ""
-      if not transaction.acquirer_response_code.nil?
-        response_code = AcquirerResponseCode.where(:code => transaction.acquirer_response_code)
-        if response_code.count > 0
-          error_message = response_code[0].message
-        else
-          error_message = "Erro inesperado - #{transaction.status_reason}"
-        end
-      else
+      error_message = TranslateAcquirerResponse.call(code: transaction.acquirer_response_code).message
+
+      if error_message.blank?
         error_message = "Erro inesperado - #{transaction.status_reason}"
       end
 
