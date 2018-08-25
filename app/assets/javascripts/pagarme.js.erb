@@ -1,6 +1,12 @@
 $(document).ready(function() {
   
-   $("#new_payment").submit(function(event) {
+   $(document).submit(function(event) {
+    if (!($('meta[name=psj]').attr('controller') == 'payments' && $('meta[name=psj]').attr('action') == 'new')) {
+
+      return
+    }
+    
+    
     event.preventDefault();
 
     var card = {}
