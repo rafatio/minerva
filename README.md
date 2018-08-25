@@ -1,8 +1,17 @@
-4901720080344448 is a fake credit card. Use it moderately.
+# TODO:
 
-To cause a payment error, use a CVC starting with 6.
+- [x] permitir que usuário crie uma conta com email e senha
+- [x] permitir que usuário faça contribuições
+- [x] permitir que usuário consulte seu histórico de contribuições
+- [ ] auto formatar o campo valor no form de pagamento (jquery mask)
+- [ ] no dashboard, mostrar um gráfico do histórico total de contribuições do fundo
+- [ ] permitir que usuário contribua sem estar conectado (guest checkout)
 
 # Getting started
+
+You can test payments with 4901720080344448 - this is a fake credit card. Use it moderately.
+
+To cause a payment error, use a CVC number beginning with 6.
 
 ## Mac
 
@@ -42,7 +51,3 @@ git remote add staging https://git.heroku.com/touts-staging.git
 staging deploy
 ```
 
-# TODO:
-
-- permitir que doador contribua sem estar logado (guest checkout)
-- auto formatar o campo valor no form de pagamento (jquery mask)

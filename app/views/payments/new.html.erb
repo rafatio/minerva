@@ -1,4 +1,5 @@
-<% @tag_title = "Novo pagamento" %>
+<% @tag_title = "Nova contribuição" %>
+<% @tag_subtitle = "Aceitamos cartões Visa, Mastercard, Amex, Elo, Hipercard, Diners, Discover, Aura e JCB" %>
 
 <%= form_for @payment do |f| %>
   <div class="form-group col-md-6 row">
@@ -12,7 +13,7 @@
       <input class="cvc" name="cvc" required>
     </div>
 
-    <%= f.submit "Confirmar Pagamento", class: "btn btn-block btn-primary mt-3" %>
+    <%= f.submit "Enviar", class: "btn btn-block btn-primary mt-3" %>
   </div>
 <% end %>
 
