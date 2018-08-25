@@ -1,0 +1,7 @@
+<% @tag_title = "Dashboard" %>
+<% @tag_subtitle = "Aqui você acompanha as doações de todo o fundo" %>
+
+<% sum = 0 %>
+<%= line_chart Payment.group_by_day(:created_at).sum(:value).map { |x,y| { x => (sum += y)} }.reduce({}, :merge) %>
+
+<%= link_to "Contribua você também", new_payment_path, class: "btn btn-primary btn-block mt-3" %>

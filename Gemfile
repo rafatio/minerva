@@ -9,7 +9,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'pg'
 gem 'devise'
-gem "interactor-rails", "~> 2.0"
+gem 'interactor-rails', '~> 2.0'
+
+gem 'groupdate'
+gem 'chartkick'
 
 
 # Boostrap 4 dependencies

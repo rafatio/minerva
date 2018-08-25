@@ -16,3 +16,6 @@
 //= require turbolinks
 //= require popper
 //= require bootstrap
+
+//= require Chart.bundle
+//= require chartkick
