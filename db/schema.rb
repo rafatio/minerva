@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_12_225241) do
+ActiveRecord::Schema.define(version: 2018_08_25_175901) do
+
+  create_table "acquirer_response_codes", force: :cascade do |t|
+    t.string "code"
+    t.string "description"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "payments", force: :cascade do |t|
     t.integer "user_id"

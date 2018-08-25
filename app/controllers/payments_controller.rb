@@ -17,8 +17,22 @@ class PaymentsController < ApplicationController
       card_hash: params[:payment][:card_hash]
     )
     @payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
+    
+    if transaction.status != "paid"
+      error_message = ""
+      if not transaction.acquirer_response_code.nil?
+        response_code = AcquirerResponseCode.where(:code => transaction.acquirer_response_code)
+        if response_code.count > 0
+          error_message = response_code[0].message
+        else
+          error_message = "Erro inesperado - #{transaction.status_reason}"
+        end
+      else
+        error_message = "Erro inesperado - #{transaction.status_reason}"
+      end
 
-    raise "Ocorreu um erro no pagamento. Causa: #{transaction.status_reason}" unless transaction.status == "paid"
+      raise "Ocorreu um erro no pagamento. Causa: #{error_message}"
+    end
 
     if @payment.save
       flash[:notice] = "Pagamento criado"
