@@ -5,7 +5,11 @@
 - [x] permitir que usuário consulte seu histórico de contribuições
 - [ ] auto formatar o campo valor no form de pagamento (jquery mask)
 - [ ] no dashboard, mostrar um gráfico do histórico total de contribuições do fundo
+- [ ] definir campos necessários para o cadastro de um novo usuário
 - [ ] permitir que usuário contribua sem estar conectado (guest checkout)
+- [ ] colocar o sequencial na tela de contribuições do usuário
+- [ ] tornar mais claro que o número que aparece atualmente é o ID da transação (troubleshooting)
+- [ ] verificar possibilidade de confirmação assíncrona do pagamento
 
 # Getting started
 
