@@ -12,3 +12,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 Rails.application.config.assets.precompile += %w( vendor/card-js.min.js )
+Rails.application.config.assets.precompile += %w( mask/jquery.maskMoney.min.js )
+Rails.application.config.assets.precompile += %w(mask_currency_field.js )
