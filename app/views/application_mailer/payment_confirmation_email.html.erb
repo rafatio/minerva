@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Olá, <%= @user.email %>!</h2>
+    <p>
+      <h3>A sua contribuição no valor de <%= number_to_currency(@payment.value, :unit => "R$ ", :separator => ",", :delimiter => ".") %> foi confirmada.</h3>
+    </p>
+    <p>
+      <h3>Obrigado por contribuir com o Fundo Minerva!</h3>
+    </p>
+  </body>
+</html>
