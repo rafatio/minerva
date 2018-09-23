@@ -17,14 +17,14 @@ pt-BR:
       unconfirmed: "Você precisa confirmar sua conta antes de prosseguir."
     mailer:
       confirmation_instructions:
-        subject: "Confirme seu email na Touts"
+        subject: "Confirme seu email no Fundo Minerva"
       reset_password_instructions:
-        subject: "Crie sua nova senha na Touts"
+        subject: "Crie sua nova senha no Fundo Minerva"
       unlock_instructions:
         subject: "Instruções para destravar sua senha"
     omniauth_callbacks:
       failure: "Não pudemos autenticá-lo em %{kind} por causa de \"%{reason}\"."
-      success: "Bem-vindo! Você conectou usando %{kind} (◕‿◕✿)"
+      success: "Bem-vindo! Você conectou usando %{kind}"
     passwords:
       no_token: "Você não pode acessar essa página vindo do email para reiniciar sua senha. Se você está vindo do email para reiniciar sua senha, por favor, certifique-se de estar usando a URL correta."
       send_instructions: "Você receberá um email com instruções de como reiniciar sua senha em alguns minutos."
@@ -40,8 +40,8 @@ pt-BR:
       update_needs_confirmation: "Sua conta foi atualizada, mas precisamos verificar seu endereço de email. Por favor cheque seu email e clique no link de confirmação para confirmar seu novo endereço de email."
       updated: "Você atualizou sua conta com sucesso."
     sessions:
-      signed_in: "Bem-vindo! Você está conectado (◕‿◕✿)"
-      signed_out: "Ficamos tão tristes em te ver partir (◡﹏◡✿)"
+      signed_in: "Bem-vindo! Você está conectado"
+      signed_out: "Desconectado com sucesso"
     unlocks:
       send_instructions: "Você receberá um email com instruções sobre como destravar sua conta em alguns minutos."
       send_paranoid_instructions: "Se sua conta existir, você receberá um email com instruções sobre como destravá-la em alguns minutos."

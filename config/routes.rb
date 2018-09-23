@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :payments, only: [:index, :new, :create]
-  resources :mentors, only: :index
+  #resources :mentors, only: :index
 end
