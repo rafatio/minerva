@@ -7,8 +7,8 @@
 - [x] no dashboard, mostrar um gráfico do histórico total de contribuições do fundo
 - [ ] definir campos necessários para o cadastro de um novo usuário
 - [x] permitir que usuário contribua sem estar conectado (guest checkout)
-- [ ] colocar o sequencial na tela de contribuições do usuário
-- [ ] tornar mais claro que o número que aparece atualmente é o ID da transação (troubleshooting)
+- [x] colocar o sequencial na tela de contribuições do usuário
+- [x] tornar mais claro que o número que aparece atualmente é o ID da transação (troubleshooting)
 - [ ] verificar possibilidade de confirmação assíncrona do pagamento
 
 # Getting started
