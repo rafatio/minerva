@@ -22,6 +22,9 @@ gem 'jquery-rails'
 # Payment dependencies
 gem 'pagarme'
 
+# Rails admin
+gem 'rails_admin'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

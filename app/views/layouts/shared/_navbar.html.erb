@@ -12,6 +12,9 @@
       <div class="nav-item">
         <a class="nav-link disabled" href="#"><%= current_user.email %></a>
       </div>
+      <% if current_user.admin %>
+        <%= link_to "Administração", rails_admin_path, class: 'nav-item nav-link' %>
+      <% end %>
       <%= link_to "Minha conta", edit_user_registration_path, class: 'nav-item nav-link' %>
       <%= link_to "Desconectar", destroy_user_session_path, method: :delete, class: 'nav-item nav-link'  %>
     <% else %>
