@@ -55,3 +55,11 @@ git remote add staging https://git.heroku.com/touts-staging.git
 staging deploy
 ```
 
+## Docker
+```
+# build image
+docker build -t minerva_fundo .
+
+# run the app
+docker run -v `pwd`:/app -p 3000:3000 -d minerva_fundo
+```
