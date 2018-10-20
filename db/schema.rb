@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_233505) do
+ActiveRecord::Schema.define(version: 2018_10_20_201709) do
 
   create_table "_contact_types_old", force: :cascade do |t|
     t.string "description", null: false
@@ -49,6 +49,28 @@ ActiveRecord::Schema.define(version: 2018_10_07_233505) do
     t.string "name", null: false
   end
 
+  create_table "education_informations", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "graduation_institution"
+    t.string "graduation_course"
+    t.integer "graduation_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_education_informations_on_user_id"
+  end
+
+  create_table "intended_relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "associate"
+    t.boolean "financial"
+    t.boolean "mentoring"
+    t.boolean "tutoring"
+    t.string "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_intended_relationships_on_user_id"
+  end
+
   create_table "payments", force: :cascade do |t|
     t.integer "user_id"
     t.decimal "value", precision: 8, scale: 2
@@ -68,6 +90,19 @@ ActiveRecord::Schema.define(version: 2018_10_07_233505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_people_on_user_id"
+  end
+
+  create_table "professional_informations", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "company", null: false
+    t.string "position", null: false
+    t.string "previous_companies"
+    t.integer "admission_year"
+    t.decimal "salary", precision: 12, scale: 2
+    t.decimal "estimated_wealth", precision: 16, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_professional_informations_on_user_id"
   end
 
   create_table "states", force: :cascade do |t|

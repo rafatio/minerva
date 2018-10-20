@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_one  :person
   has_many :contacts
   has_one  :address
+  has_one  :professional_information
+  has_one  :education_information
+  has_one  :intended_relationship
 
   attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
 
