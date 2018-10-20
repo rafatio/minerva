@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :payments, only: [:index, :new, :create]
+  resources :profile, only: :index
   #resources :mentors, only: :index
 end
