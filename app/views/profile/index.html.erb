@@ -1,20 +1,78 @@
 <% @tag_title = "Informações Cadastrais" %>
 <% @tag_subtitle = "Mantenha os seus dados atualizados" %>
 
+<script>
+  function isInputNumber(evt) {
+    var ch = String.fromCharCode(evt.which);
+    if (!(/[0-9]/.test(ch))) {
+      evt.preventDefault();
+    }
+  }
+</script>
+
 <div id="accordion">
+
+  <form id="id-form-update-profile" action="/profile" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <!-- Dados Pessoais -->
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Dados Pessoais
         </button>
       </h5>
     </div>
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
+
+        <div class="row">
+          <div class="col">
+            <div class = "row">
+              <label for="person-name" class="col-form-label">Nome</label>
+              <input class="form-control mb-3" name = "person-name" value="<% if !@person.nil? %><%= @person.name %><% end %>" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1">
+            <div class = "row">
+              <label for="person-gender" class="col-form-label">Sexo</label>
+              <select name="person-gender" class="form-control selectpicker">
+                <option hidden disabled selected value></option>
+                <option <% if (!@person.nil?) && @person.gender == "M" %> selected="selected" <% end %> value="M">M</option>
+                <option <% if (!@person.nil?) && @person.gender == "F" %> selected="selected" <% end %> value="F">F</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+          <div class="col-2">
+            <div class = "row">
+              <label for="person-birthdate" class="col-form-label">Data de Nascimento</label>
+              <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" value="<%= @person.birth_date.to_formatted_s(:short_date) %>" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2">
+            <div class = "row">
+              <label for="person-cpf" class="col-form-label">CPF</label>
+              <input class="form-control mb-3" name="person-cpf" onkeypress="isInputNumber(event)" value="<% if !@person.nil? %><%= @person.cpf %><% end %>" required>
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            <div class = "row">
+              <label for="person-rg" class="col-form-label">RG</label>
+              <input class="form-control mb-3" name="person-rg" onkeypress="isInputNumber(event)" value="<% if !@person.nil? %><%= @person.rg %><% end %>" >
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- div class="card-body" -->
     </div>
   </div>
   <!-- Dados Pessoais -->
@@ -23,7 +81,7 @@
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Contato
         </button>
       </h5>
@@ -40,7 +98,7 @@
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Endereço
         </button>
       </h5>
@@ -57,7 +115,7 @@
   <div class="card">
     <div class="card-header" id="headingFour">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
           Dados Profissionais
         </button>
       </h5>
@@ -74,7 +132,7 @@
   <div class="card">
     <div class="card-header" id="headingFive">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
           Dados de Formação
         </button>
       </h5>
@@ -91,7 +149,7 @@
   <div class="card">
     <div class="card-header" id="headingSix">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           Intenções
         </button>
       </h5>
@@ -103,4 +161,6 @@
     </div>
   </div>
   <!-- Intenções -->
+  <input type="submit" name="commit" value="Enviar" class="btn btn-block btn-primary mt-3" data-disable-with="Enviar">
+  </form>
 </div>
