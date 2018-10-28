@@ -51,7 +51,7 @@
           <div class="col-2">
             <div class = "row">
               <label for="person-birthdate" class="col-form-label">Data de Nascimento</label>
-              <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" value="<%= @person.birth_date.to_formatted_s(:short_date) %>" required>
+              <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" value="<% if !@person.nil? %><%= @person.birth_date.to_formatted_s(:short_date) %><% end %>" required>
             </div>
           </div>
         </div>
