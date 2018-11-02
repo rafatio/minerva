@@ -1,5 +1,6 @@
 <% @tag_title = "Informações Cadastrais" %>
 <% @tag_subtitle = "Mantenha os seus dados atualizados" %>
+<% @counter = 0 %>
 
 <script>
   function isInputNumber(evt) {
@@ -60,7 +61,7 @@
           <div class="col-2">
             <div class = "row">
               <label for="person-cpf" class="col-form-label">CPF</label>
-              <input class="form-control mb-3" name="person-cpf" onkeypress="isInputNumber(event)" value="<% if !@person.nil? %><%= @person.cpf %><% end %>" required>
+              <input class="form-control mb-3 cpf" name="person-cpf" value="<% if !@person.nil? %><%= @person.cpf %><% end %>" required>
             </div>
           </div>
           <div class="col-1"></div>
@@ -88,7 +89,76 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <div class="row">
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-mobile" class="col-form-label">Celular</label>
+              <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" value="<% if !@mobile_contact.nil? %><%= @mobile_contact.value %><% end %>" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-facebook" class="col-form-label">Facebook</label>
+              <input class="form-control mb-3" name="contact-facebook" value="<% if !@facebook_contact.nil? %><%= @facebook_contact.value %><% end %>">
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-linkedin" class="col-form-label">Linkedin</label>
+              <input class="form-control mb-3" name="contact-linkedin" value="<% if !@linkedin_contact.nil? %><%= @linkedin_contact.value %><% end %>" >
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-skype" class="col-form-label">Skype</label>
+              <input class="form-control mb-3" name="contact-skype" value="<% if !@skype_contact.nil? %><%= @skype_contact.value %><% end %>" >
+            </div>
+          </div>
+        </div>
+
+
+        <br>
+        <table id="table-secondary-mail" class="col-4 order-list">
+          <thead>
+              <tr>
+                  <td>Emails Secundários</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="col" hidden>
+                      <input type="text" name="no-content" class="form-control" />
+                  </td>
+                  <td class="col-sm-2"><a class="deleteRow"></a>
+
+                  </td>
+              </tr>
+              <% @secondary_mail_contacts.each do |mail| %>
+                <tr>
+                  <td><input type="text" class="form-control" name="contact-secondary-mail<%= @counter %>" value="<%= mail.value %>"/></td>
+                  <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>
+                </tr>
+                <% @counter = @counter + 1 %>
+              <% end %>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="5" style="text-align: left;">
+                      <input type="button" class="btn btn-lg btn-block mt-3" id="addrow-secondary-mail" value="Adicionar" />
+                  </td>
+              </tr>
+              <tr>
+              </tr>
+          </tfoot>
+      </table>
+
+
       </div>
     </div>
   </div>
@@ -164,3 +234,7 @@
   <input type="submit" name="commit" value="Enviar" class="btn btn-block btn-primary mt-3" data-disable-with="Enviar">
   </form>
 </div>
+
+<%= javascript_include_tag "jquery-mask/jquery.mask.min.js" %>
+<%= javascript_include_tag "mask_profile.js" %>
+<%= javascript_include_tag "table_secondary_mail.js" %>
