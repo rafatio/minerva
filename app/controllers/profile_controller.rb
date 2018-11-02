@@ -17,19 +17,26 @@ class ProfileController < ApplicationController
     end
 
     def create
-        if current_user.person.nil?
-            @person = Person.new
-        else
-            @person = current_user.person
-        end
-
         User.transaction do
-            @person.name = params['person-name']
-            @person.gender = params['person-gender']
-            @person.birth_date = params['person-birthdate']
-            @person.cpf = params['person-cpf'].delete('.-')
-            @person.rg = params['person-rg']
-            current_user.person = @person
+
+            ###### PERSON
+            ManagePersonService.new.call(current_user, params['person-name'], params['person-gender'], params['person-birthdate'], params['person-cpf'].delete('.-'), params['person-rg'])
+
+            ###### CONTACT
+            contacts_service = ManageContactsService.new(current_user)
+            contacts_service.manage_unique_contact('Celular', params['contact-mobile'])
+            contacts_service.manage_unique_contact('Facebook', params['contact-facebook'])
+            contacts_service.manage_unique_contact('Linkedin', params['contact-linkedin'])
+            contacts_service.manage_unique_contact('Skype', params['contact-skype'])
+
+            secondary_emails = Array.new
+            params.each do |item|
+                if item[0].starts_with?("contact-secondary-mail")
+                    secondary_emails.push(item[1])
+                end
+            end
+            contacts_service.manage_multiple_contact('Email secundário', secondary_emails)
+
         end
 
         flash[:notice] = 'Perfil atualizado com sucesso'
