@@ -8,6 +8,7 @@ class ProfileController < ApplicationController
         @linkedin_contact = current_user.contacts.joins(:contact_type).where(contact_types: {name: 'Linkedin'}).first
         @skype_contact = current_user.contacts.joins(:contact_type).where(contact_types: {name: 'Skype'}).first
         @secondary_mail_contacts = current_user.contacts.joins(:contact_type).where(contact_types: {name: 'Email secundário'})
+        @country_list = Country.all.order(:name)
         @address = current_user.address
         @professional_information = current_user.professional_information
         @education_information = current_user.education_information

@@ -1,3 +1,5 @@
+$(document).ready(setupSecondaryMailsTable);
+
 $(document).on('turbolinks:load', setupSecondaryMailsTable);
 
 function setupSecondaryMailsTable() {
@@ -19,7 +21,7 @@ function setupSecondaryMailsTable() {
 
 
     $("table.order-list").on("click", ".ibtnDel", function (event) {
-        $(this).closest("tr").remove();       
+        $(this).closest("tr").remove();
         counter -= 1
     });
 }

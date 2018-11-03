@@ -11,6 +11,11 @@
   }
 </script>
 
+<div class="alert alert-info">
+  Campos obrigatórios estão em <strong>negrito</strong>.
+</div>
+
+
 <div id="accordion">
 
   <form id="id-form-update-profile" action="/profile" method="post">
@@ -30,8 +35,8 @@
         <div class="row">
           <div class="col">
             <div class = "row">
-              <label for="person-name" class="col-form-label">Nome</label>
-              <input class="form-control mb-3" name = "person-name" value="<% if !@person.nil? %><%= @person.name %><% end %>" required>
+              <label for="person-name" class="col-form-label font-weight-bold">Nome</label>
+              <input class="form-control mb-3" name = "person-name" oninvalid="$('#collapseOne').collapse('show')" value="<% if !@person.nil? %><%= @person.name %><% end %>" required>
             </div>
           </div>
         </div>
@@ -39,7 +44,7 @@
         <div class="row">
           <div class="col-1">
             <div class = "row">
-              <label for="person-gender" class="col-form-label">Sexo</label>
+              <label for="person-gender" class="col-form-label font-weight-bold">Sexo</label>
               <select name="person-gender" class="form-control selectpicker">
                 <option hidden disabled selected value></option>
                 <option <% if (!@person.nil?) && @person.gender == "M" %> selected="selected" <% end %> value="M">M</option>
@@ -51,8 +56,8 @@
           <div class="col-2"></div>
           <div class="col-2">
             <div class = "row">
-              <label for="person-birthdate" class="col-form-label">Data de Nascimento</label>
-              <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" value="<% if !@person.nil? %><%= @person.birth_date.to_formatted_s(:short_date) %><% end %>" required>
+              <label for="person-birthdate" class="col-form-label font-weight-bold">Data de Nascimento</label>
+              <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" oninvalid="$('#collapseOne').collapse('show')" value="<% if !@person.nil? %><%= @person.birth_date.to_formatted_s(:short_date) %><% end %>" required>
             </div>
           </div>
         </div>
@@ -60,8 +65,8 @@
         <div class="row">
           <div class="col-2">
             <div class = "row">
-              <label for="person-cpf" class="col-form-label">CPF</label>
-              <input class="form-control mb-3 cpf" name="person-cpf" value="<% if !@person.nil? %><%= @person.cpf %><% end %>" required>
+              <label for="person-cpf" class="col-form-label font-weight-bold">CPF</label>
+              <input class="form-control mb-3 cpf" name="person-cpf" oninvalid="$('#collapseOne').collapse('show')" value="<% if !@person.nil? %><%= @person.cpf %><% end %>" required>
             </div>
           </div>
           <div class="col-1"></div>
@@ -93,8 +98,8 @@
         <div class="row">
           <div class="col-3">
             <div class = "row">
-              <label for="contact-mobile" class="col-form-label">Celular</label>
-              <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" value="<% if !@mobile_contact.nil? %><%= @mobile_contact.value %><% end %>" required>
+              <label for="contact-mobile" class="col-form-label font-weight-bold">Celular</label>
+              <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" oninvalid="$('#collapseTwo').collapse('show')" value="<% if !@mobile_contact.nil? %><%= @mobile_contact.value %><% end %>" required>
             </div>
           </div>
         </div>
@@ -175,7 +180,70 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+
+        <div class="row">
+          <div class="col-3">
+              <label for="address-country" class="col-form-label font-weight-bold">País</label>
+              <select name="address-country" class="form-control selectpicker" oninvalid="$('#collapseThree').collapse('show')" required>
+                <option hidden disabled selected value></option>
+                <% @country_list.each do |country| %>
+                  <option value=<%= country.name %> ><%= country.name %></option>
+                <% end %>
+              </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2">
+            <label for="address-cep" class="col-form-label font-weight-bold" hidden>CEP</label>
+            <input type="text" class="form-control mb-3 cep" name="address-cep" data-provider="zipcode" value="" hidden>
+
+            <label for="address-zipcode" class="col-form-label">Código Postal</label>
+            <input type="text" class="form-control mb-3" name="address-zipcode" value="">
+          </div>
+        </div>
+
+        <label for="address-street" class="col-form-label font-weight-bold">Logradouro</label>
+        <input type="text" class="form-control mb-3" name="address-street" data-provider="street" oninvalid="$('#collapseThree').collapse('show')" value="" required>
+
+        <div class="row">
+          <div class="col-2">
+            <label for="address-number" class="col-form-label">Número</label>
+            <input type="text" class="form-control mb-3" name="address-number" value="" >
+          </div>
+
+          <div class="col-2"></div>
+
+          <div class="col-3">
+            <label for="address-complement" class="col-form-label">Complemento</label>
+            <input type="text" class="form-control mb-3" name="address-complement" value="" >
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <label for="address-neighborhood" class="col-form-label">Bairro</label>
+            <input type="text" class="form-control mb-3" name="address-neighborhood" data-provider="neighborhood" value="">
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="address-city" class="col-form-label">Cidade</label>
+            <input type="text" class="form-control mb-3" name="address-city" data-provider="city" value="">
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="address-state" class="col-form-label">Estado</label>
+            <input type="text" class="form-control mb-3" name="address-state" data-provider="state" value="">
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
