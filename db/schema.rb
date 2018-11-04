@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_201709) do
+ActiveRecord::Schema.define(version: 2018_11_04_143708) do
 
   create_table "_contact_types_old", force: :cascade do |t|
     t.string "description", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_201709) do
     t.string "city"
     t.string "number"
     t.string "complement"
+    t.string "street"
+    t.string "neighborhood"
     t.index ["country_id"], name: "index_addresses_on_country_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"

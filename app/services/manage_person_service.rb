@@ -10,15 +10,11 @@ class ManagePersonService
             @person = user.person
         end
 
-        @person.name = name
-        @person.gender = gender
+        @person.name = name.presence
+        @person.gender = gender.presence
         @person.birth_date = birth_date
         @person.cpf = cpf
-        if rg.empty?
-            @person.rg = nil
-        else
-            @person.rg = rg
-        end
+        @person.rg = rg.presence
         user.person = @person
     end
 end

@@ -1,11 +1,16 @@
-class ManageContactsService
+class ContactsService
 
     def initialize(user)
         @user = user
     end
 
+    def get_contacts(contact_type_name)
+        contact = @user.contacts.joins(:contact_type).where(contact_types: {name: contact_type_name})
+        return contact
+    end
+
     def manage_unique_contact(contact_type_name, contact_value)
-        contact = @user.contacts.joins(:contact_type).where(contact_types: {name: contact_type_name}).first
+        contact = get_contacts(contact_type_name).first
         if contact.nil?
             if !contact_value.empty?
                 contact_type = ContactType.find_by_name(contact_type_name)
@@ -25,7 +30,7 @@ class ManageContactsService
 
     def manage_multiple_contact(contact_type_name, contact_values)
         #simply delete the old ones and insert the new ones
-        contacts = @user.contacts.joins(:contact_type).where(contact_types: {name: contact_type_name})
+        contacts = get_contacts(contact_type_name)
         contacts.destroy_all
 
         if !contact_values.empty?
