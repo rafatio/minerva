@@ -32,10 +32,10 @@ class ProfileController < ApplicationController
 
             ###### CONTACT
             contacts_service = ContactsService.new(current_user)
-            contacts_service.manage_unique_contact('Celular', params['contact-mobile'])
-            contacts_service.manage_unique_contact('Facebook', params['contact-facebook'])
-            contacts_service.manage_unique_contact('Linkedin', params['contact-linkedin'])
-            contacts_service.manage_unique_contact('Skype', params['contact-skype'])
+            contacts_service.manage_unique_contact('Celular', params['contact-mobile'], params['contact-preferred'])
+            contacts_service.manage_unique_contact('Facebook', params['contact-facebook'], params['contact-preferred'])
+            contacts_service.manage_unique_contact('Linkedin', params['contact-linkedin'], params['contact-preferred'])
+            contacts_service.manage_unique_contact('Skype', params['contact-skype'], params['contact-preferred'])
 
             secondary_emails = []
             params.each do |item|

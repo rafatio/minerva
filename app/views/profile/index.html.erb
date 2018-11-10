@@ -127,6 +127,20 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-3">
+            <label for="contact-preferred" class="col-form-label">Forma preferida de contato</label>
+            <select name="contact-preferred" class="form-control selectpicker">
+              <option hidden disabled selected value></option>
+              <% @email_is_preferred = (@facebook_contact.nil? || !@facebook_contact.preferred) && (@linkedin_contact.nil? || !@linkedin_contact.preferred) && (@skype_contact.nil? || !@skype_contact.preferred)  %>
+              <option value="Email"  <% if @email_is_preferred %> selected="selected" <% end %> >Email</option>
+              <option value="Facebook" <% if (!@facebook_contact.nil?) && @facebook_contact.preferred %> selected="selected" <% end %> >Facebook</option>
+              <option value="Linkedin" <% if (!@linkedin_contact.nil?) && @linkedin_contact.preferred %> selected="selected" <% end %> >Linkedin</option>
+              <option value="Skype" <% if (!@skype_contact.nil?) && @skype_contact.preferred %> selected="selected" <% end %> >Skype</option>
+            </select>
+          </div>
+        </div>
+
 
         <br>
         <table id="table-secondary-mail" class="col-4 order-list">
