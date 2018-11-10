@@ -1,6 +1,11 @@
-$(document).ready(setupSecondaryMailsTable);
+$(document).ready(setupTables);
 
-$(document).on('turbolinks:load', setupSecondaryMailsTable);
+$(document).on('turbolinks:load', setupTables);
+
+function setupTables() {
+	setupSecondaryMailsTable();
+	setupPreviousCompaniesTable();
+}
 
 function setupSecondaryMailsTable() {
 	var counter = $('#table-secondary-mail tbody tr').length - 1;
@@ -14,14 +19,39 @@ function setupSecondaryMailsTable() {
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>';
         newRow.append(cols);
-        $("table.order-list").append(newRow);
+        $("#table-secondary-mail").append(newRow);
         counter++;
     });
 
 
 
-    $("table.order-list").on("click", ".ibtnDel", function (event) {
+    $("#table-secondary-mail").on("click", ".ibtnDel", function (event) {
         $(this).closest("tr").remove();
         counter -= 1
     });
 }
+
+function setupPreviousCompaniesTable() {
+	var counter = $('#table-previous-companies tbody tr').length - 1;
+	$("#addrow-previous-company").unbind("click");
+    $("#addrow-previous-company").click( function () {
+        var newRow = $("<tr>");
+        var cols = "";
+
+        cols += '<td><input type="text" class="form-control" name="professional-previous-company' + counter + '"/></td>';
+
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>';
+        newRow.append(cols);
+        $("#table-previous-companies").append(newRow);
+        counter++;
+    });
+
+
+
+    $("#table-previous-companies").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+    });
+}
+

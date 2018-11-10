@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_04_143708) do
+ActiveRecord::Schema.define(version: 2018_11_10_162115) do
 
   create_table "_contact_types_old", force: :cascade do |t|
     t.string "description", null: false
@@ -94,11 +94,18 @@ ActiveRecord::Schema.define(version: 2018_11_04_143708) do
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
+  create_table "previous_companies", force: :cascade do |t|
+    t.integer "professional_information_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["professional_information_id"], name: "index_previous_companies_on_professional_information_id"
+  end
+
   create_table "professional_informations", force: :cascade do |t|
     t.integer "user_id"
     t.string "company", null: false
     t.string "position", null: false
-    t.string "previous_companies"
     t.integer "admission_year"
     t.decimal "salary", precision: 12, scale: 2
     t.decimal "estimated_wealth", precision: 16, scale: 2

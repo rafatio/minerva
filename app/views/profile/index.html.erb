@@ -1,6 +1,7 @@
 <% @tag_title = "Informações Cadastrais" %>
 <% @tag_subtitle = "Mantenha os seus dados atualizados" %>
-<% @counter = 0 %>
+<% @counterSecondaryEmails = 0 %>
+<% @counterPreviousCompanies = 0 %>
 
 <script>
   function isInputNumber(evt) {
@@ -160,10 +161,10 @@
               </tr>
               <% @secondary_mail_contacts.each do |mail| %>
                 <tr>
-                  <td><input type="text" class="form-control" name="contact-secondary-mail<%= @counter %>" value="<%= mail.value %>"/></td>
+                  <td><input type="text" class="form-control" name="contact-secondary-mail<%= @counterSecondaryEmails %>" value="<%= mail.value %>"/></td>
                   <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>
                 </tr>
-                <% @counter = @counter + 1 %>
+                <% @counterSecondaryEmails = @counterSecondaryEmails + 1 %>
               <% end %>
           </tbody>
           <tfoot>
@@ -274,7 +275,65 @@
     </div>
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <div class="row">
+          <div class="col-3">
+            <label for="professional-company" class="col-form-label font-weight-bold">Empresa</label>
+            <input type="text" class="form-control mb-3" name="professional-company" value="<% if !@professional_information.nil? %><%= @professional_information.company %><% end %>" oninvalid="$('#collapseFour').collapse('show')" required>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="professional-position" class="col-form-label font-weight-bold">Cargo Atual</label>
+            <input type="text" class="form-control mb-3" name="professional-position" value="<% if !@professional_information.nil? %><%= @professional_information.position %><% end %>" oninvalid="$('#collapseFour').collapse('show')" required>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-2">
+            <label for="professional-admission-year" class="col-form-label">Ano de Entrada</label>
+            <input type="number" class="form-control mb-3" name="professional-admission-year" pattern="\d+" value="<% if !@professional_information.nil? %><%= @professional_information.admission_year %><% end %>" oninvalid="$('#collapseFour').collapse('show')">
+          </div>
+
+        </div>
+
+        <br>
+        <table id="table-previous-companies" class="col-4 order-list">
+          <thead>
+              <tr>
+                  <td>Empresas anteriores</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="col" hidden>
+                      <input type="text" name="no-content" class="form-control" />
+                  </td>
+                  <td class="col-sm-2"><a class="deleteRow"></a>
+
+                  </td>
+              </tr>
+              <% @previous_companies.each do |company| %>
+                <tr>
+                  <td><input type="text" class="form-control" name="professional-previous-company<%= @counterPreviousCompanies %>" value="<%= company.name %>"/></td>
+                  <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>
+                </tr>
+                <% @counterPreviousCompanies = @counterPreviousCompanies + 1 %>
+              <% end %>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="5" style="text-align: left;">
+                      <input type="button" class="btn btn-lg btn-block mt-3" id="addrow-previous-company" value="Adicionar" />
+                  </td>
+              </tr>
+              <tr>
+              </tr>
+          </tfoot>
+      </table>
+
+
       </div>
     </div>
   </div>

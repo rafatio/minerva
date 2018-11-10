@@ -12,6 +12,10 @@ class ProfileController < ApplicationController
         @country_list = Country.all.order(:name)
         @address = current_user.address
         @professional_information = current_user.professional_information
+        @previous_companies = []
+        if !@professional_information.nil?
+            @previous_companies = @professional_information.previous_companies
+        end
         @education_information = current_user.education_information
         @intended_relationship = current_user.intended_relationship
 
@@ -38,9 +42,13 @@ class ProfileController < ApplicationController
             contacts_service.manage_unique_contact('Skype', params['contact-skype'], params['contact-preferred'])
 
             secondary_emails = []
+            previous_companies = []
+
             params.each do |item|
                 if item[0].starts_with?('contact-secondary-mail')
                     secondary_emails.push(item[1])
+                elsif item[0].starts_with?('professional-previous-company')
+                    previous_companies.push(item[1])
                 end
             end
             contacts_service.manage_multiple_contact('Email secundário', secondary_emails)
@@ -60,6 +68,13 @@ class ProfileController < ApplicationController
                 params['address-street'],
                 params['address-number'],
                 params['address-complement'])
+
+            ###### PROFESSIONAL INFORMATION
+            ManageProfessionalInformationService.new(current_user).call(
+                params['professional-company'],
+                params['professional-position'],
+                params['professional-admission-year'],
+                previous_companies)
 
         end
 
