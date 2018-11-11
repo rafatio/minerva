@@ -388,7 +388,37 @@
     </div>
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <div class="row">
+          <div class="col">
+            De quais formas você deseja contribuir?
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-associate" <% if (!@intended_relationship.nil?) && @intended_relationship.associate %> checked <% end %> >Desejo me associar</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-financial" <% if (!@intended_relationship.nil?) && @intended_relationship.financial %> checked <% end %> >Desejo contribuir financeiramente</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-mentoring" <% if (!@intended_relationship.nil?) && @intended_relationship.mentoring %> checked <% end %> >Desejo contribuir com mentoria</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-tutoring" <% if (!@intended_relationship.nil?) && @intended_relationship.tutoring %> checked <% end %> >Desejo contribuir com tutoria</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="relationship-remarks" class="col-form-label">Observações</label>
+            <input type="text" class="form-control mb-3" name="relationship-remarks" value="<% if !@intended_relationship.nil? %><%= @intended_relationship.remarks %><% end %>" >
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

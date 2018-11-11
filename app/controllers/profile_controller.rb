@@ -82,6 +82,18 @@ class ProfileController < ApplicationController
                 params['education-graduation-course'],
                 params['education-graduation-year'])
 
+            ###### INTENDED RELATIONSHIP
+            associate = !params['relationship-associate'].nil?
+            financial = !params['relationship-financial'].nil?
+            mentoring = !params['relationship-mentoring'].nil?
+            tutoring = !params['relationship-tutoring'].nil?
+            ManageIntendedRelationshipService.new(current_user).call(
+                associate,
+                financial,
+                mentoring,
+                tutoring,
+                params['relationship-remarks'])
+
         end
 
         flash[:notice] = 'Perfil atualizado com sucesso'
