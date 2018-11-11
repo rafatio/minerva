@@ -350,7 +350,28 @@
     </div>
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <div class="row">
+          <div class="col-3">
+            <label for="education-graduation-institution" class="col-form-label">Instituição de graduação</label>
+            <input type="text" class="form-control mb-3" name="education-graduation-institution" value="<% if !@education_information.nil? %><%= @education_information.graduation_institution %><% end %>" oninvalid="$('#collapseFive').collapse('show')">
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="education-graduation-course" class="col-form-label">Curso</label>
+            <input type="text" class="form-control mb-3" name="education-graduation-course" value="<% if !@education_information.nil? %><%= @education_information.graduation_course %><% end %>" oninvalid="$('#collapseFive').collapse('show')">
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-2">
+            <label for="education-graduation-year" class="col-form-label">Ano de graduação</label>
+            <input type="number" class="form-control mb-3" name="education-graduation-year" pattern="\d+" value="<% if !@education_information.nil? %><%= @education_information.graduation_year %><% end %>" oninvalid="$('#collapseFive').collapse('show')">
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

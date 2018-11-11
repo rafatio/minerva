@@ -76,6 +76,12 @@ class ProfileController < ApplicationController
                 params['professional-admission-year'],
                 previous_companies)
 
+            ###### EDUCATION INFORMATION
+            ManageEducationInformationService.new(current_user).call(
+                params['education-graduation-institution'],
+                params['education-graduation-course'],
+                params['education-graduation-year'])
+
         end
 
         flash[:notice] = 'Perfil atualizado com sucesso'
