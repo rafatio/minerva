@@ -16,10 +16,11 @@ class ProfileController < ApplicationController
         if !@professional_information.nil?
             @previous_companies = @professional_information.previous_companies
         end
-        @education_information = current_user.education_information
+        @education_informations = current_user.education_informations
         @intended_relationship = current_user.intended_relationship
 
         @countries = Country.all
+        @education_levels = EducationLevel.all.order(:name)
     end
 
     def create
@@ -43,12 +44,24 @@ class ProfileController < ApplicationController
 
             secondary_emails = []
             previous_companies = []
+            education_informations = []
 
             params.each do |item|
                 if item[0].starts_with?('contact-secondary-mail')
                     secondary_emails.push(item[1])
                 elsif item[0].starts_with?('professional-previous-company')
                     previous_companies.push(item[1])
+                elsif item[0].starts_with?('education-level')
+                    number = item[0][15..-1] #gets the substring from position 15 to the end of the string
+                    #position 15 because the string 'education-level' has 15 characters
+                    education_level = EducationLevel.find_by_name(params['education-level' + number].presence)
+                    education_information = EducationInformation.new(
+                        education_level: education_level,
+                        institution: params['education-institution' + number].presence,
+                        course: params['education-course' + number].presence,
+                        conclusion_year: params['education-conclusion-year' + number].presence,
+                        )
+                    education_informations.push(education_information)
                 end
             end
             contacts_service.manage_multiple_contact('Email secundário', secondary_emails)
@@ -77,10 +90,7 @@ class ProfileController < ApplicationController
                 previous_companies)
 
             ###### EDUCATION INFORMATION
-            ManageEducationInformationService.new(current_user).call(
-                params['education-graduation-institution'],
-                params['education-graduation-course'],
-                params['education-graduation-year'])
+            ManageEducationInformationService.new(current_user).call(education_informations)
 
             ###### INTENDED RELATIONSHIP
             associate = !params['relationship-associate'].nil?

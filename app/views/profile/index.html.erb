@@ -2,6 +2,7 @@
 <% @tag_subtitle = "Mantenha os seus dados atualizados" %>
 <% @counterSecondaryEmails = 0 %>
 <% @counterPreviousCompanies = 0 %>
+<% @counterEducationInformations = 0 %>
 
 <script>
   function isInputNumber(evt) {
@@ -351,26 +352,41 @@
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
       <div class="card-body">
 
-        <div class="row">
-          <div class="col-3">
-            <label for="education-graduation-institution" class="col-form-label">Instituição de graduação</label>
-            <input type="text" class="form-control mb-3" name="education-graduation-institution" value="<% if !@education_information.nil? %><%= @education_information.graduation_institution %><% end %>" oninvalid="$('#collapseFive').collapse('show')">
+          <div class="row">
+            <div class="col-2 font-weight-bold">
+              Nível
+            </div>
+            <div class="col-3 font-weight-bold">
+              Instituição
+            </div>
+            <div class="col-3 font-weight-bold">
+              Curso
+            </div>
+            <div class="col-2">
+              Ano de conclusão
+            </div>
           </div>
 
-          <div class="col-1"></div>
-
-          <div class="col-3">
-            <label for="education-graduation-course" class="col-form-label">Curso</label>
-            <input type="text" class="form-control mb-3" name="education-graduation-course" value="<% if !@education_information.nil? %><%= @education_information.graduation_course %><% end %>" oninvalid="$('#collapseFive').collapse('show')">
-          </div>
-
-          <div class="col-1"></div>
-
-          <div class="col-2">
-            <label for="education-graduation-year" class="col-form-label">Ano de graduação</label>
-            <input type="number" class="form-control mb-3" name="education-graduation-year" pattern="\d+" value="<% if !@education_information.nil? %><%= @education_information.graduation_year %><% end %>" oninvalid="$('#collapseFive').collapse('show')">
-          </div>
-        </div>
+          <div id="div-education-information">
+            <% @education_informations.each do |education_information| %>
+                <div class="row mb-3 education-information-row">
+                  <div class="col-2">
+                    <select name="education-level<%= @counterEducationInformations %>" class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required>
+                      <option hidden disabled selected value></option>
+                      <% @education_levels.each do |education_level| %>
+                        <option value=<%= education_level.name %> <% if education_information.education_level_id == education_level.id %> selected="selected" <% end %> ><%= education_level.name %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                  <div class="col-3"><input type="text" class="form-control" name="education-institution<%= @counterEducationInformations %>" value="<%= education_information.institution %>" oninvalid="$('#collapseFive').collapse('show')" required/></div>
+                  <div class="col-3"><input type="text" class="form-control" name="education-course<%= @counterEducationInformations %>" value="<%= education_information.course %>" oninvalid="$('#collapseFive').collapse('show')" required/></div>
+                  <div class="col-2"><input type="number" pattern="\d+" class="form-control" name="education-conclusion-year<%= @counterEducationInformations %>" value="<%= education_information.conclusion_year %>" oninvalid="$('#collapseFive').collapse('show')"/></div>
+                  <input type="button" class="ibtnDel btn btn-md btn-danger"  value="Excluir"></td>
+                </div>
+              <% @counterEducationInformations = @counterEducationInformations + 1 %>
+            <% end %>
+          </div> <!-- div-education-information -->
+          <input type="button" class="btn btn-lg btn-block mt-3" id="addrow-education-information" value="Adicionar" />
 
       </div>
     </div>
@@ -425,6 +441,15 @@
   <!-- Intenções -->
   <input type="submit" name="commit" value="Enviar" class="btn btn-block btn-primary mt-3" data-disable-with="Enviar">
   </form>
+</div>
+
+<div hidden>
+  <select id="list-education-levels">
+    <option hidden disabled selected value></option>
+    <% @education_levels.each do |education_level| %>
+      <option value=<%= education_level.name %> ><%= education_level.name %></option>
+    <% end %>
+  </select>
 </div>
 
 <%= javascript_include_tag "jquery-mask/jquery.mask.min.js" %>

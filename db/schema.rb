@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_10_162115) do
+ActiveRecord::Schema.define(version: 2018_11_17_193241) do
 
   create_table "_contact_types_old", force: :cascade do |t|
     t.string "description", null: false
@@ -52,13 +52,19 @@ ActiveRecord::Schema.define(version: 2018_11_10_162115) do
   end
 
   create_table "education_informations", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "graduation_institution"
-    t.string "graduation_course"
-    t.integer "graduation_year"
+    t.integer "user_id", null: false
+    t.integer "education_level_id", null: false
+    t.string "institution", null: false
+    t.string "course", null: false
+    t.integer "conclusion_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["education_level_id"], name: "index_education_informations_on_education_level_id"
     t.index ["user_id"], name: "index_education_informations_on_user_id"
+  end
+
+  create_table "education_levels", force: :cascade do |t|
+    t.string "name", null: false
   end
 
   create_table "intended_relationships", force: :cascade do |t|

@@ -1,6 +1,7 @@
 class EducationInformation < ApplicationRecord
     belongs_to :user
+    belongs_to :education_level
 
     validates :user, presence: true
-    validates :graduation_year, numericality: { allow_nil: true, greater_than: 1900 }
+    validates :conclusion_year, numericality: { allow_nil: true, greater_than: 1900 }
 end

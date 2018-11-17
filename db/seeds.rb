@@ -245,3 +245,9 @@ if State.count == 0
     State.create(country: c, name: "Sergipe", code: "SE")
     State.create(country: c, name: "Tocantins", code: "TO")
 end
+
+if EducationLevel.count == 0
+    EducationLevel.create(name: "Graduação")
+    EducationLevel.create(name: "Mestrado")
+    EducationLevel.create(name: "Doutorado")
+end
