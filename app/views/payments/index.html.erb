@@ -7,7 +7,8 @@
 <%= link_to "Faça sua primeira contribuição", new_payment_path, class: "btn btn-primary btn-block" %>
 
 <% else %>
-<%= link_to "Nova contribuição", new_payment_path, class: "btn btn-primary" %>
+<%= link_to "Nova contribuição única", new_payment_path, class: "btn btn-primary" %>
+<%= link_to "Assinar contribuição mensal", new_subscription_path, class: "btn btn-primary" %>
 
 <table data-toggle="table" class="table">
   <thead>
