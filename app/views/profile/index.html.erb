@@ -1,0 +1,457 @@
+<% @tag_title = "Informações Cadastrais" %>
+<% @tag_subtitle = "Mantenha os seus dados atualizados" %>
+<% @counterSecondaryEmails = 0 %>
+<% @counterPreviousCompanies = 0 %>
+<% @counterEducationInformations = 0 %>
+
+<script>
+  function isInputNumber(evt) {
+    var ch = String.fromCharCode(evt.which);
+    if (!(/[0-9]/.test(ch))) {
+      evt.preventDefault();
+    }
+  }
+</script>
+
+<div class="alert alert-info">
+  Campos obrigatórios estão em <strong>negrito</strong>.
+</div>
+
+
+<div id="accordion">
+
+  <form id="id-form-update-profile" action="/profile" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <!-- Dados Pessoais -->
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Dados Pessoais
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col">
+            <div class = "row">
+              <label for="person-name" class="col-form-label font-weight-bold">Nome</label>
+              <input class="form-control mb-3" name = "person-name" oninvalid="$('#collapseOne').collapse('show')" value="<% if !@person.nil? %><%= @person.name %><% end %>" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1">
+            <div class = "row">
+              <label for="person-gender" class="col-form-label font-weight-bold">Sexo</label>
+              <select name="person-gender" class="form-control selectpicker">
+                <option hidden disabled selected value></option>
+                <option <% if (!@person.nil?) && @person.gender == "M" %> selected="selected" <% end %> value="M">M</option>
+                <option <% if (!@person.nil?) && @person.gender == "F" %> selected="selected" <% end %> value="F">F</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+          <div class="col-2">
+            <div class = "row">
+              <label for="person-birthdate" class="col-form-label font-weight-bold">Data de Nascimento</label>
+              <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" oninvalid="$('#collapseOne').collapse('show')" value="<% if !@person.nil? %><%= @person.birth_date.to_formatted_s(:short_date) %><% end %>" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2">
+            <div class = "row">
+              <label for="person-cpf" class="col-form-label font-weight-bold">CPF</label>
+              <input class="form-control mb-3 cpf" name="person-cpf" oninvalid="$('#collapseOne').collapse('show')" value="<% if !@person.nil? %><%= @person.cpf %><% end %>" required>
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            <div class = "row">
+              <label for="person-rg" class="col-form-label">RG</label>
+              <input class="form-control mb-3" name="person-rg" onkeypress="isInputNumber(event)" value="<% if !@person.nil? %><%= @person.rg %><% end %>" >
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- div class="card-body" -->
+    </div>
+  </div>
+  <!-- Dados Pessoais -->
+
+  <!-- Contato -->
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Contato
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-mobile" class="col-form-label font-weight-bold">Celular</label>
+              <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" oninvalid="$('#collapseTwo').collapse('show')" value="<% if !@mobile_contact.nil? %><%= @mobile_contact.value %><% end %>" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-facebook" class="col-form-label">Facebook</label>
+              <input class="form-control mb-3" name="contact-facebook" value="<% if !@facebook_contact.nil? %><%= @facebook_contact.value %><% end %>">
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-linkedin" class="col-form-label">Linkedin</label>
+              <input class="form-control mb-3" name="contact-linkedin" value="<% if !@linkedin_contact.nil? %><%= @linkedin_contact.value %><% end %>" >
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <div class = "row">
+              <label for="contact-skype" class="col-form-label">Skype</label>
+              <input class="form-control mb-3" name="contact-skype" value="<% if !@skype_contact.nil? %><%= @skype_contact.value %><% end %>" >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <label for="contact-preferred" class="col-form-label">Forma preferida de contato</label>
+            <select name="contact-preferred" class="form-control selectpicker">
+              <option hidden disabled selected value></option>
+              <% @email_is_preferred = (@facebook_contact.nil? || !@facebook_contact.preferred) && (@linkedin_contact.nil? || !@linkedin_contact.preferred) && (@skype_contact.nil? || !@skype_contact.preferred)  %>
+              <option value="Email"  <% if @email_is_preferred %> selected="selected" <% end %> >Email</option>
+              <option value="Facebook" <% if (!@facebook_contact.nil?) && @facebook_contact.preferred %> selected="selected" <% end %> >Facebook</option>
+              <option value="Linkedin" <% if (!@linkedin_contact.nil?) && @linkedin_contact.preferred %> selected="selected" <% end %> >Linkedin</option>
+              <option value="Skype" <% if (!@skype_contact.nil?) && @skype_contact.preferred %> selected="selected" <% end %> >Skype</option>
+            </select>
+          </div>
+        </div>
+
+
+        <br>
+        <table id="table-secondary-mail" class="col-4 order-list">
+          <thead>
+              <tr>
+                  <td>Emails Secundários</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="col" hidden>
+                      <input type="text" name="no-content" class="form-control" />
+                  </td>
+                  <td class="col-sm-2"><a class="deleteRow"></a>
+
+                  </td>
+              </tr>
+              <% @secondary_mail_contacts.each do |mail| %>
+                <tr>
+                  <td><input type="text" class="form-control" name="contact-secondary-mail<%= @counterSecondaryEmails %>" value="<%= mail.value %>"/></td>
+                  <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>
+                </tr>
+                <% @counterSecondaryEmails = @counterSecondaryEmails + 1 %>
+              <% end %>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="5" style="text-align: left;">
+                      <input type="button" class="btn btn-lg btn-block mt-3" id="addrow-secondary-mail" value="Adicionar" />
+                  </td>
+              </tr>
+              <tr>
+              </tr>
+          </tfoot>
+      </table>
+
+
+      </div>
+    </div>
+  </div>
+  <!-- Contato -->
+
+  <!-- Endereço -->
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Endereço
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+      <div class="card-body">
+
+
+        <div class="row">
+          <div class="col-3">
+              <label for="address-country" class="col-form-label font-weight-bold">País</label>
+              <select name="address-country" class="form-control selectpicker" oninvalid="$('#collapseThree').collapse('show')" required>
+                <option hidden disabled selected value></option>
+                <% @country_list.each do |country| %>
+                  <option value=<%= country.name %> <% if (!@address.nil?) && @address.country_id == country.id %> selected="selected" <% end %> ><%= country.name %></option>
+                <% end %>
+              </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2">
+            <label for="address-cep" class="col-form-label font-weight-bold" hidden>CEP</label>
+            <input type="text" class="form-control mb-3 cep" name="address-cep" data-provider="zipcode" value="<% if !@address.nil? %><%= @address.zip_code %><% end %>" hidden>
+
+            <label for="address-zipcode" class="col-form-label">Código Postal</label>
+            <input type="text" class="form-control mb-3" name="address-zipcode" value="<% if !@address.nil? %><%= @address.zip_code %><% end %>">
+          </div>
+        </div>
+
+        <label for="address-street" class="col-form-label font-weight-bold">Logradouro</label>
+        <input type="text" class="form-control mb-3" name="address-street" data-provider="street" oninvalid="$('#collapseThree').collapse('show')" value="<% if !@address.nil? %><%= @address.street %><% end %>" required>
+
+        <div class="row">
+          <div class="col-2">
+            <label for="address-number" class="col-form-label">Número</label>
+            <input type="text" class="form-control mb-3" name="address-number" value="<% if !@address.nil? %><%= @address.number %><% end %>" >
+          </div>
+
+          <div class="col-2"></div>
+
+          <div class="col-3">
+            <label for="address-complement" class="col-form-label">Complemento</label>
+            <input type="text" class="form-control mb-3" name="address-complement" value="<% if !@address.nil? %><%= @address.complement %><% end %>" >
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <label for="address-neighborhood" class="col-form-label">Bairro</label>
+            <input type="text" class="form-control mb-3" name="address-neighborhood" data-provider="neighborhood" value="<% if !@address.nil? %><%= @address.neighborhood %><% end %>">
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="address-city" class="col-form-label">Cidade</label>
+            <input type="text" class="form-control mb-3" name="address-city" data-provider="city" value="<% if !@address.nil? %><%= @address.city %><% end %>">
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="address-state" class="col-form-label">Estado</label>
+            <input type="text" class="form-control mb-3" name="address-state" data-provider="state" value="<% if (!@address.nil?) && (!@address.state.nil?) %><%= @address.state.code %><% elsif !@address.nil? %><%= @address.state_name %><% end %>">
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Endereço -->
+
+  <!-- Dados Profissionais -->
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          Dados Profissionais
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-3">
+            <label for="professional-company" class="col-form-label font-weight-bold">Empresa</label>
+            <input type="text" class="form-control mb-3" name="professional-company" value="<% if !@professional_information.nil? %><%= @professional_information.company %><% end %>" oninvalid="$('#collapseFour').collapse('show')" required>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <label for="professional-position" class="col-form-label font-weight-bold">Cargo Atual</label>
+            <input type="text" class="form-control mb-3" name="professional-position" value="<% if !@professional_information.nil? %><%= @professional_information.position %><% end %>" oninvalid="$('#collapseFour').collapse('show')" required>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-2">
+            <label for="professional-admission-year" class="col-form-label">Ano de Entrada</label>
+            <input type="number" class="form-control mb-3" name="professional-admission-year" pattern="\d+" value="<% if !@professional_information.nil? %><%= @professional_information.admission_year %><% end %>" oninvalid="$('#collapseFour').collapse('show')">
+          </div>
+
+        </div>
+
+        <br>
+        <table id="table-previous-companies" class="col-4 order-list">
+          <thead>
+              <tr>
+                  <td>Empresas anteriores</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="col" hidden>
+                      <input type="text" name="no-content" class="form-control" />
+                  </td>
+                  <td class="col-sm-2"><a class="deleteRow"></a>
+
+                  </td>
+              </tr>
+              <% @previous_companies.each do |company| %>
+                <tr>
+                  <td><input type="text" class="form-control" name="professional-previous-company<%= @counterPreviousCompanies %>" value="<%= company.name %>"/></td>
+                  <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>
+                </tr>
+                <% @counterPreviousCompanies = @counterPreviousCompanies + 1 %>
+              <% end %>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="5" style="text-align: left;">
+                      <input type="button" class="btn btn-lg btn-block mt-3" id="addrow-previous-company" value="Adicionar" />
+                  </td>
+              </tr>
+              <tr>
+              </tr>
+          </tfoot>
+      </table>
+
+
+      </div>
+    </div>
+  </div>
+  <!-- Dados Profissionais -->
+
+  <!-- Dados de Formação -->
+  <div class="card">
+    <div class="card-header" id="headingFive">
+      <h5 class="mb-0">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+          Dados de Formação
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
+      <div class="card-body">
+
+          <div class="row">
+            <div class="col-2 font-weight-bold">
+              Nível
+            </div>
+            <div class="col-3 font-weight-bold">
+              Instituição
+            </div>
+            <div class="col-3 font-weight-bold">
+              Curso
+            </div>
+            <div class="col-2">
+              Ano de conclusão
+            </div>
+          </div>
+
+          <div id="div-education-information">
+            <% @education_informations.each do |education_information| %>
+                <div class="row mb-3 education-information-row">
+                  <div class="col-2">
+                    <select name="education-level<%= @counterEducationInformations %>" class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required>
+                      <option hidden disabled selected value></option>
+                      <% @education_levels.each do |education_level| %>
+                        <option value=<%= education_level.name %> <% if education_information.education_level_id == education_level.id %> selected="selected" <% end %> ><%= education_level.name %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                  <div class="col-3"><input type="text" class="form-control" name="education-institution<%= @counterEducationInformations %>" value="<%= education_information.institution %>" oninvalid="$('#collapseFive').collapse('show')" required/></div>
+                  <div class="col-3"><input type="text" class="form-control" name="education-course<%= @counterEducationInformations %>" value="<%= education_information.course %>" oninvalid="$('#collapseFive').collapse('show')" required/></div>
+                  <div class="col-2"><input type="number" pattern="\d+" class="form-control" name="education-conclusion-year<%= @counterEducationInformations %>" value="<%= education_information.conclusion_year %>" oninvalid="$('#collapseFive').collapse('show')"/></div>
+                  <input type="button" class="ibtnDel btn btn-md btn-danger"  value="Excluir"></td>
+                </div>
+              <% @counterEducationInformations = @counterEducationInformations + 1 %>
+            <% end %>
+          </div> <!-- div-education-information -->
+          <input type="button" class="btn btn-lg btn-block mt-3" id="addrow-education-information" value="Adicionar" />
+
+      </div>
+    </div>
+  </div>
+  <!-- Dados de Formação -->
+
+  <!-- Intenções -->
+  <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+          Intenções
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix">
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col">
+            De quais formas você deseja contribuir?
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-associate" <% if (!@intended_relationship.nil?) && @intended_relationship.associate %> checked <% end %> >Desejo me associar</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-financial" <% if (!@intended_relationship.nil?) && @intended_relationship.financial %> checked <% end %> >Desejo contribuir financeiramente</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-mentoring" <% if (!@intended_relationship.nil?) && @intended_relationship.mentoring %> checked <% end %> >Desejo contribuir com mentoria</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="relationship-tutoring" <% if (!@intended_relationship.nil?) && @intended_relationship.tutoring %> checked <% end %> >Desejo contribuir com tutoria</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="relationship-remarks" class="col-form-label">Observações</label>
+            <input type="text" class="form-control mb-3" name="relationship-remarks" value="<% if !@intended_relationship.nil? %><%= @intended_relationship.remarks %><% end %>" >
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Intenções -->
+  <input type="submit" name="commit" value="Enviar" class="btn btn-block btn-primary mt-3" data-disable-with="Enviar">
+  </form>
+</div>
+
+<div hidden>
+  <select id="list-education-levels">
+    <option hidden disabled selected value></option>
+    <% @education_levels.each do |education_level| %>
+      <option value=<%= education_level.name %> ><%= education_level.name %></option>
+    <% end %>
+  </select>
+</div>
+
+<%= javascript_include_tag "jquery-mask/jquery.mask.min.js" %>
+<%= javascript_include_tag "mask_profile.js" %>
+<%= javascript_include_tag "table_secondary_mail.js" %>

@@ -5,11 +5,17 @@ class User < ApplicationRecord
          :recoverable, :trackable, :validatable
 
   has_many :payments
+  has_one  :person
+  has_many :contacts
+  has_one  :address
+  has_one  :professional_information
+  has_many :education_informations
+  has_one  :intended_relationship
 
   attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
 
   protected
-  
+
   def password_required?
     return false if skip_password_validation
     super

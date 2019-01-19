@@ -10,7 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_01_002236) do
+ActiveRecord::Schema.define(version: 2018_11_17_193241) do
+
+  create_table "_contact_types_old", force: :cascade do |t|
+    t.string "description", null: false
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "country_id"
+    t.integer "state_id"
+    t.string "state_name"
+    t.string "zip_code"
+    t.string "city"
+    t.string "number"
+    t.string "complement"
+    t.string "street"
+    t.string "neighborhood"
+    t.index ["country_id"], name: "index_addresses_on_country_id"
+    t.index ["state_id"], name: "index_addresses_on_state_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "contact_types", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "contact_type_id"
+    t.string "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "preferred"
+    t.index ["contact_type_id"], name: "index_contacts_on_contact_type_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "education_informations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "education_level_id", null: false
+    t.string "institution", null: false
+    t.string "course", null: false
+    t.integer "conclusion_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["education_level_id"], name: "index_education_informations_on_education_level_id"
+    t.index ["user_id"], name: "index_education_informations_on_user_id"
+  end
+
+  create_table "education_levels", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "intended_relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "associate"
+    t.boolean "financial"
+    t.boolean "mentoring"
+    t.boolean "tutoring"
+    t.string "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_intended_relationships_on_user_id"
+  end
 
   create_table "payments", force: :cascade do |t|
     t.integer "user_id"
@@ -19,6 +86,45 @@ ActiveRecord::Schema.define(version: 2018_10_01_002236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name", null: false
+    t.datetime "birth_date", null: false
+    t.string "gender", null: false
+    t.string "cpf", null: false
+    t.string "rg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_people_on_user_id"
+  end
+
+  create_table "previous_companies", force: :cascade do |t|
+    t.integer "professional_information_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["professional_information_id"], name: "index_previous_companies_on_professional_information_id"
+  end
+
+  create_table "professional_informations", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "company", null: false
+    t.string "position", null: false
+    t.integer "admission_year"
+    t.decimal "salary", precision: 12, scale: 2
+    t.decimal "estimated_wealth", precision: 16, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_professional_informations_on_user_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.integer "country_id"
+    t.string "name", null: false
+    t.string "code", null: false
+    t.index ["country_id"], name: "index_states_on_country_id"
   end
 
   create_table "users", force: :cascade do |t|
