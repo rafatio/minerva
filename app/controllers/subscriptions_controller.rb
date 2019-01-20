@@ -64,6 +64,8 @@ class SubscriptionsController < ApplicationController
             raise "Ocorreu um erro na criação da assinatura. Causa: #{error_message}"
         end
 
+        @subscription.pagarme_identifier = pagarme_subscription.id
+        @subscription.pagarme_subscription = OpenStruct.new(pagarme_subscription.to_hash)
 
         ###### TODO: criar um payment e guardar na base
         if @subscription.save
