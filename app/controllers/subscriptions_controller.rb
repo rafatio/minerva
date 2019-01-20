@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
 
     def new
         if current_user.address.nil?
-          flash[:error] = "Antes você precisa cadastrar um endereço."
+          flash[:error] = "É necessário cadastrar um endereço antes de realizar uma assinatura."
           redirect_to profile_index_path
         end
 
@@ -67,13 +67,22 @@ class SubscriptionsController < ApplicationController
         @subscription.pagarme_identifier = pagarme_subscription.id
         @subscription.pagarme_subscription = OpenStruct.new(pagarme_subscription.to_hash)
 
-        ###### TODO: criar um payment e guardar na base
-        if @subscription.save
-            #ApplicationMailer.payment_confirmation_email(user, @payment).deliver_later
-            flash[:notice] = 'Assinatura realizada com sucesso'
-            redirect_to subscriptions_path
+        @payment = current_user.payments.new(value: decimal_value,
+                                            pagarme_transaction: OpenStruct.new(pagarme_subscription.current_transaction.to_hash),
+                                            subscription: @subscription)
+
+        Payment.transaction do
+            if @payment.save
+                ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
+                flash[:notice] = 'Assinatura realizada com sucesso'
+                redirect_to subscriptions_path
+            end
         end
-        #################
+
+
+    rescue => e
+        flash[:error] = e.message
+        redirect_to new_subscription_path
 
     end
 
