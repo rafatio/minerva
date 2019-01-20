@@ -6,17 +6,20 @@ class SubscriptionsController < ApplicationController
     end
 
     def new
+        if current_user.address.nil?
+          flash[:error] = "Antes você precisa cadastrar um endereço."
+          redirect_to profile_index_path
+        end
+
         @active_subscriptions = current_user.subscriptions.where({active: true})
         @subscription = Subscription.new
     end
 
     def create
-
         #1) create plan
         decimal_value = params[:subscription][:value].delete('.').gsub(",", ".").to_f
         integer_value = (decimal_value * 100).to_i
         @subscription = current_user.subscriptions.new(value: decimal_value, active:true)
-
 
         plan = PagarMe::Plan.new({
             :name => "Plano mensal " + decimal_value.to_s,
@@ -51,7 +54,6 @@ class SubscriptionsController < ApplicationController
         pagarme_subscription.plan = plan
         pagarme_subscription.create
 
-        @subscription.pagarme_subscription = OpenStruct.new(pagarme_subscription.charge.to_hash)
         if pagarme_subscription.status != 'paid'
             error_message = TranslateAcquirerResponse.call(code: pagarme_subscription.current_transaction&.acquirer_response_code).message
 
@@ -71,9 +73,6 @@ class SubscriptionsController < ApplicationController
         end
         #################
 
-    rescue => e
-        flash[:error] = e.message
-        redirect_to new_subscription_path
     end
 
 
