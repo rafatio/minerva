@@ -2,9 +2,9 @@
 <html>
   <head>
     <% if @title || @tag_title %>
-      <title><%= @title || @tag_title %> | Fundo Minerva</title>
+      <title><%= @title || @tag_title %> | Instituto Reditus</title>
     <% else %>
-      <title>Fundo Minerva</title>
+      <title>Instituto Reditus</title>
     <% end %>
 
     <%= csrf_meta_tags %>
@@ -20,7 +20,7 @@
     <%= render 'layouts/shared/navbar' %>
     <%= render 'layouts/shared/alerts' %>
 
-    <div class="container-fluid mt-3">
+    <div class="container mt-3">
       <div class="row">
         <% if current_user %>
           <div class="col-md-3 mb-3">
