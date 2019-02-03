@@ -17,9 +17,9 @@ pt-BR:
       unconfirmed: "Você precisa confirmar sua conta antes de prosseguir."
     mailer:
       confirmation_instructions:
-        subject: "Confirme seu email no Fundo Minerva"
+        subject: "Confirme seu email no Instituto Reditus"
       reset_password_instructions:
-        subject: "Crie sua nova senha no Fundo Minerva"
+        subject: "Crie sua nova senha no Instituto Reditus"
       unlock_instructions:
         subject: "Instruções para destravar sua senha"
     omniauth_callbacks:
