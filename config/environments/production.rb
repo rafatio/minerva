@@ -106,6 +106,6 @@ Rails.application.configure do
     :password => Rails.application.credentials.sendmail[:password],
     :authentication       => :login,
     :ssl                  => true,
-    :openssl_verify_mode  => 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
+    :openssl_verify_mode  => 'peer'
   }
 end
