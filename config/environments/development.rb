@@ -68,11 +68,10 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :address => "smtp.zoho.com",
-    :port => 465,
+    :port => 587,
     :user_name => "noreply@institutoreditus.com.br",
     :password => Rails.application.credentials.sendmail[:password],
     :authentication       => :login,
-    :ssl                  => true,
-    :openssl_verify_mode  => 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
+    :enable_starttls_auto => true
   }
 end

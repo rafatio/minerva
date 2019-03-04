@@ -101,11 +101,10 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :address => "smtp.zoho.com",
-    :port => 465,
+    :port => 587,
     :user_name => "noreply@institutoreditus.com.br",
     :password => Rails.application.credentials.sendmail[:password],
     :authentication       => :login,
-    :ssl                  => true,
-    :openssl_verify_mode  => 'peer'
+    :enable_starttls_auto => true
   }
 end
