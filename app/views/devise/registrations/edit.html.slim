@@ -1,0 +1,30 @@
+- @tag_title = "Minha conta"
+.row
+  .col-lg-4.col-md-6
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = devise_error_messages!
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        .alert.alert-warning
+          | Aguardando confirmação de: 
+          = resource.unconfirmed_email
+      h3
+        | Altere sua senha
+      .form-group
+        = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Nova senha'
+      .form-group
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Nova senha novamente'
+      hr
+      h3
+        | Atualize seus dados
+      .form-group
+        = f.email_field :email, class: 'form-control', placeholder: 'Email Address'
+      .form-group
+        = f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Senha atual'
+        p.form-text.text-muted
+          small
+            | Caso faça modificações
+      .form-group
+        = f.submit "Salvar", class: 'btn btn-lg btn-block btn-primary'
+    hr
+    p.text-center
+      = link_to "Desativar conta", registration_path(resource_name), data: { confirm: "Tem certeza? Isso não pode ser desfeito." }, method: :delete
