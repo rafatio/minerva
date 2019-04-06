@@ -10,7 +10,7 @@
       <label for="user-email-confirmation" class="col-form-label col-3">Email Confirmation</label>
       <input class="form-control col-9 mb-3" name = "user-email-confirmation" required>
     <% end %>
-
+    <%= f.hidden_field :type, :value => @payment.payment_type.code if !@payment.payment_type.nil? %>
     <%= f.label :value, "Valor", class: "col-form-label col-3" %>
     <%= f.text_field :value, class: "form-control col-9 mb-3 input-currency", autocomplete: "off", required: true %>
 

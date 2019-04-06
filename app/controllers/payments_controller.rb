@@ -7,6 +7,14 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
+    if !params[:type].nil?
+      payment_type = PaymentType.find_by  code: params[:type]
+      raise 'Tipo de pagamento inválido' unless !payment_type.nil?
+      @payment.payment_type = payment_type
+    end
+  rescue => e
+    flash[:error] = e.message
+    redirect_to new_payment_path
   end
 
   def create
@@ -29,6 +37,12 @@ class PaymentsController < ApplicationController
 
     decimal_value = params[:payment][:value].delete('.').gsub(",", ".").to_f
     @payment = user.payments.new(value: decimal_value)
+
+    if !params[:payment][:type].nil?
+      payment_type = PaymentType.find_by  code: params[:payment][:type]
+      raise 'Tipo de pagamento inválido' unless !payment_type.nil?
+      @payment.payment_type = payment_type
+    end
 
     transaction = PagarMe::Transaction.new(
       amount: (decimal_value * 100).to_i, # in cents
@@ -63,7 +77,11 @@ class PaymentsController < ApplicationController
     end
   rescue => e
     flash[:error] = e.message
-    redirect_to new_payment_path
+    if params[:payment][:type].nil?
+      redirect_to new_payment_path
+    else
+      redirect_to new_payment_path(:type => params[:payment][:type])
+    end
   end
 
   private

@@ -251,3 +251,8 @@ if EducationLevel.count == 0
     EducationLevel.create(name: "Mestrado")
     EducationLevel.create(name: "Doutorado")
 end
+
+if PaymentType.count == 0
+    PaymentType.create(name: "Normal", code: "normal")
+    PaymentType.create(name: "Jantar de Gala", code: "gala")
+end
