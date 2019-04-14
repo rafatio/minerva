@@ -3,3 +3,14 @@
 @import "bootstrap-table.css";
 @import "**/*";
 @import "devise.sass";
+
+
+body { 
+  font-size: 5vmin; 
+}
+
+@media only screen and (min-width: 1000px) {
+   body { 
+      font-size: 1.8vmin;
+   }
+}

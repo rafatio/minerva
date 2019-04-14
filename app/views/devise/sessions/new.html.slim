@@ -3,10 +3,10 @@
     .col-md.full-height
       .login-form
         = image_tag('logo-cropped.png', class: 'login-form-logo')
-        p.text-center Entre com suas credenciais ou crie uma nova conta
+        p Bem-vindo de volta! Use suas credenciais para acessar sua conta
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .form-group
-            = f.email_field :email, autofocus: true, placeholder: 'Endereço de e-mail', class: 'form-control'
+            = f.email_field :email, autofocus: false, placeholder: 'Endereço de e-mail', class: 'form-control'
           .form-group
             = f.password_field :password, autocomplete: "off", placeholder: 'Senha', class: 'form-control'
           - if devise_mapping.rememberable?
@@ -16,6 +16,5 @@
                 |  Remember me 
           .form-group
             = f.submit "Entrar", class: "btn btn-primary btn-block btn-lg"
-        .text-center
-          = render "devise/shared/links"
-    .col-md.d-none.d-lg-block.full-height.login-art
+        = render "devise/shared/links"
+    = render "devise/shared/background"

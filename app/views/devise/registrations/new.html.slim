@@ -1,16 +1,18 @@
-.row
-  .col-lg-4.col-md-6.ml-auto.mr-auto
-    h1.text-center
-      | Criar Conta
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      .form-group
-        = f.email_field :email, autofocus: false, class: 'form-control', placeholder: "email"
-      .form-group
-        = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'senha'
-      .form-group
-        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'confirmar senha'
-      .form-group
-        = f.submit "Criar", class: "btn btn-primary btn-block btn-lg"
-    .text-center
-      = render "devise/shared/links"
+.container-fluid
+  .row
+    .col-md.full-height
+      .login-form
+        = image_tag('logo-cropped.png', class: 'login-form-logo')
+        p Bem-vindo ao Instituto Reditus! Crie sue conta para começar a contribuir
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = devise_error_messages!
+          .form-group
+            = f.email_field :email, autofocus: false, class: 'form-control', placeholder: "Endereço de e-mail"
+          .form-group
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Senha'
+          .form-group
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirmar senha'
+          .form-group
+            = f.submit "Criar conta", class: "btn btn-primary btn-block btn-lg"
+        = render "devise/shared/links"
+    = render "devise/shared/background"
