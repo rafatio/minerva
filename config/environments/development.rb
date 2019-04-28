@@ -74,4 +74,6 @@ Rails.application.configure do
     :authentication       => :login,
     :enable_starttls_auto => true
   }
+
+  ENV["HOST_URL"] = 'http://localhost:3000/'
 end

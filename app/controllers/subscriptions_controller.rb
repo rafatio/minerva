@@ -38,7 +38,7 @@ class SubscriptionsController < ApplicationController
             :card_expiration_month => params['expiry-month'].rjust(2, '0'),
             :card_expiration_year => '20' + params['expiry-year'],
             :card_cvv => params['cvc'],
-            #:postback_url => "http://test.com/postback",
+            :postback_url => ENV["HOST_URL"].gsub('/','') + postback_index_path,
             :customer => {
                 :name => current_user.person&.name,
                 :document_number => current_user.person&.cpf,

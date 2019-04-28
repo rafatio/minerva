@@ -1,0 +1,41 @@
+class PostbackController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
+    def create
+      if valid_postback?
+        result = ''
+        if params[:object] == "transaction"
+            postback_service = TransactionPostbackService.new
+            result = postback_service.process_transaction_postback(transaction_params)
+        else
+          result = 'Tipo de postback não tratado'
+        end
+        render_valid_postback_response(result)
+      else
+        render_invalid_postback_response('Postback inválido')
+      end
+
+    rescue => e
+      render_invalid_postback_response(e.message)
+    end
+
+    protected
+    def valid_postback?
+      raw_post  = request.raw_post
+      signature = request.headers['HTTP_X_HUB_SIGNATURE']
+      PagarMe::Postback.valid_request_signature?(raw_post, signature)
+    end
+
+    def render_invalid_postback_response(message)
+      render json: {error: message}, status: 400
+    end
+
+    def render_valid_postback_response(message)
+        render json: {message: message}, status: 200
+    end
+
+    def transaction_params
+        params.require(:transaction).permit!
+    end
+
+  end
