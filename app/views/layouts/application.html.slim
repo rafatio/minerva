@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    - if @title || @tag_title
+      title
+        = @title || @tag_title
+        |  | Instituto Reditus
+    - else
+      title
+        | Instituto Reditus
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    script[src="https://assets.pagar.me/pagarme-js/3.0/pagarme.min.js"]
+  body
+    = render 'layouts/shared/navbar'
+    = render 'layouts/shared/alerts'
+    .container.mt-3
+      .row
+        - if current_user
+          .col-md-3.mb-3
+            = render 'layouts/shared/new_sidebar'
+          .col-md-9
+            .card
+              .card-header
+                h5.h1.card-title
+                  = @tag_title
+                h6.card-subtitle.mb-2.text-muted
+                  = @tag_subtitle
+              .card-body
+                p.card-text
+                  = yield
+        - else
+          .col-12
+            = yield

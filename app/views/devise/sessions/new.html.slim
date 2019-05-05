@@ -1,0 +1,20 @@
+.container-fluid
+  .row
+    .col-md.full-height
+      .login-form
+        = image_tag('logo-cropped.png', class: 'login-form-logo')
+        p Bem-vindo de volta! Use suas credenciais para acessar sua conta
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            = f.email_field :email, autofocus: false, placeholder: 'Endereço de e-mail', class: 'form-control'
+          .form-group
+            = f.password_field :password, autocomplete: "off", placeholder: 'Senha', class: 'form-control'
+          - if devise_mapping.rememberable?
+            .form-check
+              label.form-check-label
+                = f.check_box :remember_me, class: "form-check-input"
+                |  Remember me 
+          .form-group
+            = f.submit "Entrar", class: "btn btn-primary btn-block btn-lg"
+        = render "devise/shared/links"
+    = render "devise/shared/background"

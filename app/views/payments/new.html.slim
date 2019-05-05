@@ -1,0 +1,22 @@
+- @tag_title = "Nova contribuição"
+- @tag_subtitle = "Aceitamos cartões Visa, Mastercard, Amex, Elo, Hipercard, Diners, Discover, Aura e JCB"
+= form_for @payment do |f|
+  .form-group.col-md-6.row
+    - if !user_signed_in?
+      label.col-form-label.col-3[for="user-email"]
+        | Email
+      input.form-control.col-9.mb-3[name="user-email" required]
+      label.col-form-label.col-3[for="user-email-confirmation"]
+        | Email Confirmation
+      input.form-control.col-9.mb-3[name="user-email-confirmation" required]
+    = f.label :value, "Valor", class: "col-form-label col-3"
+    = f.text_field :value, class: "form-control col-9 mb-3 input-currency", autocomplete: "off", required: true
+    .card-js[data-capture-name="true" data-icon-colour="#158CBA"]
+      input.name[name="card-holders-name" placeholder="Name on card" required]
+      input.expiry-month[name="expiry-month" required]
+      input.expiry-year[name="expiry-year" required]
+      input.cvc[name="cvc" required]
+    = f.submit "Enviar", class: "btn btn-block btn-primary mt-3"
+= javascript_include_tag "vendor/card-js.min.js"
+= javascript_include_tag "mask/jquery.maskMoney.min.js"
+= javascript_include_tag "mask_currency_field.js"

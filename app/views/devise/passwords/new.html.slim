@@ -1,0 +1,14 @@
+.container-fluid
+  .row
+    .col-md.full-height
+      .login-form
+        = image_tag('logo-cropped.png', class: 'login-form-logo')
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          p Nós enviaremos instruções para você cadastrar uma nova senha.
+          = devise_error_messages!
+          .form-group
+            = f.email_field :email, autofocus: false, placeholder: 'Endereço de e-mail', class: 'form-control'
+          .form-group
+            = f.submit "Receber instruções", class: 'btn btn-primary btn-block btn-lg'
+        = render "devise/shared/links"
+    = render "devise/shared/background"

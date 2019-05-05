@@ -20,3 +20,5 @@
 //= require Chart.bundle
 //= require chartkick
 //= require autocomplete_zipcode
+
+//= require vendor/sb-admin-2
