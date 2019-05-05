@@ -4,7 +4,7 @@ class PostbackController < ApplicationController
     def create
       if valid_postback?
         result = ''
-        if params[:object] == "transaction"
+        if params[:object] == "subscription" && params[:event] == "transaction_created"
             postback_service = TransactionPostbackService.new
             result = postback_service.process_transaction_postback(transaction_params)
         else
@@ -35,7 +35,7 @@ class PostbackController < ApplicationController
     end
 
     def transaction_params
-        params.require(:transaction).permit!
+        params.require(:subscription).require(:current_transaction).permit!
     end
 
   end
