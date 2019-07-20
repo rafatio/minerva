@@ -331,34 +331,36 @@ script
                   |  <select name="education-level
                   = @counterEducationInformations
                   | " class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required>
-              option[hidden disabled selected value]
-              - @education_levels.each do |education_level|
-                |  <option value=
-                = education_level.name
-                - if education_information.education_level_id == education_level.id
-                  |  selected="selected"
-                |  >
-                = education_level.name
-              .col-3
-                | <input type="text" class="form-control" name="education-institution
-                = @counterEducationInformations
-                | " value="
-                = education_information.institution
-                | " oninvalid="$('#collapseFive').collapse('show')" required/>
-              .col-3
-                | <input type="text" class="form-control" name="education-course
-                = @counterEducationInformations
-                | " value="
-                = education_information.course
-                | " oninvalid="$('#collapseFive').collapse('show')" required/>
-              .col-2
-                | <input type="number" pattern="\d+" class="form-control" name="education-conclusion-year
-                = @counterEducationInformations
-                | " value="
-                = education_information.conclusion_year
-                | " oninvalid="$('#collapseFive').collapse('show')"/>
+                  option[hidden disabled selected value]
+                  - @education_levels.each do |education_level|
+                    |  <option value=
+                    = education_level.name
+                    - if education_information.education_level_id == education_level.id
+                      |  selected="selected"
+                    |  >
+                    = education_level.name
+
+                .col-3
+                  | <input type="text" class="form-control" name="education-institution
+                  = @counterEducationInformations
+                  | " value="
+                  = education_information.institution
+                  | " oninvalid="$('#collapseFive').collapse('show')" required/>
+                .col-3
+                  | <input type="text" class="form-control" name="education-course
+                  = @counterEducationInformations
+                  | " value="
+                  = education_information.course
+                  | " oninvalid="$('#collapseFive').collapse('show')" required/>
+                .col-2
+                  | <input type="number" pattern="\d+" class="form-control" name="education-conclusion-year
+                  = @counterEducationInformations
+                  | " value="
+                  = education_information.conclusion_year
+                  | " oninvalid="$('#collapseFive').collapse('show')"/>
+                input.ibtnDel.btn.btn-md.btn-danger[type="button" value="Excluir"]
                 - @counterEducationInformations = @counterEducationInformations + 1
-          input.ibtnDel.btn.btn-md.btn-danger[type="button" value="Excluir"]
+
         input#addrow-education-information.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
     .card
       #headingSix.card-header
