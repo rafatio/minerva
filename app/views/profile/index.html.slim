@@ -357,8 +357,8 @@ script
                 | " value="
                 = education_information.conclusion_year
                 | " oninvalid="$('#collapseFive').collapse('show')"/>
+                - @counterEducationInformations = @counterEducationInformations + 1
           input.ibtnDel.btn.btn-md.btn-danger[type="button" value="Excluir"]
-        - @counterEducationInformations = @counterEducationInformations + 1
         input#addrow-education-information.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
     .card
       #headingSix.card-header
