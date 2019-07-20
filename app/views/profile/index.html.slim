@@ -4,12 +4,12 @@
 - @counterPreviousCompanies = 0
 - @counterEducationInformations = 0
 script
-  |  function isInputNumber(evt) { var ch = String.fromCharCode(evt.which); if (!(/[0-9]/.test(ch))) { evt.preventDefault(); } } 
+  |  function isInputNumber(evt) { var ch = String.fromCharCode(evt.which); if (!(/[0-9]/.test(ch))) { evt.preventDefault(); } }
 .alert.alert-info
-  |  Campos obrigatórios estão em 
+  |  Campos obrigatórios estão em
   strong
-    | negrito
-  | . 
+    |  negrito
+  | .
 #accordion
   form#id-form-update-profile[action="/profile" method="post"]
     = hidden_field_tag :authenticity_token, form_authenticity_token
@@ -17,7 +17,7 @@ script
       #headingOne.card-header
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"]
-            |  Dados Pessoais 
+            |  Dados Pessoais
       #collapseOne.collapse[aria-labelledby="headingOne"]
         .card-body
           .row
@@ -28,7 +28,7 @@ script
                 |  <input class="form-control mb-3" name = "person-name" oninvalid="$('#collapseOne').collapse('show')" value="
                 - if !@person.nil?
                   = @person.name
-                | " required> 
+                | " required>
           .row
             .col-1
               .row
@@ -36,13 +36,13 @@ script
                   | Sexo
                 select.form-control.selectpicker[name="person-gender"]
                   option[hidden disabled selected value]
-                  |  <option 
+                  |  <option
                   - if (!@person.nil?) && @person.gender == "M"
-                    |  selected="selected" 
+                    |  selected="selected"
                   |  value="M">M
-                  |  <option 
+                  |  <option
                   - if (!@person.nil?) && @person.gender == "F"
-                    |  selected="selected" 
+                    |  selected="selected"
                   |  value="F">F
             .col-2
             .col-2
@@ -52,7 +52,7 @@ script
                 |  <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" oninvalid="$('#collapseOne').collapse('show')" value="
                 - if !@person.nil?
                   = @person.birth_date.to_formatted_s(:short_date)
-                | " required> 
+                | " required>
           .row
             .col-2
               .row
@@ -61,7 +61,7 @@ script
                 |  <input class="form-control mb-3 cpf" name="person-cpf" oninvalid="$('#collapseOne').collapse('show')" value="
                 - if !@person.nil?
                   = @person.cpf
-                | " required> 
+                | " required>
             .col-1
             .col-2
               .row
@@ -70,12 +70,12 @@ script
                 |  <input class="form-control mb-3" name="person-rg" onkeypress="isInputNumber(event)" value="
                 - if !@person.nil?
                   = @person.rg
-                | " > 
+                | " >
     .card
       #headingTwo.card-header
         h5.mb-0
           button.btn.btn-link.collapsed[type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"]
-            |  Contato 
+            |  Contato
       #collapseTwo.collapse[aria-labelledby="headingTwo"]
         .card-body
           .row
@@ -86,7 +86,7 @@ script
                 |  <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" oninvalid="$('#collapseTwo').collapse('show')" value="
                 - if !@mobile_contact.nil?
                   = @mobile_contact.value
-                | " required> 
+                | " required>
           .row
             .col-3
               .row
@@ -95,7 +95,7 @@ script
                 |  <input class="form-control mb-3" name="contact-facebook" value="
                 - if !@facebook_contact.nil?
                   = @facebook_contact.value
-                | "> 
+                | ">
             .col-1
             .col-3
               .row
@@ -104,7 +104,7 @@ script
                 |  <input class="form-control mb-3" name="contact-linkedin" value="
                 - if !@linkedin_contact.nil?
                   = @linkedin_contact.value
-                | " > 
+                | " >
             .col-1
             .col-3
               .row
@@ -113,7 +113,7 @@ script
                 |  <input class="form-control mb-3" name="contact-skype" value="
                 - if !@skype_contact.nil?
                   = @skype_contact.value
-                | " > 
+                | " >
           .row
             .col-3
               label.col-form-label[for="contact-preferred"]
@@ -121,21 +121,21 @@ script
               select.form-control.selectpicker[name="contact-preferred"]
                 option[hidden disabled selected value]
                 - @email_is_preferred = (@facebook_contact.nil? || !@facebook_contact.preferred) && (@linkedin_contact.nil? || !@linkedin_contact.preferred) && (@skype_contact.nil? || !@skype_contact.preferred)
-                |  <option value="Email" 
+                |  <option value="Email"
                 - if @email_is_preferred
-                  |  selected="selected" 
+                  |  selected="selected"
                 |  >Email
-                |  <option value="Facebook" 
+                |  <option value="Facebook"
                 - if (!@facebook_contact.nil?) && @facebook_contact.preferred
-                  |  selected="selected" 
+                  |  selected="selected"
                 |  >Facebook
-                |  <option value="Linkedin" 
+                |  <option value="Linkedin"
                 - if (!@linkedin_contact.nil?) && @linkedin_contact.preferred
-                  |  selected="selected" 
+                  |  selected="selected"
                 |  >Linkedin
-                |  <option value="Skype" 
+                |  <option value="Skype"
                 - if (!@skype_contact.nil?) && @skype_contact.preferred
-                  |  selected="selected" 
+                  |  selected="selected"
                 |  >Skype
           br
           table#table-secondary-mail.col-4.order-list
@@ -170,7 +170,7 @@ script
       #headingThree.card-header
         h5.mb-0
           button.btn.btn-link.collapsed[type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"]
-            |  Endereço 
+            |  Endereço
       #collapseThree.collapse[aria-labelledby="headingThree"]
         .card-body
           .row
@@ -183,7 +183,7 @@ script
                   |  <option value=
                   = country.name
                   - if (!@address.nil?) && @address.country_id == country.id
-                    |  selected="selected" 
+                    |  selected="selected"
                   |  >
                   = country.name
           .row
@@ -193,19 +193,19 @@ script
               |  <input type="text" class="form-control mb-3 cep" name="address-cep" data-provider="zipcode" value="
               - if !@address.nil?
                 = @address.zip_code
-              | " hidden> 
+              | " hidden>
               label.col-form-label[for="address-zipcode"]
                 | Código Postal
               |  <input type="text" class="form-control mb-3" name="address-zipcode" value="
               - if !@address.nil?
                 = @address.zip_code
-              | "> 
+              | ">
           label.col-form-label.font-weight-bold[for="address-street"]
             | Logradouro
           |  <input type="text" class="form-control mb-3" name="address-street" data-provider="street" oninvalid="$('#collapseThree').collapse('show')" value="
           - if !@address.nil?
             = @address.street
-          | " required> 
+          | " required>
           .row
             .col-2
               label.col-form-label[for="address-number"]
@@ -213,7 +213,7 @@ script
               |  <input type="text" class="form-control mb-3" name="address-number" value="
               - if !@address.nil?
                 = @address.number
-              | " > 
+              | " >
             .col-2
             .col-3
               label.col-form-label[for="address-complement"]
@@ -221,7 +221,7 @@ script
               |  <input type="text" class="form-control mb-3" name="address-complement" value="
               - if !@address.nil?
                 = @address.complement
-              | " > 
+              | " >
           .row
             .col-3
               label.col-form-label[for="address-neighborhood"]
@@ -229,7 +229,7 @@ script
               |  <input type="text" class="form-control mb-3" name="address-neighborhood" data-provider="neighborhood" value="
               - if !@address.nil?
                 = @address.neighborhood
-              | "> 
+              | ">
             .col-1
             .col-3
               label.col-form-label[for="address-city"]
@@ -237,7 +237,7 @@ script
               |  <input type="text" class="form-control mb-3" name="address-city" data-provider="city" value="
               - if !@address.nil?
                 = @address.city
-              | "> 
+              | ">
             .col-1
             .col-3
               label.col-form-label[for="address-state"]
@@ -247,12 +247,12 @@ script
                 = @address.state.code
               - elsif !@address.nil?
                 = @address.state_name
-              | "> 
+              | ">
     .card
       #headingFour.card-header
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour"]
-            |  Dados Profissionais 
+            |  Dados Profissionais
       #collapseFour.collapse[aria-labelledby="headingFour"]
         .card-body
           .row
@@ -262,7 +262,7 @@ script
               |  <input type="text" class="form-control mb-3" name="professional-company" value="
               - if !@professional_information.nil?
                 = @professional_information.company
-              | " oninvalid="$('#collapseFour').collapse('show')" required> 
+              | " oninvalid="$('#collapseFour').collapse('show')" required>
             .col-1
             .col-3
               label.col-form-label.font-weight-bold[for="professional-position"]
@@ -270,7 +270,7 @@ script
               |  <input type="text" class="form-control mb-3" name="professional-position" value="
               - if !@professional_information.nil?
                 = @professional_information.position
-              | " oninvalid="$('#collapseFour').collapse('show')" required> 
+              | " oninvalid="$('#collapseFour').collapse('show')" required>
             .col-1
             .col-2
               label.col-form-label[for="professional-admission-year"]
@@ -278,7 +278,7 @@ script
               |  <input type="number" class="form-control mb-3" name="professional-admission-year" pattern="\d+" value="
               - if !@professional_information.nil?
                 = @professional_information.admission_year
-              | " oninvalid="$('#collapseFour').collapse('show')"> 
+              | " oninvalid="$('#collapseFour').collapse('show')">
           br
           table#table-previous-companies.col-4.order-list
             thead
@@ -312,108 +312,108 @@ script
       #headingFive.card-header
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive"]
-            |  Dados de Formação 
+            |  Dados de Formação
       #collapseFive.collapse[aria-labelledby="headingFive"]
         .card-body
           .row
             .col-2.font-weight-bold
-              |  Nível 
+              |  Nível
             .col-3.font-weight-bold
-              |  Instituição 
+              |  Instituição
             .col-3.font-weight-bold
-              |  Curso 
+              |  Curso
             .col-2
-              |  Ano de conclusão 
+              |  Ano de conclusão
           #div-education-information
             - @education_informations.each do |education_information|
               .row.mb-3.education-information-row
                 .col-2
                   |  <select name="education-level
                   = @counterEducationInformations
-                  | " class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required> 
+                  | " class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required>
               option[hidden disabled selected value]
               - @education_levels.each do |education_level|
                 |  <option value=
                 = education_level.name
                 - if education_information.education_level_id == education_level.id
-                  |  selected="selected" 
+                  |  selected="selected"
                 |  >
                 = education_level.name
-          .col-3
-            | <input type="text" class="form-control" name="education-institution
-            = @counterEducationInformations
-            | " value="
-            = education_information.institution
-            | " oninvalid="$('#collapseFive').collapse('show')" required/>
-          .col-3
-            | <input type="text" class="form-control" name="education-course
-            = @counterEducationInformations
-            | " value="
-            = education_information.course
-            | " oninvalid="$('#collapseFive').collapse('show')" required/>
-          .col-2
-            | <input type="number" pattern="\d+" class="form-control" name="education-conclusion-year
-            = @counterEducationInformations
-            | " value="
-            = education_information.conclusion_year
-            | " oninvalid="$('#collapseFive').collapse('show')"/>
+              .col-3
+                | <input type="text" class="form-control" name="education-institution
+                = @counterEducationInformations
+                | " value="
+                = education_information.institution
+                | " oninvalid="$('#collapseFive').collapse('show')" required/>
+              .col-3
+                | <input type="text" class="form-control" name="education-course
+                = @counterEducationInformations
+                | " value="
+                = education_information.course
+                | " oninvalid="$('#collapseFive').collapse('show')" required/>
+              .col-2
+                | <input type="number" pattern="\d+" class="form-control" name="education-conclusion-year
+                = @counterEducationInformations
+                | " value="
+                = education_information.conclusion_year
+                | " oninvalid="$('#collapseFive').collapse('show')"/>
           input.ibtnDel.btn.btn-md.btn-danger[type="button" value="Excluir"]
         - @counterEducationInformations = @counterEducationInformations + 1
-      input#addrow-education-information.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
-.card
-  #headingSix.card-header
-    h5.mb-0
-      button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix"]
-        |  Intenções 
-  #collapseSix.collapse[aria-labelledby="headingSix"]
-    .card-body
-      .row
-        .col
-          |  De quais formas você deseja contribuir? 
-      br
-      .row
-        .col
-          .checkbox
-            label
-              | <input type="checkbox" name="relationship-associate" 
-              - if (!@intended_relationship.nil?) && @intended_relationship.associate
-                |  checked 
-              |  >Desejo me associar
-          .checkbox
-            label
-              | <input type="checkbox" name="relationship-financial" 
-              - if (!@intended_relationship.nil?) && @intended_relationship.financial
-                |  checked 
-              |  >Desejo contribuir financeiramente
-          .checkbox
-            label
-              | <input type="checkbox" name="relationship-mentoring" 
-              - if (!@intended_relationship.nil?) && @intended_relationship.mentoring
-                |  checked 
-              |  >Desejo contribuir com mentoria
-          .checkbox
-            label
-              | <input type="checkbox" name="relationship-tutoring" 
-              - if (!@intended_relationship.nil?) && @intended_relationship.tutoring
-                |  checked 
-              |  >Desejo contribuir com tutoria
-      .row
-        .col
-          label.col-form-label[for="relationship-remarks"]
-            | Observações
-          |  <input type="text" class="form-control mb-3" name="relationship-remarks" value="
-          - if !@intended_relationship.nil?
-            = @intended_relationship.remarks
-          | " > 
-input.btn.btn-block.btn-primary.mt-3[type="submit" name="commit" value="Enviar" data-disable-with="Enviar"]
-div[hidden]
-  select#list-education-levels
-    option[hidden disabled selected value]
-    - @education_levels.each do |education_level|
-      |  <option value=
-      = education_level.name
-      |  >
-      = education_level.name
+        input#addrow-education-information.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
+    .card
+      #headingSix.card-header
+        h5.mb-0
+          button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix"]
+            |  Intenções
+      #collapseSix.collapse[aria-labelledby="headingSix"]
+        .card-body
+          .row
+            .col
+              |  De quais formas você deseja contribuir?
+          br
+          .row
+            .col
+              .checkbox
+                label
+                  | <input type="checkbox" name="relationship-associate"
+                  - if (!@intended_relationship.nil?) && @intended_relationship.associate
+                    |  checked
+                  |  >Desejo me associar
+              .checkbox
+                label
+                  | <input type="checkbox" name="relationship-financial"
+                  - if (!@intended_relationship.nil?) && @intended_relationship.financial
+                    |  checked
+                  |  >Desejo contribuir financeiramente
+              .checkbox
+                label
+                  | <input type="checkbox" name="relationship-mentoring"
+                  - if (!@intended_relationship.nil?) && @intended_relationship.mentoring
+                    |  checked
+                  |  >Desejo contribuir com mentoria
+              .checkbox
+                label
+                  | <input type="checkbox" name="relationship-tutoring"
+                  - if (!@intended_relationship.nil?) && @intended_relationship.tutoring
+                    |  checked
+                  |  >Desejo contribuir com tutoria
+          .row
+            .col
+              label.col-form-label[for="relationship-remarks"]
+                | Observações
+              |  <input type="text" class="form-control mb-3" name="relationship-remarks" value="
+              - if !@intended_relationship.nil?
+                = @intended_relationship.remarks
+              | " >
+    input.btn.btn-block.btn-primary.mt-3[type="submit" name="commit" value="Enviar" data-disable-with="Enviar"]
+    div[hidden]
+      select#list-education-levels
+        option[hidden disabled selected value]
+        - @education_levels.each do |education_level|
+          |  <option value=
+          = education_level.name
+          |  >
+          = education_level.name
 = javascript_include_tag "jquery-mask/jquery.mask.min.js"
 = javascript_include_tag "mask_profile.js"
 = javascript_include_tag "table_secondary_mail.js"
