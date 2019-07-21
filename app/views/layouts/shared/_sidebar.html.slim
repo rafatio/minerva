@@ -1,5 +1,5 @@
 ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
-  a.sidebar-brand.d-flex.align-items-centerleft.justify-content-left[href="index.html"]
+  a.sidebar-brand.d-flex.align-items-centerleft.justify-content-left[href="/"]
     = image_tag 'logo-cropped.png', class: 'brand-icon'
   li class=(["nav-item", current_page?(:controller => 'home', :action => 'index') ? "active" : nil].compact.join(' '))
     a.nav-link[href="#{root_path}"]
