@@ -52,6 +52,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # use slim html
 gem 'slim-rails'
 
+# custom error pages with Exception Handler
+gem 'exception_handler', '~> 0.8.0.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
