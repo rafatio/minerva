@@ -35,7 +35,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             .col-1
               .row
                 label.col-form-label[for="person-gender"]
-                  | Genero
+                  | Gênero
                 select.form-control.selectpicker[name="person-gender"]
                   option[hidden disabled selected value]
                   |  <option
@@ -107,7 +107,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             .col-3
               .row
                 label.col-form-label[for="contact-linkedin"]
-                  | Linkedin
+                  | LinkedIn
                 |  <input class="form-control mb-3" name="contact-linkedin" value="
                 - if !@linkedin_contact.nil?
                   = @linkedin_contact.value
@@ -124,22 +124,22 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
           .row
             .col-3
               label.col-form-label[for="contact-preferred"]
-                | Forma preferida de contato
+                | Forma preferencial de contato
               select.form-control.selectpicker[name="contact-preferred"]
                 option[hidden disabled selected value]
                 - @email_is_preferred = (@facebook_contact.nil? || !@facebook_contact.preferred) && (@linkedin_contact.nil? || !@linkedin_contact.preferred) && (@skype_contact.nil? || !@skype_contact.preferred)
-                |  <option value="Email"
+                |  <option value="E-mail"
                 - if @email_is_preferred
                   |  selected="selected"
-                |  >Email
+                |  >E-mail
                 |  <option value="Facebook"
                 - if (!@facebook_contact.nil?) && @facebook_contact.preferred
                   |  selected="selected"
                 |  >Facebook
-                |  <option value="Linkedin"
+                |  <option value="LinkedIn"
                 - if (!@linkedin_contact.nil?) && @linkedin_contact.preferred
                   |  selected="selected"
-                |  >Linkedin
+                |  >LinkedIn
                 |  <option value="Skype"
                 - if (!@skype_contact.nil?) && @skype_contact.preferred
                   |  selected="selected"
@@ -149,7 +149,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             thead
               tr
                 td
-                  | Emails Secundários
+                  | E-mails Secundários
             tbody
               tr
                 td.col[hidden]

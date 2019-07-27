@@ -70,6 +70,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'html2slim'
+  gem 'annotate'
 end
 
 group :test do
