@@ -404,12 +404,16 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
                   - if (!@intended_relationship.nil?) && @intended_relationship.mentoring
                     |  checked
                   |  >Desejo contribuir com mentoria
+                  a href="https://www.institutoreditus.com.br/mentoria-de-projetos" target="_blank" data-tip="Para mais informações, visite: https://www.institutoreditus.com.br/mentoria-de-projetos" class="tip-above"
+                    i.material-icons info
               .checkbox
                 label
                   | <input type="checkbox" name="relationship-tutoring"
                   - if (!@intended_relationship.nil?) && @intended_relationship.tutoring
                     |  checked
                   |  >Desejo contribuir com tutoria
+                  a href="https://www.institutoreditus.com.br/tutoria-de-alunos" target="_blank" data-tip="Para mais informações, visite: https://www.institutoreditus.com.br/tutoria-de-alunos" class="tip-above"
+                    i.material-icons info
           .row
             .col
               label.col-form-label[for="relationship-remarks"]
