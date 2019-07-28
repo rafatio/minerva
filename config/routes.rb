@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root to: "home#index"
   devise_for :users
+
+  authenticated :user do
+    root "home#index", as: :authenticated_root
+  end
+
+  devise_scope :user do
+    root "devise/sessions#new", as: :unauthenticated_root
+  end
 
   resources :payments, only: [:index, :new, :create]
   resources :profile, only: [:index, :create]
