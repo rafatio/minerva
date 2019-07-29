@@ -69,7 +69,7 @@ class PaymentsController < ApplicationController
       ApplicationMailer.payment_confirmation_email(user, @payment).deliver_later
       flash[:notice] = 'Pagamento realizado com sucesso'
       if current_user.nil?
-        redirect_to root_path
+        redirect_to authenticated_root_path
       else
         redirect_to payments_path
       end

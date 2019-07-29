@@ -22,3 +22,7 @@
 //= require autocomplete_zipcode
 
 //= require vendor/sb-admin-2
+
+// $(document).ready(function() {
+//   $(".alert").fadeOut(3000);
+// });

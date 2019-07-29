@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: payments
+#
+#  id                  :integer          not null, primary key
+#  user_id             :integer
+#  value               :decimal(8, 2)
+#  pagarme_transaction :text
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  payment_type_id     :integer
+#
+
 class Payment < ApplicationRecord
   belongs_to :user
   belongs_to :payment_type, optional: true

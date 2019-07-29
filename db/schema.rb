@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_17_193241) do
-
-  create_table "_contact_types_old", force: :cascade do |t|
-    t.string "description", null: false
-  end
+ActiveRecord::Schema.define(version: 2019_07_27_093518) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -25,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_11_17_193241) do
     t.string "city"
     t.string "number"
     t.string "complement"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "street"
     t.string "neighborhood"
     t.index ["country_id"], name: "index_addresses_on_country_id"
@@ -49,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_11_17_193241) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "order_index"
   end
 
   create_table "education_informations", force: :cascade do |t|
@@ -79,12 +78,19 @@ ActiveRecord::Schema.define(version: 2018_11_17_193241) do
     t.index ["user_id"], name: "index_intended_relationships_on_user_id"
   end
 
+  create_table "payment_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "code", null: false
+  end
+
   create_table "payments", force: :cascade do |t|
     t.integer "user_id"
     t.decimal "value", precision: 8, scale: 2
     t.text "pagarme_transaction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment_type_id"
+    t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 

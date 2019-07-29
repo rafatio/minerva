@@ -5,12 +5,13 @@
 - @counterEducationInformations = 0
 script
   |  function isInputNumber(evt) { var ch = String.fromCharCode(evt.which); if (!(/[0-9]/.test(ch))) { evt.preventDefault(); } }
+nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+  = link_to(destroy_user_session_path, method: :delete) do
+    i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2
+    | Logout
 .alert.alert-info
-  |  Campos obrigatórios estão em
-  strong
-    |  negrito
-  | .
-#accordion
+  |  Campos obrigatórios estão marcados com *.
+#profile-accordion
   form#id-form-update-profile[action="/profile" method="post"]
     = hidden_field_tag :authenticity_token, form_authenticity_token
     .card
@@ -18,13 +19,14 @@ script
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"]
             |  Dados Pessoais
-      #collapseOne.collapse[aria-labelledby="headingOne"]
+            i.material-icons keyboard_arrow_down
+      #collapseOne.show[aria-labelledby="headingOne"]
         .card-body
           .row
             .col
               .row
-                label.col-form-label.font-weight-bold[for="person-name"]
-                  | Nome
+                label.col-form-label[for="person-name"]
+                  | Nome *
                 |  <input class="form-control mb-3" name = "person-name" oninvalid="$('#collapseOne').collapse('show')" value="
                 - if !@person.nil?
                   = @person.name
@@ -32,23 +34,27 @@ script
           .row
             .col-1
               .row
-                label.col-form-label.font-weight-bold[for="person-gender"]
-                  | Sexo
+                label.col-form-label[for="person-gender"]
+                  | Gênero
                 select.form-control.selectpicker[name="person-gender"]
                   option[hidden disabled selected value]
                   |  <option
                   - if (!@person.nil?) && @person.gender == "M"
                     |  selected="selected"
-                  |  value="M">M
+                  |  value="M">Masculino
                   |  <option
                   - if (!@person.nil?) && @person.gender == "F"
                     |  selected="selected"
-                  |  value="F">F
+                  |  value="F">Feminino
+                  |  <option
+                  - if (!@person.nil?) && @person.gender == "N"
+                    |  selected="selected"
+                  |  value="N">Outro
             .col-2
             .col-2
               .row
-                label.col-form-label.font-weight-bold[for="person-birthdate"]
-                  | Data de Nascimento
+                label.col-form-label[for="person-birthdate"]
+                  | Data de Nascimento *
                 |  <input class="form-control mb-3" type="date" id="id-person-birthdate" name="person-birthdate" oninvalid="$('#collapseOne').collapse('show')" value="
                 - if !@person.nil?
                   = @person.birth_date.to_formatted_s(:short_date)
@@ -56,8 +62,8 @@ script
           .row
             .col-2
               .row
-                label.col-form-label.font-weight-bold[for="person-cpf"]
-                  | CPF
+                label.col-form-label[for="person-cpf"]
+                  | CPF *
                 |  <input class="form-control mb-3 cpf" name="person-cpf" oninvalid="$('#collapseOne').collapse('show')" value="
                 - if !@person.nil?
                   = @person.cpf
@@ -76,13 +82,14 @@ script
         h5.mb-0
           button.btn.btn-link.collapsed[type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"]
             |  Contato
+            i.material-icons keyboard_arrow_down
       #collapseTwo.collapse[aria-labelledby="headingTwo"]
         .card-body
           .row
             .col-3
               .row
-                label.col-form-label.font-weight-bold[for="contact-mobile"]
-                  | Celular
+                label.col-form-label[for="contact-mobile"]
+                  | Celular *
                 |  <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" oninvalid="$('#collapseTwo').collapse('show')" value="
                 - if !@mobile_contact.nil?
                   = @mobile_contact.value
@@ -100,7 +107,7 @@ script
             .col-3
               .row
                 label.col-form-label[for="contact-linkedin"]
-                  | Linkedin
+                  | LinkedIn
                 |  <input class="form-control mb-3" name="contact-linkedin" value="
                 - if !@linkedin_contact.nil?
                   = @linkedin_contact.value
@@ -117,22 +124,22 @@ script
           .row
             .col-3
               label.col-form-label[for="contact-preferred"]
-                | Forma preferida de contato
+                | Forma preferencial de contato
               select.form-control.selectpicker[name="contact-preferred"]
                 option[hidden disabled selected value]
                 - @email_is_preferred = (@facebook_contact.nil? || !@facebook_contact.preferred) && (@linkedin_contact.nil? || !@linkedin_contact.preferred) && (@skype_contact.nil? || !@skype_contact.preferred)
-                |  <option value="Email"
+                |  <option value="E-mail"
                 - if @email_is_preferred
                   |  selected="selected"
-                |  >Email
+                |  >E-mail
                 |  <option value="Facebook"
                 - if (!@facebook_contact.nil?) && @facebook_contact.preferred
                   |  selected="selected"
                 |  >Facebook
-                |  <option value="Linkedin"
+                |  <option value="LinkedIn"
                 - if (!@linkedin_contact.nil?) && @linkedin_contact.preferred
                   |  selected="selected"
-                |  >Linkedin
+                |  >LinkedIn
                 |  <option value="Skype"
                 - if (!@skype_contact.nil?) && @skype_contact.preferred
                   |  selected="selected"
@@ -142,7 +149,7 @@ script
             thead
               tr
                 td
-                  | Emails Secundários
+                  | E-mails Secundários
             tbody
               tr
                 td.col[hidden]
@@ -171,12 +178,13 @@ script
         h5.mb-0
           button.btn.btn-link.collapsed[type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"]
             |  Endereço
+            i.material-icons keyboard_arrow_down
       #collapseThree.collapse[aria-labelledby="headingThree"]
         .card-body
           .row
             .col-3
-              label.col-form-label.font-weight-bold[for="address-country"]
-                | País
+              label.col-form-label[for="address-country"]
+                | País *
               select.form-control.selectpicker[name="address-country" oninvalid="$('#collapseThree').collapse('show')" required]
                 option[hidden disabled selected value]
                 - @country_list.each do |country|
@@ -188,7 +196,7 @@ script
                   = country.name
           .row
             .col-2
-              label.col-form-label.font-weight-bold[for="address-cep" hidden]
+              label.col-form-label[for="address-cep" hidden]
                 | CEP
               |  <input type="text" class="form-control mb-3 cep" name="address-cep" data-provider="zipcode" value="
               - if !@address.nil?
@@ -200,8 +208,8 @@ script
               - if !@address.nil?
                 = @address.zip_code
               | ">
-          label.col-form-label.font-weight-bold[for="address-street"]
-            | Logradouro
+          label.col-form-label[for="address-street"]
+            | Logradouro *
           |  <input type="text" class="form-control mb-3" name="address-street" data-provider="street" oninvalid="$('#collapseThree').collapse('show')" value="
           - if !@address.nil?
             = @address.street
@@ -253,20 +261,21 @@ script
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour"]
             |  Dados Profissionais
+            i.material-icons keyboard_arrow_down
       #collapseFour.collapse[aria-labelledby="headingFour"]
         .card-body
           .row
             .col-3
-              label.col-form-label.font-weight-bold[for="professional-company"]
-                | Empresa
+              label.col-form-label[for="professional-company"]
+                | Empresa *
               |  <input type="text" class="form-control mb-3" name="professional-company" value="
               - if !@professional_information.nil?
                 = @professional_information.company
               | " oninvalid="$('#collapseFour').collapse('show')" required>
             .col-1
             .col-3
-              label.col-form-label.font-weight-bold[for="professional-position"]
-                | Cargo Atual
+              label.col-form-label[for="professional-position"]
+                | Cargo Atual *
               |  <input type="text" class="form-control mb-3" name="professional-position" value="
               - if !@professional_information.nil?
                 = @professional_information.position
@@ -313,14 +322,15 @@ script
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive"]
             |  Dados de Formação
+            i.material-icons keyboard_arrow_down
       #collapseFive.collapse[aria-labelledby="headingFive"]
         .card-body
           .row
-            .col-2.font-weight-bold
+            .col-2
               |  Nível
-            .col-3.font-weight-bold
+            .col-3
               |  Instituição
-            .col-3.font-weight-bold
+            .col-3
               |  Curso
             .col-2
               |  Ano de conclusão
@@ -367,6 +377,7 @@ script
         h5.mb-0
           button.btn.btn-link[type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix"]
             |  Intenções
+            i.material-icons keyboard_arrow_down
       #collapseSix.collapse[aria-labelledby="headingSix"]
         .card-body
           .row
@@ -393,12 +404,16 @@ script
                   - if (!@intended_relationship.nil?) && @intended_relationship.mentoring
                     |  checked
                   |  >Desejo contribuir com mentoria
+                  a href="https://www.institutoreditus.com.br/mentoria-de-projetos" target="_blank" data-tip="Para mais informações, visite: https://www.institutoreditus.com.br/mentoria-de-projetos" class="tip-above"
+                    i.material-icons info
               .checkbox
                 label
                   | <input type="checkbox" name="relationship-tutoring"
                   - if (!@intended_relationship.nil?) && @intended_relationship.tutoring
                     |  checked
                   |  >Desejo contribuir com tutoria
+                  a href="https://www.institutoreditus.com.br/tutoria-de-alunos" target="_blank" data-tip="Para mais informações, visite: https://www.institutoreditus.com.br/tutoria-de-alunos" class="tip-above"
+                    i.material-icons info
           .row
             .col
               label.col-form-label[for="relationship-remarks"]

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  name       :string           not null
+#  birth_date :datetime         not null
+#  gender     :string           not null
+#  cpf        :string           not null
+#  rg         :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Person < ApplicationRecord
     belongs_to :user
 
