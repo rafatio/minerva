@@ -23,6 +23,6 @@
 
 //= require vendor/sb-admin-2
 
-// $(document).ready(function() {
-//   $(".alert").fadeOut(3000);
-// });
+$(document).ready(function() {
+  setTimeout(function () { $(".alert").slideUp(); }, 3000);
+});

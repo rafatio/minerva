@@ -1,5 +1,21 @@
 - @tag_title = "Dashboard"
 - @tag_subtitle = "Aqui você acompanha as doações de todo o fundo"
 - sum = 0
-= line_chart Payment.group_by_day(:created_at).sum(:value).map { |x,y| { x => (sum += y)} }.reduce({}, :merge)
-= link_to "Contribua você também", new_payment_path, class: "btn btn-primary btn-block mt-3"
+- contribution_text = Payment.any? ? "Contribua você também" : "Faça a primeira doação!"
+h1.section-title Relatório de contribuições
+/ = line_chart Payment.group_by_day(:created_at).sum(:value).map { |x,y| { x => (sum += y)} }.reduce({}, :merge),
+= line_chart Payment.group_by_hour(:created_at).sum(:value),
+      colors: ['#96ccff'],
+      height: "50vh",
+      label: "Doações",
+      prefix: 'R$',
+      thousands: '.',
+      decimal: ',',
+      messages: {empty: "Que tal dar o pontapé inicial?"},
+      dataset: {borderWidth: 3}
+.actions
+  .big-number
+    span.label Total arrecadado:
+    span.number 
+      = number_to_currency(Payment.sum(:value), locale: :'pt-BR')
+  = link_to contribution_text, new_payment_path, class: "btn btn-primary action-button"

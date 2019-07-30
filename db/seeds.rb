@@ -212,15 +212,19 @@ if Country.count == 0
     Country.create(name:"Zâmbia")
     Country.create(name:"Zimbábue")
 
+end
+
+if Country.find_by_name("Brasil").order_index != 0
     Country.all.order(:name).each_with_index do |c, i|
         c.order_index = i + 1
         c.save!
     end
-
+    
     brasil = Country.find_by_name("Brasil")
     brasil.order_index = 0
     brasil.save!
 end
+
 
 
 if State.count == 0

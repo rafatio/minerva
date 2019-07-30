@@ -4,14 +4,11 @@
 @import "vendor/sb-admin-2";
 @import "devise";
 @import "profile";
+@import "home";
+@import "payments";
+@import "fonts";
+@import "forms";
 
-
-body { 
-  font-size: 5vmin; 
-}
-
-@media only screen and (min-width: 1000px) {
-   body { 
-      font-size: 1.8vmin;
-   }
+div #content {
+  padding: auto 10vw;
 }

@@ -1,17 +1,13 @@
 - @tag_title = "Contribuições"
 - @tag_subtitle = "Acompanhe aqui seu histórico de contribuições"
 - @counter = @payments.length
-- if @payments.empty?
-  = link_to "Faça sua primeira contribuição", new_payment_path, class: "btn btn-primary btn-block"
-- else
-  = link_to "Nova contribuição", new_payment_path, class: "btn btn-primary"
+h1.section-title Minhas contribuições
+.payments-table
   table.table[data-toggle="table"]
     thead
       tr
         th[data-field="counter" data-sortable="true" scope="col"]
           | #
-        th[data-field="id" data-sortable="true" scope="col"]
-          | ID
         th[data-field="value" data-sortable="true" scope="col"]
           | Valor
         th[data-field="date" data-sortable="true" scope="col"]
@@ -22,10 +18,14 @@
           td
             = @counter
           td
-            = payment.id
-          td
             = format_currency payment.value
           td
             = payment.created_at.to_s(:custom_datetime)
         - @counter = @counter - 1
+
+  - if @payments.empty?
+    = link_to "Faça sua primeira contribuição", new_payment_path, class: "btn btn-primary btn-block action-button"
+  - else
+    = link_to "Nova contribuição", new_payment_path, class: "btn btn-primary action-button"
+
 = javascript_include_tag "bootstrap-table/bootstrap-table.js"
