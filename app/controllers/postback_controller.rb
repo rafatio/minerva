@@ -5,8 +5,11 @@ class PostbackController < ApplicationController
       if valid_postback?
         result = ''
         if params[:object] == "subscription" && params[:event] == "transaction_created"
-            postback_service = TransactionPostbackService.new
-            result = postback_service.process_transaction_postback(transaction_params)
+          postback_service = TransactionPostbackService.new
+          result = postback_service.process_transaction_postback(transaction_params)
+        elsif params[:object] == "subscription" && params[:event] == "subscription_status_changed"
+          postback_service = SubscriptionPostbackService.new
+          result = postback_service.process_status_changed_postback(subscription_status_changed_params)
         else
           result = 'Tipo de postback não tratado'
         end
@@ -36,6 +39,10 @@ class PostbackController < ApplicationController
 
     def transaction_params
         params.require(:subscription).require(:current_transaction).permit!
+    end
+
+    def subscription_status_changed_params
+        params.permit(:id, :old_status, :current_status)
     end
 
   end
