@@ -11,6 +11,11 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
       i.material-icons timeline
       span
         | Contribuições
+  li class=(["nav-item", current_page?(:controller => 'subscriptions', :action => 'index') ? "active" : nil].compact.join(' '))
+    a.nav-link[href="#{subscriptions_path}"]
+      i.material-icons autorenew
+      span
+        | Assinaturas
   li class=(["nav-item", current_page?(:controller => 'profile', :action => 'index') ? "active" : nil].compact.join(' '))
     a.nav-link[href="#{profile_index_path}"]
       i.material-icons person
@@ -21,7 +26,7 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
 
 
   / .sidebar-heading
-  /   |  Interface 
+  /   |  Interface
   / li.nav-item
   /   a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"]
   /     i.fas.fa-fw.fa-cog
@@ -53,7 +58,7 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
   /       a.collapse-item[href="utilities-other.html"]
   /         | Other
   / .sidebar-heading
-  /   |  Addons 
+  /   |  Addons
   / li.nav-item
   /   a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"]
   /     i.fas.fa-fw.fa-folder
