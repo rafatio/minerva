@@ -1,19 +1,3 @@
-# TODO:
-
-- [x] permitir que usuário crie uma conta com email e senha
-- [x] permitir que usuário faça contribuições
-- [x] permitir que usuário consulte seu histórico de contribuições
-- [x] auto formatar o campo valor no form de pagamento (jquery mask)
-- [x] no dashboard, mostrar um gráfico do histórico total de contribuições do fundo
-- [x] definir campos necessários para o cadastro de um novo usuário
-- [x] permitir que usuário contribua sem estar conectado (guest checkout)
-- [x] colocar o sequencial na tela de contribuições do usuário
-- [x] tornar mais claro que o número que aparece atualmente é o ID da transação (troubleshooting)
-- [ ] verificar possibilidade de confirmação assíncrona do pagamento
-- [ ] segregar permissões de leitura e escrita no painel de administração
-- [ ] tratar postback url nas subscriptions para armazenar os pagamentos recorrentes no banco de dados
-- [ ] rever tratamento de erros em geral
-
 # Getting started
 
 You can test payments with 4901720080344448 - this is a fake credit card. Use it moderately.
