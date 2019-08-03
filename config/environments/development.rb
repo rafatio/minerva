@@ -76,4 +76,6 @@ Rails.application.configure do
   }
 
   ENV["HOST_URL"] = 'http://localhost:3000/'
+  ENV["SUBSCRIPTION_PERIOD_DAYS"] = '30'
+  ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"] = '5'
 end

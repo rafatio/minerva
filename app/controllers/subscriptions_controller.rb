@@ -22,11 +22,11 @@ class SubscriptionsController < ApplicationController
         @subscription = current_user.subscriptions.new(value: decimal_value, active:true)
 
         plan = PagarMe::Plan.new({
-            :name => "Plano mensal " + decimal_value.to_s,
-            :days => 30,
+            :name => "Plano " + ENV["SUBSCRIPTION_PERIOD_DAYS"] + " dias - " + decimal_value.to_s + " reais - " + current_user.email,
+            :days => ENV["SUBSCRIPTION_PERIOD_DAYS"].to_i,
             :amount => integer_value,
             :payment_methods => ["credit_card"],
-            :invoice_reminder => 5,
+            :invoice_reminder => ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"].to_i,
         })
         plan.create
 
