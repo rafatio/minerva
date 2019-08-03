@@ -1,4 +1,17 @@
 @import "bootstrap";
 @import "vendor/card-js.min.scss";
-@import "bootstrap-table.css";
-@import "**/*";
+@import "bootstrap-table";
+@import "vendor/sb-admin-2";
+@import "devise";
+@import "profile";
+
+
+body { 
+  font-size: 5vmin; 
+}
+
+@media only screen and (min-width: 1000px) {
+   body { 
+      font-size: 1.8vmin;
+   }
+}

@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    - if @title || @tag_title
+      title
+        = @title || @tag_title
+        |  | Instituto Reditus
+    - else
+      title
+        | Instituto Reditus
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+
+  body#page-top
+    = render 'layouts/shared/alerts'
+    - if current_user
+      #wrapper
+        = render 'layouts/shared/sidebar'
+        #content-wrapper.d-flex.flex-column
+          #content
+            / = render 'layouts/shared/top-bar'
+            .container-fluid
+              = yield
+    - else
+      = yield
+
+    script[src="https://assets.pagar.me/pagarme-js/3.0/pagarme.min.js"]
+    script[src="https://kit.fontawesome.com/bffb2f8fe3.js"]
+    / script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+    / script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+    / script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 

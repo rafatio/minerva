@@ -53,8 +53,8 @@ brew install heroku/brew/heroku
 heroku login
 
 # deploy
-git remote add production https://git.heroku.com/touts-production.git
-git remote add staging https://git.heroku.com/touts-staging.git
-staging deploy
+git remote add production https://git.heroku.com/reditus-production.git
+git remote add testing https://git.heroku.com/reditus-testing.git
+git push testing master
 ```
 

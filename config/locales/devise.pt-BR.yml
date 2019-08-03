@@ -54,5 +54,5 @@ pt-BR:
       not_found: "não encontrado"
       not_locked: "não estava travada"
       not_saved:
-        one: "1 erro impediu a gravação de %{resource}:"
-        other: "%{count} erros impediram a gravação de %{resource}:"
+        one: "Ops! Corrija o erro abaixo para prosseguir:"
+        other: "Ops! Corrija os erros abaixo para prosseguir:"

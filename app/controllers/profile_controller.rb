@@ -9,7 +9,7 @@ class ProfileController < ApplicationController
         @linkedin_contact = contacts_service.get_contacts('Linkedin').first
         @skype_contact = contacts_service.get_contacts('Skype').first
         @secondary_mail_contacts = contacts_service.get_contacts('Email secundário')
-        @country_list = Country.all.order(:name)
+        @country_list = Country.all
         @address = current_user.address
         @professional_information = current_user.professional_information
         @previous_companies = []
