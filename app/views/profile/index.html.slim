@@ -7,8 +7,8 @@ script
   |  function isInputNumber(evt) { var ch = String.fromCharCode(evt.which); if (!(/[0-9]/.test(ch))) { evt.preventDefault(); } }
 nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
   = link_to(destroy_user_session_path, method: :delete) do
-    i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2
-    | Logout
+      i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2
+      | Encerrar sessão
 .alert.alert-info
   |  Campos obrigatórios estão marcados com *.
 #profile-accordion
@@ -170,7 +170,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             tfoot
               tr
                 td[colspan="5" style="text-align: left;"]
-                  input#addrow-secondary-mail.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
+                  input#addrow-secondary-mail.btn.btn-lg.btn-block.mt-3[type="button" value="+ Adicionar"]
               tr
 
     .card
@@ -314,7 +314,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             tfoot
               tr
                 td[colspan="5" style="text-align: left;"]
-                  input#addrow-previous-company.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
+                  input#addrow-previous-company.btn.btn-lg.btn-block.mt-3[type="button" value="+ Adicionar"]
               tr
 
     .card
@@ -371,7 +371,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
                 input.ibtnDel.btn.btn-md.btn-danger[type="button" value="Excluir"]
                 - @counterEducationInformations = @counterEducationInformations + 1
 
-        input#addrow-education-information.btn.btn-lg.btn-block.mt-3[type="button" value="Adicionar"]
+        input#addrow-education-information.btn.btn-lg.btn-block.mt-3[type="button" value="+ Adicionar"]
     .card
       #headingSix.card-header
         h5.mb-0
