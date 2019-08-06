@@ -12,5 +12,7 @@ Rails.application.routes.draw do
 
   resources :payments, only: [:index, :new, :create]
   resources :profile, only: [:index, :create]
+  resources :subscriptions, only: [:index, :new, :create]
   #resources :mentors, only: :index
+  resources :postback, only: [:create]
 end

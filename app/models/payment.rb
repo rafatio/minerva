@@ -13,6 +13,7 @@
 
 class Payment < ApplicationRecord
   belongs_to :user
+  belongs_to :subscription, optional: true
   belongs_to :payment_type, optional: true
   serialize :pagarme_transaction
 

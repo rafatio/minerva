@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_07_27_093518) do
     t.datetime "updated_at", null: false
     t.integer "payment_type_id"
     t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
+    t.integer "subscription_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
@@ -131,6 +132,17 @@ ActiveRecord::Schema.define(version: 2019_07_27_093518) do
     t.string "name", null: false
     t.string "code", null: false
     t.index ["country_id"], name: "index_states_on_country_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.decimal "value", precision: 8, scale: 2
+    t.boolean "active", null: false
+    t.text "pagarme_subscription"
+    t.integer "pagarme_identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
