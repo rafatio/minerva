@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_27_093518) do
+ActiveRecord::Schema.define(version: 2019_08_08_215855) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(version: 2019_07_27_093518) do
     t.text "pagarme_transaction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subscription_id"
     t.integer "payment_type_id"
     t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
-    t.integer "subscription_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 2019_07_27_093518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin"
+    t.boolean "agreement"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

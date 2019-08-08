@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:index, :new, :create]
   #resources :mentors, only: :index
   resources :postback, only: [:create]
+
+  get "/terms" => "static_pages#terms"
 end

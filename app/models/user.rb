@@ -16,6 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  admin                  :boolean
+#  agreement              :boolean
 #
 
 class User < ApplicationRecord
@@ -23,6 +24,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :rememberable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
+
+  validates :agreement, acceptance: { accept: true }
 
   has_many :payments
   has_one  :person
