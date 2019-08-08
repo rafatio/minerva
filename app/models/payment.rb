@@ -8,6 +8,7 @@
 #  pagarme_transaction :text
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  subscription_id     :integer
 #  payment_type_id     :integer
 #
 
