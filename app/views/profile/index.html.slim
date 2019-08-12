@@ -338,18 +338,16 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             - @education_informations.each do |education_information|
               .row.mb-3.education-information-row
                 .col-2
-                  |  <select name="education-level
-                  = @counterEducationInformations
-                  | " class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required>
-                  option[hidden disabled selected value]
-                  - @education_levels.each do |education_level|
-                    |  <option value=
-                    = education_level.name
-                    - if education_information.education_level_id == education_level.id
-                      |  selected="selected"
-                    |  >
-                    = education_level.name
-
+                  <select name="education-level#{ @counterEducationInformations }" class="form-control selectpicker" oninvalid="$('#collapseFive').collapse('show')" required>
+                    option[hidden disabled selected value]
+                    - @education_levels.each do |education_level|
+                      |  <option value=
+                      = education_level.name
+                      - if education_information.education_level_id == education_level.id
+                        |  selected="selected"
+                      |  >
+                      = education_level.name
+                  </select>
                 .col-3
                   | <input type="text" class="form-control" name="education-institution
                   = @counterEducationInformations
