@@ -20,6 +20,8 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# Warning: if you're running on Heroku and using the SQLite database,
+# it will be automatically overwritten by a Postgres setup
 production:
   <<: *default
   database: db/production.sqlite3

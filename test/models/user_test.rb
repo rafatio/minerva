@@ -22,7 +22,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "check user payments" do
+    user = users(:user_1)
+    assert_equal 1, user.payments.count
+  end
 end
