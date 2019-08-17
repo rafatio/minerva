@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
-  
+  default from: ENV["EMAIL_USERNAME"]
+
   def payment_confirmation_email(user, payment)
     @user = user
     @payment = payment

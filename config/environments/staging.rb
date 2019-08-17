@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address => "smtp.zoho.com",
     :port => 587,
-    :user_name => "noreply@institutoreditus.com.br",
+    :user_name => ENV["EMAIL_USERNAME"],
     :password => Rails.application.credentials.sendmail[:password],
     :authentication       => :login,
     :enable_starttls_auto => true
