@@ -56,7 +56,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
-  config.action_mailer.default_url_options = { :host => 'http://localhost:3000'}
+  config.action_mailer.default_url_options = { :host => ENV["HOST_URL"]}
 
   config.action_mailer.delivery_method = :file
   config.action_mailer.perform_deliveries = true
@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address => "smtp.zoho.com",
     :port => 587,
-    :user_name => "noreply@institutoreditus.com.br",
+    :user_name => ENV["EMAIL_USERNAME"],
     :password => Rails.application.credentials.sendmail[:password],
     :authentication       => :login,
     :enable_starttls_auto => true

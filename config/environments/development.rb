@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  ENV["HOST_URL"] = 'http://localhost:3000/'
+  ENV["SUBSCRIPTION_PERIOD_DAYS"] = '30'
+  ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"] = '5'
+  ENV["EMAIL_USERNAME"] = 'noreply@institutoreditus.com.br'
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -59,7 +64,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_mailer.default_url_options = { :host => 'http://localhost:3000'}
+  config.action_mailer.default_url_options = { :host => ENV["HOST_URL"]}
 
   config.action_mailer.delivery_method = :file
   config.action_mailer.perform_deliveries = true
@@ -69,13 +74,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address => "smtp.zoho.com",
     :port => 587,
-    :user_name => "noreply@institutoreditus.com.br",
+    :user_name => ENV["EMAIL_USERNAME"],
     :password => Rails.application.credentials.sendmail[:password],
     :authentication       => :login,
     :enable_starttls_auto => true
   }
 
-  ENV["HOST_URL"] = 'http://localhost:3000/'
-  ENV["SUBSCRIPTION_PERIOD_DAYS"] = '30'
-  ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"] = '5'
 end
