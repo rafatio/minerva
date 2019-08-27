@@ -1,13 +1,9 @@
 class SubscriptionsController < ApplicationController
     before_action :authenticate_user!
 
-    def index
-        @subscriptions = current_user.subscriptions.reverse
-    end
-
     def new
         if current_user.address.nil?
-          flash[:error] = "É necessário cadastrar um endereço antes de realizar uma assinatura."
+          flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
           redirect_to profile_index_path
         end
 

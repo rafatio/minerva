@@ -3,6 +3,7 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = current_user.payments.reverse
+    @subscriptions = current_user.subscriptions.reverse
   end
 
   def new

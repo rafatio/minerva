@@ -217,11 +217,11 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
           .row
             .col-2
               label.col-form-label[for="address-number"]
-                | Número
+                | Número *
               |  <input type="text" class="form-control mb-3" name="address-number" value="
               - if !@address.nil?
                 = @address.number
-              | " >
+              | " required>
             .col-2
             .col-3
               label.col-form-label[for="address-complement"]

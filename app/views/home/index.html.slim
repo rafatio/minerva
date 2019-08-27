@@ -18,4 +18,20 @@ h1.section-title Relatório de contribuições
     span.label Total arrecadado:
     span.number 
       = number_to_currency(Payment.sum(:value), locale: :'pt-BR')
-  = link_to contribution_text, new_payment_path, class: "btn btn-primary action-button"
+  button.action-button.btn.btn-primary data-target="#contribution_type" data-toggle="modal" type="button" 
+    = contribution_text
+
+
+#contribution_type.modal role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg role="document" 
+    .modal-content 
+      .modal-header
+        h5.modal-title Escolha como contribuir
+        button.close aria-label="Fechar" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        p Você pode fazer uma contribuição única ou assinar uma contribuição recorrente que será debitada diretamente de seu cartão de crédito a cada mês.
+      .modal-footer
+        = link_to "Quero ajudar só uma vez, depois ajudo mais", new_payment_path, class: "btn btn-primary action-button"
+        = link_to "Quero ajudar todo mês!", new_subscription_path, class: "btn btn-primary action-button"
+        button.btn.btn-secondary data-dismiss="modal" type="button"  Voltar
