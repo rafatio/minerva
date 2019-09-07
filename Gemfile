@@ -10,6 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'pg'
 gem 'devise'
 gem 'interactor-rails', '~> 2.0'
+gem "nokogiri", ">= 1.10.4"
 
 gem 'groupdate'
 gem 'chartkick'
