@@ -1,0 +1,27 @@
+education_info_user1_1:
+  user: user_1
+  education_level: undergrad
+  institution: 'UFRJ'
+  course: 'Engenharia de Computação'
+  conclusion_year: 2010
+
+education_info_user1_2:
+  user: user_1
+  education_level: masters
+  institution: 'UFRJ'
+  course: 'Curso 1'
+  conclusion_year: 2012
+
+education_info_user1_3:
+  user: user_1
+  education_level: doctorate
+  institution: 'UFRJ'
+  course: 'Curso 2'
+  conclusion_year: 2016
+
+education_info_user2_1:
+  user: user_1
+  education_level: undergrad
+  institution: 'UFRJ'
+  course: 'Direito'
+  conclusion_year: 2012

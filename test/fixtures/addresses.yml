@@ -1,0 +1,21 @@
+address_1:
+  user: user_1
+  country: brazil
+  state: rj
+  state_name: 'Rio de Janeiro'
+  zip_code: '11222333'
+  city: 'Rio de Janeiro'
+  number: '123'
+  complement: 'apt 123'
+  street: 'Rua RJ'
+  neighborhood: 'Bairo X'
+
+address_2:
+  user: user_2
+  country: usa
+  state_name: 'Texas'
+  zip_code: '123456789'
+  city: 'Houston'
+  number: '321'
+  complement: 'apt 321'
+  street: 'Texas street'

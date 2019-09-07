@@ -1,0 +1,9 @@
+rj:
+  name: 'Rio de Janeiro'
+  code: 'RJ'
+  country: brazil
+
+sp:
+  name: 'São Paulo'
+  code: 'SP'
+  country: brazil

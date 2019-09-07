@@ -26,4 +26,16 @@ class UserTest < ActiveSupport::TestCase
     user = users(:user_1)
     assert_equal 1, user.payments.count
   end
+
+  test "check user profile" do
+    user1 = users(:user_1)
+    assert_equal 'person 1', user1.person.name
+    assert_equal 'Rua RJ', user1.address.street
+    assert_equal 2, user1.contacts.count
+
+    user2 = users(:user_2)
+    assert_equal 'person 2', user2.person.name
+    assert_equal 'Texas street', user2.address.street
+    assert_equal 3, user2.contacts.count
+  end
 end
