@@ -8,7 +8,7 @@ address_1:
   number: '123'
   complement: 'apt 123'
   street: 'Rua RJ'
-  neighborhood: 'Bairo X'
+  neighborhood: 'Bairro X'
 
 address_2:
   user: user_2

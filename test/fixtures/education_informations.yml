@@ -2,26 +2,26 @@ education_info_user1_1:
   user: user_1
   education_level: undergrad
   institution: 'UFRJ'
-  course: 'Engenharia de Computação'
+  course: 'Curso Graduação 1 1'
   conclusion_year: 2010
 
 education_info_user1_2:
   user: user_1
   education_level: masters
-  institution: 'UFRJ'
-  course: 'Curso 1'
+  institution: 'UFF'
+  course: 'Curso Mestrado 1 1'
   conclusion_year: 2012
 
 education_info_user1_3:
   user: user_1
   education_level: doctorate
-  institution: 'UFRJ'
-  course: 'Curso 2'
+  institution: 'PUC'
+  course: 'Curso Doutorado 1 1'
   conclusion_year: 2016
 
 education_info_user2_1:
-  user: user_1
+  user: user_2
   education_level: undergrad
-  institution: 'UFRJ'
-  course: 'Direito'
+  institution: 'USP'
+  course: 'Curso Graduação 2 1'
   conclusion_year: 2012
