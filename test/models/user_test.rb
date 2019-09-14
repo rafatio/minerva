@@ -30,7 +30,7 @@ class UserTest < ActiveSupport::TestCase
   test "check user profile" do
     user1 = users(:user_1)
     assert_equal 'person 1', user1.person.name
-    assert_equal 'Rua RJ', user1.address.street
+    assert_equal 'Travessa C', user1.address.street
     assert_equal 3, user1.contacts.count
     assert_equal 3, user1.education_informations.count
     assert_equal 'Doutorado', user1.education_informations[0].education_level.name

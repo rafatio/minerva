@@ -3,12 +3,12 @@ address_1:
   country: brazil
   state: rj
   state_name: 'Rio de Janeiro'
-  zip_code: '11222333'
+  zip_code: '23030006'
   city: 'Rio de Janeiro'
   number: '123'
   complement: 'apt 123'
-  street: 'Rua RJ'
-  neighborhood: 'Bairro X'
+  street: 'Travessa C'
+  neighborhood: 'Guaratiba'
 
 address_2:
   user: user_2

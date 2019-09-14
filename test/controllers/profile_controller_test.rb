@@ -33,11 +33,11 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     # this user does not have any secondary emails
 
     check_form_selected_option('address-country', 'Brasil')
-    check_single_value_form_input('address-cep', '11222333')
-    check_single_value_form_input('address-street', 'Rua RJ')
+    check_single_value_form_input('address-cep', '23030006')
+    check_single_value_form_input('address-street', 'Travessa C')
     check_single_value_form_input('address-number', '123')
     check_single_value_form_input('address-complement', 'apt 123')
-    check_single_value_form_input('address-neighborhood', 'Bairro X')
+    check_single_value_form_input('address-neighborhood', 'Guaratiba')
     check_single_value_form_input('address-city', 'Rio de Janeiro')
     check_single_value_form_input('address-state', 'RJ')
 

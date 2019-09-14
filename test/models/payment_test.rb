@@ -3,7 +3,7 @@ require 'test_helper'
 class PaymentTest < ActiveSupport::TestCase
 
   test "check number of payments" do
-    assert_equal 1, Payment.count
+    assert_equal 3, Payment.count
   end
 
   test "check user association" do

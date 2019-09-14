@@ -1,0 +1,4 @@
+subscription_1:
+  value: 50
+  user: user_2
+  active: true
