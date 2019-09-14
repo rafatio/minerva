@@ -3,11 +3,11 @@ payment_1:
   user: user_1
 
 payment_2_1:
-  value: 50
+  value: 98
   user: user_2
   subscription: subscription_1
 
 payment_2_2:
-  value: 50
+  value: 98
   user: user_2
   subscription: subscription_1
