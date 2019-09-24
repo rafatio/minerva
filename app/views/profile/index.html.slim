@@ -3,6 +3,8 @@
 - @counterSecondaryEmails = 0
 - @counterPreviousCompanies = 0
 - @counterEducationInformations = 0
+- min_entrance_year = "1900"
+- max_entrance_year = Date.today.year.to_s
 script
   |  function isInputNumber(evt) { var ch = String.fromCharCode(evt.which); if (!(/[0-9]/.test(ch))) { evt.preventDefault(); } }
 nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
@@ -284,16 +286,18 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             .col-2
               label.col-form-label[for="professional-admission-year"]
                 | Ano de Entrada
-              |  <input type="number" class="form-control mb-3" name="professional-admission-year" pattern="\d+" value="
+              |  <input type="number" class="form-control mb-3" name="professional-admission-year" pattern="\d+" min="#{ min_entrance_year }" max="#{ max_entrance_year }" value="
               - if !@professional_information.nil?
                 = @professional_information.admission_year
               | " oninvalid="$('#collapseFour').collapse('show')">
           br
-          table#table-previous-companies.col-4.order-list
+          table#table-previous-companies.row.col-4.order-list
             thead
               tr
                 td
                   | Empresas anteriores
+                td
+                  | Cargo desempenhado
             tbody
               tr
                 td.col[hidden]
@@ -303,10 +307,16 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
               - @previous_companies.each do |company|
                 tr
                   td
-                    | <input type="text" class="form-control" name="professional-previous-company
+                    | <input type="text" class="form-control" name="professional-previous-company-name
                     = @counterPreviousCompanies
                     | " value="
                     = company.name
+                    | "/>
+                  td
+                    | <input type="text" class="form-control" name="professional-previous-company-position
+                    = @counterPreviousCompanies
+                    | " value="
+                    = company.position
                     | "/>
                   td
                     input.ibtnDel.btn.btn-md.btn-danger[type="button" value="Excluir"]

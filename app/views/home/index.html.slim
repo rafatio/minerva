@@ -18,4 +18,5 @@ h1.section-title Relatório de contribuições
     span.label Total arrecadado:
     span.number 
       = number_to_currency(Payment.sum(:value), locale: :'pt-BR')
-  = link_to contribution_text, new_payment_path, class: "btn btn-primary action-button"
+  .call-to-action-btn
+    = link_to contribution_text, new_payment_path, class: "btn btn-primary action-button"

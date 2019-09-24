@@ -49,8 +49,11 @@ class ProfileController < ApplicationController
             params.each do |item|
                 if item[0].starts_with?('contact-secondary-mail')
                     secondary_emails.push(item[1])
-                elsif item[0].starts_with?('professional-previous-company')
-                    previous_companies.push(item[1])
+                elsif item[0].starts_with?('professional-previous-company-name')
+                    number = item[0][-1]
+                    company_name = params['professional-previous-company-name' + number]
+                    company_position = params['professional-previous-company-position' + number]
+                    previous_companies.push(name: company_name, position: company_position)
                 elsif item[0].starts_with?('education-level')
                     number = item[0][15..-1] #gets the substring from position 15 to the end of the string
                     #position 15 because the string 'education-level' has 15 characters
