@@ -25,7 +25,8 @@ module Minerva
       else
         encrypted(
           "config/credentials.#{Rails.env.downcase}.yml.enc",
-          key_path: "config/#{Rails.env.downcase}.key"
+          key_path: "config/#{Rails.env.downcase}.key",
+          env_key: "RAILS_MASTER_KEY"
         )
       end
     end
