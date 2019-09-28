@@ -1,0 +1,36 @@
+contact_user1_mobile:
+  user: user_1
+  contact_type: mobile
+  value: '(21) 99999-9999'
+  preferred: true
+
+contact_user1_fb:
+  user: user_1
+  contact_type: facebook
+  value: 'fb1'
+  preferred: true
+
+contact_user1_skype:
+  user: user_1
+  contact_type: skype
+  value: 'skype1'
+
+contact_user2_mobile:
+  user: user_2
+  contact_type: mobile
+  value: '(11) 88888-8888'
+
+contact_user2_email1:
+  user: user_2
+  contact_type: email
+  value: 'email21'
+
+contact_user2_email2:
+  user: user_2
+  contact_type: email
+  value: 'email22'
+
+contact_user2_email3:
+  user: user_2
+  contact_type: email
+  value: 'email23'

@@ -1,0 +1,15 @@
+person_1:
+  user: user_1
+  name: 'person 1'
+  birth_date: '1990-01-01'
+  gender: 'M'
+  cpf: '85331077064'
+  rg: '12345678'
+
+person_2:
+  user: user_2
+  name: 'person 2'
+  birth_date: '1990-01-01'
+  gender: 'F'
+  cpf: '26164571057'
+  rg: '87654321'

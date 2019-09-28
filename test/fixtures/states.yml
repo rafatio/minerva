@@ -1,0 +1,14 @@
+rj:
+  name: 'Rio de Janeiro'
+  code: 'RJ'
+  country: brazil
+
+sp:
+  name: 'São Paulo'
+  code: 'SP'
+  country:
+
+ac:
+  name: 'Acre'
+  code: 'AC'
+  country: brazil

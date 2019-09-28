@@ -1,0 +1,27 @@
+education_info_user1_1:
+  user: user_1
+  education_level: undergrad
+  institution: 'UFRJ'
+  course: 'Curso Graduação 1 1'
+  conclusion_year: 2010
+
+education_info_user1_2:
+  user: user_1
+  education_level: masters
+  institution: 'UFF'
+  course: 'Curso Mestrado 1 1'
+  conclusion_year: 2012
+
+education_info_user1_3:
+  user: user_1
+  education_level: doctorate
+  institution: 'PUC'
+  course: 'Curso Doutorado 1 1'
+  conclusion_year: 2016
+
+education_info_user2_1:
+  user: user_2
+  education_level: undergrad
+  institution: 'USP'
+  course: 'Curso Graduação 2 1'
+  conclusion_year: 2012

@@ -1,0 +1,14 @@
+mobile:
+  name: 'Celular'
+
+facebook:
+  name: 'Facebook'
+
+linkedin:
+  name: 'Linkedin'
+
+skype:
+  name: 'Skype'
+
+email:
+  name: 'Email secundário'

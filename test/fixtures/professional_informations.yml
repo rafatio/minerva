@@ -1,0 +1,15 @@
+professional_info_1:
+  user: user_1
+  company: 'Empresa 1'
+  position: 'Gerente'
+  admission_year: 2010
+  salary: 20000
+  estimated_wealth: 5000000
+
+professional_info_2:
+  user: user_2
+  company: 'Empresa 2'
+  position: 'Coordenador'
+  admission_year: 2013
+  salary: 10000
+  estimated_wealth: 1000000

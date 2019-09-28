@@ -18,5 +18,17 @@ module Minerva
 
     config.i18n.default_locale = "pt-BR"
     # config.time_zone = "Brasilia"
+
+    def credentials
+      if Rails.env.production?
+        super
+      else
+        encrypted(
+          "config/credentials.#{Rails.env.downcase}.yml.enc",
+          key_path: "config/#{Rails.env.downcase}.key",
+          env_key: "RAILS_MASTER_KEY"
+        )
+      end
+    end
   end
 end
