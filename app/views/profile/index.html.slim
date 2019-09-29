@@ -291,7 +291,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
                 = @professional_information.admission_year
               | " oninvalid="$('#collapseFour').collapse('show')">
           br
-          table#table-previous-companies.row.col-4.order-list
+          table#table-previous-companies.row.col-6.order-list
             thead
               tr
                 td
@@ -299,7 +299,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
                 td
                   | Cargo desempenhado
             tbody
-              tr
+              tr.delete-row
                 td.col[hidden]
                   input.form-control[type="text" name="no-content"]
                 td.col-sm-2
