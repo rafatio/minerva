@@ -1,0 +1,11 @@
+subscription_1:
+  value: 98
+  user: user_2
+  active: true
+  pagarme_identifier: "411963"
+
+subscription_2:
+  value: 10
+  user: user_2
+  active: true
+  pagarme_identifier: "430164"

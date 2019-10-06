@@ -1,0 +1,14 @@
+intended_relationship_1:
+  user: user_1
+  associate: true
+  financial: false
+  mentoring: true
+  tutoring: false
+
+intended_relationship_2:
+  user: user_2
+  associate: false
+  financial: true
+  mentoring: false
+  tutoring: true
+  remarks: 'obs 123'

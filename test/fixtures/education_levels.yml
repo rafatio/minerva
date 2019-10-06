@@ -1,0 +1,8 @@
+undergrad:
+  name: 'Graduação'
+
+masters:
+  name: 'Mestrado'
+
+doctorate:
+  name: 'Doutorado'

@@ -38,7 +38,8 @@ function setupPreviousCompaniesTable() {
         var newRow = $("<tr>");
         var cols = "";
 
-        cols += '<td><input type="text" class="form-control" name="professional-previous-company' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="professional-previous-company-name' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="professional-previous-company-position' + counter + '"/></td>';
 
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Excluir"></td>';
