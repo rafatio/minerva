@@ -71,7 +71,7 @@ class SubscriptionsController < ApplicationController
             if @payment.save
                 ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
                 flash[:notice] = 'Assinatura realizada com sucesso'
-                redirect_to subscriptions_path
+                redirect_to payments_path
             end
         end
 
