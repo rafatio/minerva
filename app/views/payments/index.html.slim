@@ -1,6 +1,42 @@
-- @tag_title = "Contribuições"
-- @tag_subtitle = "Acompanhe aqui seu histórico de contribuições"
-- @counter = @payments.length
+- @tag_title = "Assinaturas e Contribuições"
+- @tag_subtitle = "Acompanhe aqui suas contribuições únicas e assinaturas de planos de contribuição mensal"
+- @counter_sub = @subscriptions.length
+- @counter_pay = @payments.length
+
+h1.section-title Minhas assinaturas
+.payments-table
+  table.table[data-toggle="table"]
+    thead
+      tr
+        th[data-field="counter" data-sortable="true" scope="col"]
+          | #
+        th[data-field="value" data-sortable="true" scope="col"]
+          | Valor
+        th data-field="active" data-sortable="true" scope="col"
+          | Ativa
+        th[data-field="date" data-sortable="true" scope="col"]
+          | Data
+    tbody
+      - @subscriptions.each do |subscription|
+        tr
+          td
+            = @counter_sub
+          td
+            = format_currency subscription.value
+          td
+            - if subscription.active
+              | Sim
+            - else
+              | Não
+          td
+            = subscription.created_at.to_s(:custom_datetime)
+        - @counter_sub = @counter_sub - 1
+
+  - if @subscriptions.empty?
+    = link_to "Faça sua primeira assinatura", new_subscription_path, class: "btn btn-primary btn-block action-button"
+  - else
+    = link_to "Nova assinatura", new_subscription_path, class: "btn btn-primary action-button"
+
 h1.section-title Minhas contribuições
 .payments-table
   table.table[data-toggle="table"]
@@ -16,12 +52,12 @@ h1.section-title Minhas contribuições
       - @payments.each do |payment|
         tr
           td
-            = @counter
+            = @counter_pay
           td
             = format_currency payment.value
           td
             = payment.created_at.to_s(:custom_datetime)
-        - @counter = @counter - 1
+        - @counter_pay = @counter_pay - 1
 
   - if @payments.empty?
     = link_to "Faça sua primeira contribuição", new_payment_path, class: "btn btn-primary btn-block action-button"

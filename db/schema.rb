@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_213407) do
     t.text "pagarme_transaction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subscription_id"
     t.integer "payment_type_id"
+    t.integer "subscription_id"
     t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end

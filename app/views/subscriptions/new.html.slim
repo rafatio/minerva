@@ -1,7 +1,12 @@
-- @tag_title = "Nova contribuição única"
+- @tag_title = "Assinar contribuição mensal"
 - @tag_subtitle = "Aceitamos cartões Visa, Mastercard, Amex, Elo, Hipercard, Diners, Discover, Aura e JCB"
-h1.section-title Nova contribuição
-= form_for @payment do |f|
+- if !@active_subscriptions.empty?
+  .alert.alert-warning
+    | Você já possui assinaturas ativas. Ao prosseguir, uma nova assinatura será contratada sem que as antigas sejam canceladas
+.alert.alert-info
+  | Ao assinar o plano de contribuição mensal, será realizado um pagamento no valor escolhido a cada 30 dias usando o cartão de crédito informado
+h1.section-title Nova assinatura mensal
+= form_for @subscription do |f|
   .form-group.col-md-6.row
     - if !user_signed_in?
       label.col-form-label.col-3[for="user-email"]
@@ -19,7 +24,7 @@ h1.section-title Nova contribuição
       input.cvc[name="cvc" required]
     = f.submit "Enviar", class: "btn btn-block btn-primary mt-3 action-button"
 .options.text-center
-  = link_to "Mudei de ideia, quero contribuir todo mês", new_subscription_path, class: "btn btn-primary action-button float-none"
+  = link_to "Mudei de ideia, quero contribuir somente uma vez", new_payment_path, class: "btn btn-primary action-button float-none"
 = javascript_include_tag "vendor/card-js.min.js"
 = javascript_include_tag "mask/jquery.maskMoney.min.js"
 = javascript_include_tag "mask_currency_field.js"

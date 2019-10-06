@@ -1,13 +1,9 @@
 class SubscriptionsController < ApplicationController
     before_action :authenticate_user!
 
-    def index
-        @subscriptions = current_user.subscriptions.reverse
-    end
-
     def new
         if current_user.address.nil?
-          flash[:error] = "É necessário cadastrar um endereço antes de realizar uma assinatura."
+          flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
           redirect_to profile_index_path
         end
 
@@ -72,12 +68,11 @@ class SubscriptionsController < ApplicationController
                                                 pagarme_transaction: OpenStruct.new(pagarme_subscription.current_transaction.to_hash),
                                                 subscription: @subscription)
 
-            Payment.transaction do
-                if @payment.save
-                    ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
-                    flash[:notice] = 'Assinatura realizada com sucesso'
-                    redirect_to subscriptions_path
-                end
+        Payment.transaction do
+            if @payment.save
+                ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
+                flash[:notice] = 'Assinatura realizada com sucesso'
+                redirect_to payments_path
             end
 
         rescue => e
