@@ -16,10 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       super
 
       # HubSpot integration
-      # we use the "create_or_update" method because the user may have entered an email that is already in use
-      # in this case, we will call the hubspot update method, passing no properties whatsoever
-      # since the only properties that are updated are the ones that we pass, in reality nothing will happen
-      contact = Hubspot::Contact.create_or_update!([{email: params[:user][:email]}])
+      HubspotService.new.create_contact(params[:user][:email])
     end
     rescue Hubspot::RequestError => e
       flash[:notice] = nil
