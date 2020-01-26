@@ -21,9 +21,9 @@ class PaymentsControllerTest < ActionDispatch::IntegrationTest
         sign_in(@user1)
         get payments_url
         assert_response :success
-        assert_select 'title', "Contribuições | Instituto Reditus"
+        assert_select 'title', "Assinaturas e Contribuições | Instituto Reditus"
         assert_select "h1", "Minhas contribuições"
-        assert_select "tr", count: @user1.payments.count + 1
+        assert_select "tr", count: @user1.payments.count + @user1.subscriptions.count + 2
     end
 
     test "should be able to create payment when not logged in" do

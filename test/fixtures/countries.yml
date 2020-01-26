@@ -1,5 +1,7 @@
 brazil:
   name: 'Brasil'
+  code: 'br'
 
 usa:
   name: 'Estados Unidos'
+  code: 'us'
