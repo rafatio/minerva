@@ -219,7 +219,7 @@ if Country.find_by_name("Brasil").order_index != 0
         c.order_index = i + 1
         c.save!
     end
-    
+
     brasil = Country.find_by_name("Brasil")
     brasil.order_index = 0
     brasil.save!
@@ -268,4 +268,118 @@ end
 if PaymentType.count == 0
     PaymentType.create(name: "Normal", code: "normal")
     PaymentType.create(name: "Jantar de Gala", code: "gala")
+end
+
+if Country.count > 0 && Country.find_by_name("Brasil").code.nil?
+    c = Country.find_by_name("Brasil")
+    c.code = "br"
+    c.save!
+    c = Country.find_by_name("Alemanha")
+    c.code = "de"
+    c.save!
+    c = Country.find_by_name("Argentina")
+    c.code = "ar"
+    c.save!
+    c = Country.find_by_name("Austrália")
+    c.code = "au"
+    c.save!
+    c = Country.find_by_name("Áustria")
+    c.code = "at"
+    c.save!
+    c = Country.find_by_name("Bélgica")
+    c.code = "be"
+    c.save!
+    c = Country.find_by_name("Bolívia")
+    c.code = "bo"
+    c.save!
+    c = Country.find_by_name("Canadá")
+    c.code = "ca"
+    c.save!
+    c = Country.find_by_name("Chile")
+    c.code = "cl"
+    c.save!
+    c = Country.find_by_name("China")
+    c.code = "cn"
+    c.save!
+    c = Country.find_by_name("Colômbia")
+    c.code = "co"
+    c.save!
+    c = Country.find_by_name("Croácia")
+    c.code = "hr"
+    c.save!
+    c = Country.find_by_name("Dinamarca")
+    c.code = "dk"
+    c.save!
+    c = Country.find_by_name("Equador")
+    c.code = "ec"
+    c.save!
+    c = Country.find_by_name("Espanha")
+    c.code = "es"
+    c.save!
+    c = Country.find_by_name("Estados Unidos")
+    c.code = "us"
+    c.save!
+    c = Country.find_by_name("França")
+    c.code = "fr"
+    c.save!
+    c = Country.find_by_name("Grécia")
+    c.code = "gr"
+    c.save!
+    c = Country.find_by_name("Índia")
+    c.code = "in"
+    c.save!
+    c = Country.find_by_name("Irlanda")
+    c.code = "ie"
+    c.save!
+    c = Country.find_by_name("Itália")
+    c.code = "it"
+    c.save!
+    c = Country.find_by_name("Japão")
+    c.code = "jp"
+    c.save!
+    c = Country.find_by_name("México")
+    c.code = "mx"
+    c.save!
+    c = Country.find_by_name("Noruega")
+    c.code = "no"
+    c.save!
+    c = Country.find_by_name("Nova Zelândia")
+    c.code = "nz"
+    c.save!
+    c = Country.find_by_name("Países Baixos")
+    c.code = "nl"
+    c.save!
+    c = Country.find_by_name("Paraguai")
+    c.code = "py"
+    c.save!
+    c = Country.find_by_name("Peru")
+    c.code = "pe"
+    c.save!
+    c = Country.find_by_name("Polónia")
+    c.code = "pl"
+    c.save!
+    c = Country.find_by_name("Polónia")
+    c.code = "pt"
+    c.save!
+    c = Country.find_by_name("Reino Unido")
+    c.code = "gb"
+    c.save!
+    c = Country.find_by_name("Rússia")
+    c.code = "gb"
+    c.save!
+    c = Country.find_by_name("Suécia")
+    c.code = "se"
+    c.save!
+    c = Country.find_by_name("Suíça")
+    c.code = "ch"
+    c.save!
+    c = Country.find_by_name("Ucrânia")
+    c.code = "ua"
+    c.save!
+    c = Country.find_by_name("Uruguai")
+    c.code = "uy"
+    c.save!
+    c = Country.find_by_name("Venezuela")
+    c.code = "ve"
+    c.save!
 end

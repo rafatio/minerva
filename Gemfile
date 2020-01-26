@@ -56,6 +56,9 @@ gem 'slim-rails'
 # custom error pages with Exception Handler
 gem 'exception_handler', '~> 0.8.0.0'
 
+# Environment configuration
+gem "figaro"
+
 # HubSpot integration
 gem 'hubspot-ruby', '~> 0.9.0'
 

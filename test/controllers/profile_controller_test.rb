@@ -44,8 +44,8 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_single_value_form_input('professional-company', 'Empresa 1')
     check_single_value_form_input('professional-position', 'Gerente')
     check_single_value_form_input('professional-admission-year', '2010')
-    check_single_value_form_input('professional-previous-company0', 'Empresa antiga 2')
-    check_single_value_form_input('professional-previous-company1', 'Empresa antiga 1')
+    check_single_value_form_input('professional-previous-company-name0', 'Empresa antiga 2')
+    check_single_value_form_input('professional-previous-company-name1', 'Empresa antiga 1')
 
     check_form_selected_option('education-level0', 'Doutorado')
     check_single_value_form_input('education-institution0', 'PUC')
@@ -126,8 +126,8 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
         "professional-company": "Empresa Nova 1",
         "professional-position": "Cargo Novo 1",
         "professional-admission-year": "2019",
-        "professional-previous-company0": "Empresa Antiga 111 teste",
-        "professional-previous-company1": "Empresa Antiga 222 teste",
+        "professional-previous-company-name0": "Empresa Antiga 111 teste",
+        "professional-previous-company-name1": "Empresa Antiga 222 teste",
         "education-level0": "Graduação",
         "education-institution0": "UFRJ",
         "education-course0": "ECI",
@@ -179,8 +179,8 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_single_value_form_input('professional-company', 'Empresa Nova 1')
     check_single_value_form_input('professional-position', 'Cargo Novo 1')
     check_single_value_form_input('professional-admission-year', '2019')
-    check_single_value_form_input('professional-previous-company0', 'Empresa Antiga 111 teste')
-    check_single_value_form_input('professional-previous-company1', 'Empresa Antiga 222 teste')
+    check_single_value_form_input('professional-previous-company-name0', 'Empresa Antiga 111 teste')
+    check_single_value_form_input('professional-previous-company-name1', 'Empresa Antiga 222 teste')
 
     check_form_selected_option('education-level0', 'Graduação')
     check_single_value_form_input('education-institution0', 'UFRJ')

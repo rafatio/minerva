@@ -14,16 +14,17 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "should be authenticated to list subscriptions" do
-        get subscriptions_url
+        get payments_url
         perform_unauthenticated_checks
     end
 
     test "should list subscriptions" do
         sign_in(@user2)
-        get subscriptions_url
+        get payments_url
         assert_response :success
-        assert_select 'title', "Assinaturas | Instituto Reditus"
-        assert_select "tr", count: @user2.subscriptions.count + 1
+        assert_select 'title', "Assinaturas e Contribuições | Instituto Reditus"
+        assert_select "h1", "Minhas assinaturas"
+        assert_select "tr", count: @user2.subscriptions.count + @user2.payments.count + 2
     end
 
     test "should not be able to create subscription when not logged in" do
@@ -44,7 +45,7 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
             "expiry-month": "8",
             "expiry-year": "23"
         }
-        assert_redirected_to subscriptions_url
+        assert_redirected_to payments_url
         assert_equal 'Assinatura realizada com sucesso', flash[:notice]
         assert_equal initial_count_subscriptions + 1, Subscription.count
         assert_equal initial_count_payments + 1, Payment.count

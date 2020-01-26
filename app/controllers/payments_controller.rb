@@ -36,45 +36,24 @@ class PaymentsController < ApplicationController
       user.send_reset_password_instructions
     end
 
-    decimal_value = params[:payment][:value].delete('.').gsub(",", ".").to_f
-    @payment = user.payments.new(value: decimal_value)
+    payment_service = PaymentService.new(user)
+    service_response = payment_service.single_payment(params)
 
-    if !params[:payment][:type].nil?
-      payment_type = PaymentType.find_by  code: params[:payment][:type]
-      raise 'Tipo de pagamento inválido' unless !payment_type.nil?
-      @payment.payment_type = payment_type
-    end
-
-    transaction = PagarMe::Transaction.new(
-      amount: (decimal_value * 100).to_i, # in cents
-      card_number: params['card-number'],
-      card_holder_name: params['card-holders-name']&.upcase,
-      card_expiration_month: params['expiry-month'].rjust(2, '0'),
-      card_expiration_year: '20' + params['expiry-year'],
-      card_cvv: params['cvc'],
-    )
-
-    @payment.pagarme_transaction = OpenStruct.new(transaction.charge.to_hash)
-
-    if transaction.status != 'paid'
-      error_message = TranslateAcquirerResponse.call(code: transaction.acquirer_response_code).message
-
-      if error_message.blank?
-        error_message = "Erro inesperado - #{transaction.status_reason}"
-      end
-
-      raise "Ocorreu um erro no pagamento. Causa: #{error_message}"
-    end
-
-    if @payment.save
-      ApplicationMailer.payment_confirmation_email(user, @payment).deliver_later
+    if service_response[:success]
+      ApplicationMailer.payment_confirmation_email(user, service_response[:payment]).deliver_later
       flash[:notice] = 'Pagamento realizado com sucesso'
       if current_user.nil?
         redirect_to authenticated_root_path
       else
         redirect_to payments_path
       end
-
+    else
+      flash[:error] = service_response[:message]
+      if !service_response[:reason_code].nil? && service_response[:reason_code] == PaymentService.reason_codes[:missing_fields]
+        redirect_to profile_index_path
+      else
+        redirect_to new_payment_path
+      end
     end
   rescue => e
     flash[:error] = e.message

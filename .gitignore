@@ -31,3 +31,5 @@
 /config/development.key
 /config/staging.key
 /config/test.key
+
+/config/application.yml
