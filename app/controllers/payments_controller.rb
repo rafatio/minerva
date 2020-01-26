@@ -47,7 +47,13 @@ class PaymentsController < ApplicationController
       else
         redirect_to payments_path
       end
-
+    else
+      flash[:error] = service_response[:message]
+      if !service_response[:reason_code].nil? && service_response[:reason_code] == PaymentService.reason_codes[:missing_fields]
+        redirect_to profile_index_path
+      else
+        redirect_to new_payment_path
+      end
     end
   rescue => e
     flash[:error] = e.message

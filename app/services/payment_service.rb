@@ -1,7 +1,14 @@
 class PaymentService
     include PaymentsHelper
+
+    @@reason_codes_obj = {missing_fields: "MISSING_FIELDS"}
+
     def initialize(user)
         @user = user
+    end
+
+    def self.reason_codes
+        return @@reason_codes_obj
     end
 
     def single_payment(params)
@@ -9,8 +16,12 @@ class PaymentService
         validation_result = validate_user_required_fields_for_payment(@user)
 
         if !validation_result[:valid]
-            flash[:error] = validation_result[:message]
-            redirect_to profile_index_path
+            response = {
+                success: false,
+                message: validation_result[:message],
+                reason_code: @@reason_codes_obj[:missing_fields]
+            }
+            return response
         end
 
 
@@ -87,7 +98,8 @@ class PaymentService
         save_ok = @payment.save
         response = {
             success: save_ok,
-            payment: @payment
+            payment: @payment,
+            message: ""
         }
         return response
     end
