@@ -1,10 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  ENV["HOST_URL"] = 'http://localhost:3000/'
-  ENV["SUBSCRIPTION_PERIOD_DAYS"] = '30'
-  ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"] = '5'
-
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
   # your test database is "scratch space" for the test suite and is wiped

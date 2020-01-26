@@ -1,2 +1,2 @@
-PagarMe.api_key        = Rails.application.credentials.pagarme[:api_key]
-PagarMe.encryption_key = Rails.application.credentials.pagarme[:encryption_key]
+PagarMe.api_key        = ENV["CREDENTIAL_PAGARME_API_KEY"]
+PagarMe.encryption_key = ENV["CREDENTIAL_PAGARME_ENCRYPTION_KEY"]

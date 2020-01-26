@@ -1,11 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  ENV["HOST_URL"] = 'http://localhost:3000/'
-  ENV["SUBSCRIPTION_PERIOD_DAYS"] = '30'
-  ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"] = '5'
-  ENV["EMAIL_USERNAME"] = 'noreply@institutoreditus.com.br'
-
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -75,7 +70,7 @@ Rails.application.configure do
     :address => "smtp.zoho.com",
     :port => 587,
     :user_name => ENV["EMAIL_USERNAME"],
-    :password => Rails.application.credentials.sendmail[:password],
+    :password => ENV["CREDENTIAL_SENDMAIL_PASSWORD"],
     :authentication       => :login,
     :enable_starttls_auto => true
   }

@@ -56,6 +56,9 @@ gem 'slim-rails'
 # custom error pages with Exception Handler
 gem 'exception_handler', '~> 0.8.0.0'
 
+# Environment configuration
+gem "figaro"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

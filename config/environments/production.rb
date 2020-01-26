@@ -103,7 +103,7 @@ Rails.application.configure do
     :address => "smtp.zoho.com",
     :port => 587,
     :user_name => ENV["EMAIL_USERNAME"],
-    :password => Rails.application.credentials.sendmail[:password],
+    :password => ENV["CREDENTIAL_SENDMAIL_PASSWORD"],
     :authentication       => :login,
     :enable_starttls_auto => true
   }
