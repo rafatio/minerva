@@ -191,7 +191,7 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
                 option[hidden disabled selected value]
                 - @country_list.each do |country|
                   |  <option value=
-                  = country.name
+                  = country.name.gsub(" ","_")
                   - if (!@address.nil?) && @address.country_id == country.id
                     |  selected="selected"
                   |  >
