@@ -11,7 +11,7 @@ class ContactsService
 
     def manage_unique_contact(contact_type_name, contact_value, preferred_contact_type)
         contact = get_contacts(contact_type_name).first
-        preferred = preferred_contact_type == contact_type_name
+        preferred = preferred_contact_type.casecmp?(contact_type_name)
         if contact.nil?
             if !contact_value.empty?
                 contact_type = ContactType.find_by_name(contact_type_name)

@@ -107,11 +107,19 @@ class ProfileController < ApplicationController
                 tutoring,
                 params['relationship-remarks'])
 
+            ###### HUBSPOT INTEGRATION
+            intended_relationships = {associate: associate, financial: financial, mentoring: mentoring, tutoring: tutoring, remarks: params['relationship-remarks']}
+            HubspotService.new.update_contact(current_user, params, secondary_emails, previous_companies, education_informations, intended_relationships)
+
         end
 
         flash[:notice] = 'Perfil atualizado com sucesso'
         redirect_to profile_index_path
-    rescue => e
+    rescue Hubspot::RequestError => e
+        Rails.logger.error e.message
+        flash[:error] = "Erro inesperado. Entre em contato com o suporte"
+        redirect_to profile_index_path
+    rescue Exception => e
         flash[:error] = e.message
         redirect_to profile_index_path
 

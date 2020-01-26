@@ -5,6 +5,7 @@ Rails.application.configure do
   ENV["SUBSCRIPTION_PERIOD_DAYS"] = '30'
   ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"] = '5'
   ENV["EMAIL_USERNAME"] = 'noreply@institutoreditus.com.br'
+  ENV['HUBSPOT_API_KEY'] = 'a2050b51-44de-4a85-b19b-0302d526d937'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
