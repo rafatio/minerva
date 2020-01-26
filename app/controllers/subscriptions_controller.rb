@@ -52,13 +52,9 @@ class SubscriptionsController < ApplicationController
         pagarme_subscription.create
 
         if pagarme_subscription.status != 'paid'
-            error_message = TranslateAcquirerResponse.call(code: pagarme_subscription.current_transaction&.acquirer_response_code).message
-
-            if error_message.blank?
-                error_message = "Erro inesperado - #{pagarme_subscription.current_transaction&.status_reason}"
-            end
-
-            raise "Ocorreu um erro na criação da assinatura. Causa: #{error_message}"
+            error_log = ErrorLog.new(category: "pagarme_subscription", message: OpenStruct.new(pagarme_subscription.to_hash))
+            error_log.save
+            raise "Ocorreu um erro na criação da assinatura. Entre em contato através do email contato@reditus.org.br"
         end
 
         @subscription.pagarme_identifier = pagarme_subscription.id

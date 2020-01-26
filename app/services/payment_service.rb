@@ -86,13 +86,9 @@ class PaymentService
         @payment.pagarme_transaction = OpenStruct.new(charged_transaction_hash)
 
         if transaction.status != 'paid'
-            error_message = TranslateAcquirerResponse.call(code: transaction.acquirer_response_code).message
-
-            if error_message.blank?
-                error_message = "Erro inesperado - #{transaction.status_reason}"
-            end
-
-            raise "Ocorreu um erro no pagamento. Causa: #{error_message}"
+            error_log = ErrorLog.new(category: "pagarme_transaction", message: @payment.pagarme_transaction)
+            error_log.save
+            raise "Ocorreu um erro no pagamento. Entre em contato através do email contato@reditus.org.br"
         end
 
         save_ok = @payment.save
