@@ -34,6 +34,7 @@ class HubspotService
             cpf: params['person-cpf'].delete('.-'),
             rg: params['person-rg'],
 
+            phone: params['contact-mobile'],
             mobilephone: params['contact-mobile'],
             skype: params['contact-skype'],
             facebook: params['contact-facebook'],
