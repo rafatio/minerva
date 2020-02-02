@@ -83,7 +83,7 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_single_value_form_input('contact-secondary-mail1', 'email21')
     check_single_value_form_input('contact-secondary-mail2', 'email23')
 
-    check_form_selected_option('address-country', 'Estados')
+    check_form_selected_option('address-country', 'Estados_Unidos')
     check_single_value_form_input('address-zipcode', '123456789')
     check_single_value_form_input('address-state', 'Texas')
 
