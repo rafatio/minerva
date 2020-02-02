@@ -3,8 +3,9 @@ class SubscriptionsController < ApplicationController
 
     def new
         if current_user.address.nil?
-          flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
-          redirect_to profile_index_path
+            flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
+            redirect_to profile_index_path
+            return
         end
 
         @active_subscriptions = current_user.subscriptions.where({active: true})
@@ -12,6 +13,12 @@ class SubscriptionsController < ApplicationController
     end
 
     def create
+
+        if current_user.address.nil?
+            raise "É necessário completar seu cadastro antes de realizar uma assinatura."
+        elsif !current_user.address.country.name.casecmp?("Brasil")
+            raise "Somente endereços do Brasil são permitidos para a assinatura mensal"
+        end
 
         #1) create plan
         decimal_value = params[:subscription][:value].delete('.').gsub(",", ".").to_f
@@ -65,6 +72,15 @@ class SubscriptionsController < ApplicationController
                                             subscription: @subscription)
 
         Payment.transaction do
+
+            begin
+                HubspotService.new.create_deal(current_user, decimal_value, true)
+            rescue => e
+                Rails.logger.error e.message
+                error_log = ErrorLog.new(category: "hubspot_deal_subscription", message: e.message)
+                error_log.save
+            end
+
             if @payment.save
                 ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
                 flash[:notice] = 'Assinatura realizada com sucesso'

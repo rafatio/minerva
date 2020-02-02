@@ -19,6 +19,13 @@ class TransactionPostbackService
                 subscription: subscription,
                 payment_type: payment_type)
 
+            begin
+                HubspotService.new.create_deal(subscription.user, decimal_value, true)
+            rescue => e
+                Rails.logger.error e.message
+                error_log = ErrorLog.new(category: "hubspot_deal_subscription_postback", message: e.message)
+                error_log.save
+            end
 
             if payment.save
                 ApplicationMailer.payment_confirmation_email(user, payment).deliver_later

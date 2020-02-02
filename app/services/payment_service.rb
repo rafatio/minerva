@@ -91,6 +91,14 @@ class PaymentService
             raise "Ocorreu um erro no pagamento. Entre em contato através do email contato@reditus.org.br"
         end
 
+        begin
+            HubspotService.new.create_deal(@user, decimal_value, false)
+        rescue => e
+            Rails.logger.error e.message
+            error_log = ErrorLog.new(category: "hubspot_deal_transaction", message: e.message)
+            error_log.save
+        end
+
         save_ok = @payment.save
         response = {
             success: save_ok,
