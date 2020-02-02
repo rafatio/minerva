@@ -3,8 +3,9 @@ class SubscriptionsController < ApplicationController
 
     def new
         if current_user.address.nil?
-          flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
-          redirect_to profile_index_path
+            flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
+            redirect_to profile_index_path
+            return
         end
 
         @active_subscriptions = current_user.subscriptions.where({active: true})
@@ -12,6 +13,12 @@ class SubscriptionsController < ApplicationController
     end
 
     def create
+
+        if current_user.address.nil?
+            raise "É necessário completar seu cadastro antes de realizar uma assinatura."
+        elsif !current_user.address.country.name.casecmp?("Brasil")
+            raise "Somente endereços do Brasil são permitidos para a assinatura mensal"
+        end
 
         #1) create plan
         decimal_value = params[:subscription][:value].delete('.').gsub(",", ".").to_f
