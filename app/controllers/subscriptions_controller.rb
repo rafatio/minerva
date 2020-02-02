@@ -65,6 +65,15 @@ class SubscriptionsController < ApplicationController
                                             subscription: @subscription)
 
         Payment.transaction do
+
+            begin
+                HubspotService.new.create_deal(current_user, decimal_value, true)
+            rescue => e
+                Rails.logger.error e.message
+                error_log = ErrorLog.new(category: "hubspot_deal_subscription", message: e.message)
+                error_log.save
+            end
+
             if @payment.save
                 ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
                 flash[:notice] = 'Assinatura realizada com sucesso'

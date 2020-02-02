@@ -74,7 +74,7 @@ class HubspotService
             amount: amount,
             pipeline: "default",
             dealstage: "closedwon",
-            closeddate: Time.now.utc.to_datetime.strftime('%Q')
+            closedate: Time.now.utc.to_datetime.strftime('%Q') # "%Q" means milliseconds
         }
 
         deal = Hubspot::Deal.create!(0, [], [contact.vid], deal_properties)
