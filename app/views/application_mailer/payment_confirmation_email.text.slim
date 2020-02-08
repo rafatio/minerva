@@ -1,5 +1,3 @@
-| Olá, 
-= @user.email
-| ! A sua contribuição no valor de 
-= number_to_currency(@payment.value, :unit => "R$ ", :separator => ",", :delimiter => ".")
-|  foi confirmada. Obrigado por contribuir com o Instituto Reditus! 
+| Olá,
+= @user.person.nil?? @user.email : @user.person.name
+| , Ficamos muito felizes com a sua contribuição para o Instituto Reditus. Ao longo dos anos, os rendimentos da sua contribuição vão ajudar a aprimorar a experiência universitária da UFRJ. Será possível investir em, por exemplo: bolsas de estudos para intercâmbio e auxílio financeiro às equipes de competição ou grupos de pesquisa! Se você ainda não sabe como funciona um fundo patrimonial, nesse link aqui nós explicamos: https://www.reditus.org.br/post/o-que-%C3%A9-um-fundo-patrimonial. Muito obrigado por contribuir com o Reditus e nos ajudar a construir uma UFRJ cada vez melhor!
