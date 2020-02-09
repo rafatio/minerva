@@ -28,12 +28,14 @@ function mask_inputs() {
 	  }};
 
 	current_val = $('.phone_with_ddd_and_idd').val();
-	var masks = ['+00 (00) 00000-0000', '+00 #'];
-	isBrazilianPhone = (current_val.substr(0,3) === "+55" || current_val.substr(0,2) === "55");
-	var mask = isBrazilianPhone ? masks[0] : masks[1];
-	$('.phone_with_ddd_and_idd').mask(mask, phone_options);
-	if (!isBrazilianPhone) {
-		$('.phone_with_ddd_and_idd').attr('maxlength', "50");
+	if (current_val !== undefined) {
+		var masks = ['+00 (00) 00000-0000', '+00 #'];
+		isBrazilianPhone = (current_val.substr(0,3) === "+55" || current_val.substr(0,2) === "55");
+		var mask = isBrazilianPhone ? masks[0] : masks[1];
+		$('.phone_with_ddd_and_idd').mask(mask, phone_options);
+		if (!isBrazilianPhone) {
+			$('.phone_with_ddd_and_idd').attr('maxlength', "50");
+		}
 	}
 }
 

@@ -1,32 +1,40 @@
 class SubscriptionsController < ApplicationController
-    before_action :authenticate_user!
 
     def new
-        if current_user.address.nil?
-            flash[:error] = "É necessário completar seu cadastro antes de realizar uma assinatura."
-            redirect_to profile_index_path
-            return
-        end
-
-        @active_subscriptions = current_user.subscriptions.where({active: true})
+        @active_subscriptions = current_user.nil?? [] : current_user.subscriptions.where({active: true})
         @subscription = Subscription.new
+
+        @country_list = Country.where(name: "Brasil") #only brazilian addresses are allowed for subscriptions
+        @address = current_user.nil?? nil : current_user.address
+        @person = current_user.nil?? nil : current_user.person
     end
 
     def create
 
-        if current_user.address.nil?
-            raise "É necessário completar seu cadastro antes de realizar uma assinatura."
-        elsif !current_user.address.country.name.casecmp?("Brasil")
-            raise "Somente endereços do Brasil são permitidos para a assinatura mensal"
+        user = current_user
+
+        # if user is not logged in, try to get the user based on his email
+        if user.nil?
+            raise 'Os emails informados não batem' unless params['user-email'] == params['user-email-confirmation']
+
+            user = User.where(:email => params['user-email']).first
+        end
+
+        # if there's no user with this email, create a new user
+        if user.nil?
+            user = User.new({:email => params['user-email'] })
+            user.skip_password_validation = true
+            user.save
+            user.send_reset_password_instructions
         end
 
         #1) create plan
         decimal_value = params[:subscription][:value].delete('.').gsub(",", ".").to_f
         integer_value = (decimal_value * 100).to_i
-        @subscription = current_user.subscriptions.new(value: decimal_value, active:true)
+        @subscription = user.subscriptions.new(value: decimal_value, active:true)
 
         plan = PagarMe::Plan.new({
-            :name => "Plano " + ENV["SUBSCRIPTION_PERIOD_DAYS"] + " dias - " + decimal_value.to_s + " reais - " + current_user.email,
+            :name => "Plano " + ENV["SUBSCRIPTION_PERIOD_DAYS"] + " dias - " + decimal_value.to_s + " reais - " + user.email,
             :days => ENV["SUBSCRIPTION_PERIOD_DAYS"].to_i,
             :amount => integer_value,
             :payment_methods => ["credit_card"],
@@ -44,14 +52,14 @@ class SubscriptionsController < ApplicationController
             :card_cvv => params['cvc'],
             :postback_url => ENV["HOST_URL"].delete_suffix('/') + postback_index_path,
             :customer => {
-                :name => current_user.person&.name,
-                :document_number => current_user.person&.cpf,
-                :email => current_user.email,
+                :name => params['person-name'],
+                :document_number => params['person-cpf'],
+                :email => user.email,
                 :address => {
-                    :street => current_user.address&.street,
-                    :neighborhood => current_user.address&.neighborhood,
-                    :zipcode => current_user.address&.zip_code,
-                    :street_number => current_user.address&.number
+                    :street => params['address-street'],
+                    :neighborhood => params['address-neighborhood'],
+                    :zipcode => params['address-cep'],
+                    :street_number => params['address-number']
                 }
             }
         })
@@ -67,14 +75,14 @@ class SubscriptionsController < ApplicationController
         @subscription.pagarme_identifier = pagarme_subscription.id
         @subscription.pagarme_subscription = OpenStruct.new(pagarme_subscription.to_hash)
 
-        @payment = current_user.payments.new(value: decimal_value,
+        @payment = user.payments.new(value: decimal_value,
                                             pagarme_transaction: OpenStruct.new(pagarme_subscription.current_transaction.to_hash),
                                             subscription: @subscription)
 
         Payment.transaction do
 
             begin
-                HubspotService.new.create_deal(current_user, decimal_value, true)
+                HubspotService.new.create_deal(user, decimal_value, true)
             rescue => e
                 Rails.logger.error e.message
                 error_log = ErrorLog.new(category: "hubspot_deal_subscription", message: e.message)
@@ -82,9 +90,13 @@ class SubscriptionsController < ApplicationController
             end
 
             if @payment.save
-                ApplicationMailer.payment_confirmation_email(current_user, @payment).deliver_later
+                ApplicationMailer.payment_confirmation_email(user, @payment).deliver_later
                 flash[:notice] = 'Assinatura realizada com sucesso'
-                redirect_to payments_path
+                if current_user.nil?
+                    redirect_to authenticated_root_path
+                else
+                    redirect_to payments_path
+                end
             end
         end
 
