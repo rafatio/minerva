@@ -25,7 +25,7 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_single_value_form_input('person-birthdate', '1990-01-01')
     check_single_value_form_input('person-rg', '12345678')
 
-    check_single_value_form_input('contact-mobile', '(21) 99999-9999')
+    check_single_value_form_input('contact-mobile', '+55 (21) 99999-9999')
     check_single_value_form_input('contact-facebook', 'fb1')
     check_single_value_form_input('contact-linkedin', '')
     check_single_value_form_input('contact-skype', 'skype1')

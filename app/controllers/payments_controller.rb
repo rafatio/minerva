@@ -13,6 +13,11 @@ class PaymentsController < ApplicationController
       raise 'Tipo de pagamento inválido' unless !payment_type.nil?
       @payment.payment_type = payment_type
     end
+    @country_list = Country.all
+    @address = current_user.nil?? nil : current_user.address
+    @person = current_user.nil?? nil : current_user.person
+    contacts_service = ContactsService.new(current_user)
+    @mobile_contact = current_user.nil?? nil : contacts_service.get_contacts('Celular').first
   rescue => e
     flash[:error] = e.message
     redirect_to new_payment_path

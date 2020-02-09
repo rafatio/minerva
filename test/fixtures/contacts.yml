@@ -1,7 +1,7 @@
 contact_user1_mobile:
   user: user_1
   contact_type: mobile
-  value: '(21) 99999-9999'
+  value: '+55 (21) 99999-9999'
   preferred: true
 
 contact_user1_fb:
