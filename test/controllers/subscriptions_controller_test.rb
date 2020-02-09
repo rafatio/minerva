@@ -27,11 +27,6 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
         assert_select "tr", count: @user2.subscriptions.count + @user2.payments.count + 2
     end
 
-    test "should not be able to create subscription when not logged in" do
-        get new_subscription_url
-        perform_unauthenticated_checks
-    end
-
     test "should create subscription" do
         initial_count_subscriptions = Subscription.count
         initial_count_payments = Payment.count
@@ -43,7 +38,18 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
             "cvc": "332",
             "card-holders-name": "teste",
             "expiry-month": "8",
-            "expiry-year": "23"
+            "expiry-year": "23",
+            "person-name": @user1.person.name,
+            "person-cpf": @user1.person.cpf,
+            "person-phone": "+55 21 99999-9999",
+            "address-country": "Brasil",
+            "address-cep": "23030006",
+            "address-street": "Travessa C",
+            "address-number": "123",
+            "address-complement": "cs 1",
+            "address-neighborhood": "Guaratiba",
+            "address-city": "Rio de Janeiro",
+            "address-state": "RJ"
         }
         assert_redirected_to payments_url
         assert_equal 'Assinatura realizada com sucesso', flash[:notice]
