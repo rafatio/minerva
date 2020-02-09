@@ -33,8 +33,10 @@ class PaymentsController < ApplicationController
       user = User.where(:email => params['user-email']).first
     end
 
+    isNewUser = false
     # if there's no user with this email, create a new user
     if user.nil?
+      isNewUser = true
       user = User.new({:email => params['user-email'] })
       user.skip_password_validation = true
       user.save
@@ -42,7 +44,7 @@ class PaymentsController < ApplicationController
     end
 
     payment_service = PaymentService.new(user)
-    service_response = payment_service.single_payment(params)
+    service_response = payment_service.single_payment(params, isNewUser)
 
     if service_response[:success]
       ApplicationMailer.payment_confirmation_email(user, service_response[:payment]).deliver_later

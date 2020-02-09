@@ -21,7 +21,9 @@ class SubscriptionsController < ApplicationController
         end
 
         # if there's no user with this email, create a new user
+        isNewUser = false
         if user.nil?
+            isNewUser = true
             user = User.new({:email => params['user-email'] })
             user.skip_password_validation = true
             user.save
@@ -82,7 +84,12 @@ class SubscriptionsController < ApplicationController
         Payment.transaction do
 
             begin
-                HubspotService.new.create_deal(user, decimal_value, true)
+                # HubSpot integration
+                hubspotService = HubspotService.new
+                if (isNewUser)
+                    hubspotService.create_contact(params['user-email'])
+                end
+                hubspotService.create_deal(user, decimal_value, true)
             rescue => e
                 Rails.logger.error e.message
                 error_log = ErrorLog.new(category: "hubspot_deal_subscription", message: e.message)

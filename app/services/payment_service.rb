@@ -11,7 +11,7 @@ class PaymentService
         return @@reason_codes_obj
     end
 
-    def single_payment(params)
+    def single_payment(params, isNewUser)
 
         decimal_value = params[:payment][:value].delete('.').gsub(",", ".").to_f
         @payment = @user.payments.new(value: decimal_value)
@@ -90,7 +90,13 @@ class PaymentService
         end
 
         begin
-            HubspotService.new.create_deal(@user, decimal_value, false)
+            # HubSpot integration
+            hubspotService = HubspotService.new
+            if (isNewUser)
+                hubspotService.create_contact(params['user-email'])
+            end
+
+            hubspotService.create_deal(@user, decimal_value, false)
         rescue => e
             Rails.logger.error e.message
             error_log = ErrorLog.new(category: "hubspot_deal_transaction", message: e.message)
