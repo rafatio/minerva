@@ -8,7 +8,7 @@ h1.section-title Nova contribuição
         | Email
       input.form-control.col-9.mb-3[name="user-email" required]
       label.col-form-label.col-3[for="user-email-confirmation"]
-        | Email Confirmation
+        | Confirme seu email
       input.form-control.col-9.mb-3[name="user-email-confirmation" required]
     = f.label :value, "Valor", class: "col-form-label col-3"
     = f.text_field :value, class: "form-control col-9 mb-3 input-currency", autocomplete: "off", required: true
@@ -17,9 +17,107 @@ h1.section-title Nova contribuição
       input.expiry-month[name="expiry-month" required]
       input.expiry-year[name="expiry-year" required]
       input.cvc[name="cvc" required]
+    br
+    .col-12.mt-3
+      h3 Dados pessoais
+      .row
+        label.col-form-label.col-2[for="person-name"]
+          | Nome
+        |  <input class="form-control mb-3 col-10" name = "person-name" value="
+        - if !@person.nil?
+          = @person.name
+        | " required>
+      .row
+        label.col-form-label.col-2[for="person-cpf"]
+          | CPF
+        |  <input class="form-control mb-3 col-3 cpf" name="person-cpf" value="
+        - if !@person.nil?
+          = @person.cpf
+        | " required>
+      .row
+        label.col-form-label.col-6[for="person-phone"]
+          | Telefone (com códigos de país e de área)
+        |  <input class="form-control mb-3 col-4 phone_with_ddd_and_idd" name = "person-phone" value="
+        - if !@mobile_contact.nil?
+          = @mobile_contact.value
+        | " required>
+    .col-12.mt-3
+      h3 Endereço de cobrança
+      .row
+        label.col-form-label.col-2[for="address-country"]
+          | País
+        select.form-control.col-5.mb-3.selectpicker[name="address-country" required]
+          option[hidden disabled selected value]
+          - @country_list.each do |country|
+            |  <option value=
+            = country.name.gsub(" ","_")
+            - if (!@address.nil?) && @address.country_id == country.id
+              |  selected="selected"
+            |  >
+            = country.name
+      .row
+        label.col-form-label.col-2[for="address-cep" hidden]
+          | CEP
+        |  <input type="text" class="form-control mb-3 col-5 cep" name="address-cep" data-provider="zipcode" value="
+        - if !@address.nil?
+          = @address.zip_code
+        | " hidden>
+      .row
+        label.col-form-label.col-2[for="address-zipcode"]
+          | Código Postal
+        |  <input type="text" class="form-control mb-3 col-5" name="address-zipcode" value="
+        - if !@address.nil?
+          = @address.zip_code
+        | ">
+      .row
+        label.col-form-label.col-2[for="address-street"]
+          | Logradouro
+        |  <input type="text" class="form-control mb-3 col-10" name="address-street" data-provider="street" value="
+        - if !@address.nil?
+          = @address.street
+        | " required>
+      .row
+        label.col-form-label.col-2[for="address-number"]
+          | Número
+        |  <input type="text" class="form-control mb-3 col-3" name="address-number" value="
+        - if !@address.nil?
+          = @address.number
+        | " required>
+        .col-2
+        label.col-form-label.col-2[for="address-complement"]
+          | Complemento
+        |  <input type="text" class="form-control mb-3 col-3" name="address-complement" value="
+        - if !@address.nil?
+          = @address.complement
+        | " >
+      .row
+        label.col-form-label.col-2[for="address-neighborhood"]
+          | Bairro
+        |  <input type="text" class="form-control mb-3 col-5" name="address-neighborhood" data-provider="neighborhood" value="
+        - if !@address.nil?
+          = @address.neighborhood
+        | " required>
+      .row
+        label.col-form-label.col-2[for="address-city"]
+          | Cidade
+        |  <input type="text" class="form-control mb-3 col-5" name="address-city" data-provider="city" value="
+        - if !@address.nil?
+          = @address.city
+        | " required>
+      .row
+        label.col-form-label.col-2[for="address-state"]
+          | Estado
+        |  <input type="text" class="form-control mb-3 col-5" name="address-state" data-provider="state" value="
+        - if (!@address.nil?) && (!@address.state.nil?)
+          = @address.state.code
+        - elsif !@address.nil?
+          = @address.state_name
+        | " required>
     = f.submit "Enviar", class: "btn btn-block btn-primary mt-3 action-button"
 .options.text-center
   = link_to "Mudei de ideia, quero contribuir todo mês", new_subscription_path, class: "btn btn-primary action-button float-none"
 = javascript_include_tag "vendor/card-js.min.js"
 = javascript_include_tag "mask/jquery.maskMoney.min.js"
 = javascript_include_tag "mask_currency_field.js"
+= javascript_include_tag "jquery-mask/jquery.mask.min.js"
+= javascript_include_tag "mask_profile.js"

@@ -91,11 +91,11 @@ nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
             .col-3
               .row
                 label.col-form-label[for="contact-mobile"]
-                  | Celular *
-                |  <input class="form-control mb-3 phone_with_ddd" name = "contact-mobile" oninvalid="$('#collapseTwo').collapse('show')" value="
+                  | Celular (com códigos de país e de área) *
+                |  <input class="form-control mb-3 phone_with_ddd_and_idd" name = "contact-mobile" oninvalid="$('#collapseTwo').collapse('show')" value="
                 - if !@mobile_contact.nil?
                   = @mobile_contact.value
-                | " required>
+                | " maxlength="50" required>
           .row
             .col-3
               .row

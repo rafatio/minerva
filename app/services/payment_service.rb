@@ -11,19 +11,7 @@ class PaymentService
         return @@reason_codes_obj
     end
 
-    def single_payment(params)
-
-        validation_result = validate_user_required_fields_for_payment(@user)
-
-        if !validation_result[:valid]
-            response = {
-                success: false,
-                message: validation_result[:message],
-                reason_code: @@reason_codes_obj[:missing_fields]
-            }
-            return response
-        end
-
+    def single_payment(params, isNewUser)
 
         decimal_value = params[:payment][:value].delete('.').gsub(",", ".").to_f
         @payment = @user.payments.new(value: decimal_value)
@@ -32,6 +20,16 @@ class PaymentService
             payment_type = PaymentType.find_by  code: params[:payment][:type]
             raise 'Tipo de pagamento inválido' unless !payment_type.nil?
             @payment.payment_type = payment_type
+        end
+
+        country_name = params['address-country'].gsub("_"," ")
+        country = Country.find_by_name(country_name)
+        country_code = country.code
+
+        if country_name == 'Brasil'
+            zipcode = params['address-cep']
+        else
+            zipcode = params['address-zipcode']
         end
 
         transaction = PagarMe::Transaction.new(
@@ -45,35 +43,35 @@ class PaymentService
             async: false,
             customer: {
                 external_id: @user.id.to_s,
-                name: @user.person.name,
+                name: params['person-name'],
                 type: "individual",
-                country: @user.address.country.code,
+                country: country_code,
                 email: @user.email,
                 documents: [
                 {
                     type: "cpf",
-                    number: @user.person.cpf
+                    number: params['person-cpf'].delete('.-')
 
                 }
                 ],
-                phone_numbers: ["+55" + validation_result[:mobile_phone_contact].value.delete('() -')],
+                phone_numbers: [ params['person-phone'].delete('() -')],
             },
             billing: {
-                name: @user.person.name,
+                name: params['person-name'],
                 address: {
-                country: @user.address.country.code,
-                state: @user.address.state.nil?? @user.address.state_name : @user.address.state.code,
-                city: @user.address.city,
-                neighborhood: @user.address.neighborhood,
-                street: @user.address.street,
-                street_number: @user.address.number,
-                zipcode: @user.address.zip_code
+                country: country_code,
+                state: params['address-state'],
+                city: params['address-city'],
+                neighborhood: params['address-neighborhood'],
+                street: params['address-street'],
+                street_number: params['address-number'],
+                zipcode: zipcode.delete('.-')
                 }
             },
             items: [
                 {
                 id: "Contrib-Unica-" + SecureRandom.uuid,
-                title: "Contribuição única " + @user.person.name + " " + decimal_value.to_s,
+                title: "Contribuição única " + params['person-name'] + " " + decimal_value.to_s,
                 unit_price: (decimal_value * 100).to_i,
                 quantity: 1,
                 tangible: false
@@ -92,7 +90,13 @@ class PaymentService
         end
 
         begin
-            HubspotService.new.create_deal(@user, decimal_value, false)
+            # HubSpot integration
+            hubspotService = HubspotService.new
+            if (isNewUser)
+                hubspotService.create_contact(params['user-email'])
+            end
+
+            hubspotService.create_deal(@user, decimal_value, false)
         rescue => e
             Rails.logger.error e.message
             error_log = ErrorLog.new(category: "hubspot_deal_transaction", message: e.message)
