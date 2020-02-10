@@ -26,7 +26,7 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
 
   config.authorize_with do
-    redirect_to main_app.root_path unless current_user.admin
+    redirect_to main_app.authenticated_root_path unless current_user.admin
   end
 
   config.actions do
