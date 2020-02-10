@@ -86,10 +86,7 @@ class SubscriptionsController < ApplicationController
             begin
                 # HubSpot integration
                 hubspotService = HubspotService.new
-                if (isNewUser)
-                    hubspotService.create_contact(params['user-email'])
-                end
-                hubspotService.create_deal(user, decimal_value, true)
+                hubspotService.create_deal(user, decimal_value, true, isNewUser)
             rescue => e
                 Rails.logger.error e.message
                 error_log = ErrorLog.new(category: "hubspot_deal_subscription", message: e.message)
