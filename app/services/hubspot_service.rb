@@ -67,8 +67,14 @@ class HubspotService
         hubspot_contact = Hubspot::Contact.create_or_update!([hubspot_properties])
     end
 
-    def create_deal(user, amount, recurring)
-        contact = Hubspot::Contact.find_by_email(user.email)
+    def create_deal(user, amount, recurring, isNewUser)
+        if (!isNewUser)
+            contact = Hubspot::Contact.find_by_email(user.email)
+        else
+            contact = Hubspot::Contact.create!(user.email)
+        end
+
+
         deal_properties = {
             dealname: "Contribuição online " + (recurring ? "recorrente" : "única") + " " + Time.now.strftime("%Y-%m-%d"),
             amount: amount,
