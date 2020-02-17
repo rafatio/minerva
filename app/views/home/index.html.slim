@@ -3,8 +3,8 @@
 - sum = 0
 - contribution_text = Payment.any? ? "Contribua você também" : "Faça a primeira contribuição!"
 h1.section-title Relatório de contribuições
-/ = line_chart Payment.group_by_day(:created_at).sum(:value).map { |x,y| { x => (sum += y)} }.reduce({}, :merge),
-= line_chart Payment.group_by_day(:created_at).sum(:value),
+/ = line_chart Payment.group_by_day(:created_at).sum(:value),
+= line_chart Payment.group_by_day(:created_at).sum(:value).map { |x,y| { x => (sum += y)} }.reduce({}, :merge),
       colors: ['#96ccff'],
       height: "50vh",
       label: "Doações",
