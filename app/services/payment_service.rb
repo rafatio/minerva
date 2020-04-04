@@ -95,7 +95,7 @@ class PaymentService
       # HubSpot integration
       hubspotService = HubspotService.new
       hubspotService.create_deal(@user, decimal_value, false, isNewUser)
-    rescue => e
+    rescue StandardError => e
       Rails.logger.error e.message
       error_log = ErrorLog.new(category: 'hubspot_deal_transaction', message: e.message)
       error_log.save

@@ -24,7 +24,7 @@ class TransactionPostbackService
 
       begin
         HubspotService.new.create_deal(subscription.user, decimal_value, true)
-      rescue => e
+      rescue StandardError => e
         Rails.logger.error e.message
         error_log = ErrorLog.new(category: 'hubspot_deal_subscription_postback', message: e.message)
         error_log.save

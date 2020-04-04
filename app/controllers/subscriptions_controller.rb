@@ -88,7 +88,7 @@ class SubscriptionsController < ApplicationController
         # HubSpot integration
         hubspotService = HubspotService.new
         hubspotService.create_deal(user, decimal_value, true, isNewUser)
-      rescue => e
+      rescue StandardError => e
         Rails.logger.error e.message
         error_log = ErrorLog.new(category: 'hubspot_deal_subscription', message: e.message)
         error_log.save
@@ -104,7 +104,7 @@ class SubscriptionsController < ApplicationController
         end
       end
     end
-  rescue => e
+  rescue StandardError => e
     flash[:error] = e.message
     redirect_to new_subscription_path
   end

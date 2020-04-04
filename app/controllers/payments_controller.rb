@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
     @person = current_user.nil? ? nil : current_user.person
     contacts_service = ContactsService.new(current_user)
     @mobile_contact = current_user.nil? ? nil : contacts_service.get_contacts('Celular').first
-  rescue => e
+  rescue StandardError => e
     flash[:error] = e.message
     redirect_to new_payment_path
   end
@@ -67,7 +67,7 @@ class PaymentsController < ApplicationController
         redirect_to new_payment_path
       end
     end
-  rescue => e
+  rescue StandardError => e
     flash[:error] = e.message
     if params[:payment][:type].nil?
       redirect_to new_payment_path

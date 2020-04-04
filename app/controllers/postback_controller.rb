@@ -19,7 +19,7 @@ class PostbackController < ApplicationController
     else
       render_invalid_postback_response('Postback inválido')
     end
-  rescue => e
+  rescue StandardError => e
     render_invalid_postback_response(e.message)
   end
 

@@ -319,18 +319,6 @@ Style/NumericPredicate:
     - 'app/helpers/payments_helper.rb'
     - 'db/seeds.rb'
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/controllers/postback_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.
