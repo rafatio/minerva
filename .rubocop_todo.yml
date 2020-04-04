@@ -319,14 +319,6 @@ Style/NumericPredicate:
     - 'app/helpers/payments_helper.rb'
     - 'db/seeds.rb'
 
-# Offense count: 5
-# Cop supports --auto-correct.
-Style/RedundantParentheses:
-  Exclude:
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'test/controllers/profile_controller_test.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMultipleReturnValues.

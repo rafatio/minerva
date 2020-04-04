@@ -21,7 +21,7 @@ class HubspotService
     education_informations.each do |item|
       education_level = item.education_level.nil? ? '' : item.education_level.name
       conclusion_year = item.conclusion_year.nil? ? '' : item.conclusion_year.to_s
-      education_informations_formatted.push('Nível: ' + (education_level) + ' | Instituição: ' + (item.institution || '') + ' | Curso: ' + (item.course || '') + ' | Ano de conclusão: ' + (conclusion_year))
+      education_informations_formatted.push('Nível: ' + education_level + ' | Instituição: ' + (item.institution || '') + ' | Curso: ' + (item.course || '') + ' | Ano de conclusão: ' + conclusion_year)
     end
 
     hubspot_properties = {
