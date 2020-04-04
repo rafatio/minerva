@@ -95,7 +95,6 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-
   test 'should fill profile' do
     initial_count = Person.count
 
@@ -198,7 +197,6 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_form_checkbox_selected('relationship-tutoring', true)
     check_single_value_form_input('relationship-remarks', 'obs teste 333')
   end
-
 
   def check_single_value_form_input(input_name, value)
     assert_select 'form input[name=' + input_name + ']' do

@@ -225,8 +225,6 @@ if Country.find_by_name('Brasil').order_index != 0
   brasil.save!
 end
 
-
-
 if State.count == 0
   c = Country.find_by_name('Brasil')
 

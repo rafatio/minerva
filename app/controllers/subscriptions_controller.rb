@@ -109,5 +109,4 @@ class SubscriptionsController < ApplicationController
     redirect_to new_subscription_path
   end
 
-
 end

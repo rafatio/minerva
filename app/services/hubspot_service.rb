@@ -74,7 +74,6 @@ class HubspotService
       contact = Hubspot::Contact.create!(user.email)
     end
 
-
     deal_properties = {
         dealname: 'Contribuição online ' + (recurring ? 'recorrente' : 'única') + ' ' + Time.now.strftime('%Y-%m-%d'),
         amount: amount,
