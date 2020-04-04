@@ -70,7 +70,7 @@ Rails.application.configure do
     :port => 587,
     :user_name => ENV['EMAIL_USERNAME'],
     :password => ENV['CREDENTIAL_SENDMAIL_PASSWORD'],
-    :authentication       => :login,
+    :authentication => :login,
     :enable_starttls_auto => true
   }
 end

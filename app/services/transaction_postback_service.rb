@@ -15,9 +15,9 @@ class TransactionPostbackService
       user = subscription.user
       payment_type = PaymentType.find_by code: 'normal'
       payment = user.payments.new(value: decimal_value,
-          pagarme_transaction: OpenStruct.new(transaction_params.to_hash),
-          subscription: subscription,
-          payment_type: payment_type)
+                                  pagarme_transaction: OpenStruct.new(transaction_params.to_hash),
+                                  subscription: subscription,
+                                  payment_type: payment_type)
 
       begin
         HubspotService.new.create_deal(subscription.user, decimal_value, true)
