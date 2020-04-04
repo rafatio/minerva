@@ -12,7 +12,6 @@ class PaymentService
   end
 
   def single_payment(params, isNewUser)
-
     decimal_value = params[:payment][:value].delete('.').gsub(',', '.').to_f
     @payment = @user.payments.new(value: decimal_value)
 

@@ -1,6 +1,5 @@
 class TransactionPostbackService
   def initialize
-
   end
 
   def process_transaction_postback(transaction_params)

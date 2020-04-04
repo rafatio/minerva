@@ -17,6 +17,5 @@ class ManageIntendedRelationshipService
     intended_relationship.remarks = remarks.presence
 
     @user.intended_relationship = intended_relationship
-
   end
 end

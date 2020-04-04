@@ -4,7 +4,6 @@ class ManageEducationInformationService
   end
 
   def call(education_informations_list)
-
     current_list = @user.education_informations
     current_list.destroy_all
 
@@ -13,6 +12,5 @@ class ManageEducationInformationService
         @user.education_informations.push(value)
       end
     end
-
   end
 end

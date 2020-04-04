@@ -11,7 +11,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-
     if params[:agreement] != '1'
       flash[:error] = 'É necessário aceitar os temos e condições'
       redirect_to new_user_registration_url

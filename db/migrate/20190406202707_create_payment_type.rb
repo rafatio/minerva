@@ -6,6 +6,5 @@ class CreatePaymentType < ActiveRecord::Migration[5.2]
     end
 
     add_reference :payments, :payment_type, foreign_key: true
-
   end
 end

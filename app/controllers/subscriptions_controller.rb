@@ -9,7 +9,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-
     user = current_user
 
     # if user is not logged in, try to get the user based on his email

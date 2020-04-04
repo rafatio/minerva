@@ -1,6 +1,5 @@
 class SubscriptionPostbackService
   def initialize
-
   end
 
   def process_status_changed_postback(status_changed_params)
@@ -25,6 +24,5 @@ class SubscriptionPostbackService
     else
       raise 'Erro ao atualizar assinatura'
     end
-
   end
 end

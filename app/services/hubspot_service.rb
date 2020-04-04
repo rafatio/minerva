@@ -1,6 +1,5 @@
 class HubspotService
   def initialize
-
   end
 
   def create_contact(email)

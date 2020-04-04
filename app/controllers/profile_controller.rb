@@ -119,6 +119,5 @@ class ProfileController < ApplicationController
   rescue Exception => e
     flash[:error] = e.message
     redirect_to profile_index_path
-
   end
 end
