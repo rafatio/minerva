@@ -1,6 +1,5 @@
 class ManagePersonService
-  def initialize
-  end
+  def initialize; end
 
   def call(user, name, gender, birth_date, cpf, rg)
     if user.person.nil?

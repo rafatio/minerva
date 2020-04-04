@@ -286,19 +286,6 @@ Style/Documentation:
     - 'db/migrate/20200126013920_add_code_to_countries.rb'
     - 'db/migrate/20200126222546_create_errors_table.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/mentors_controller.rb'
-    - 'app/controllers/static_pages_controller.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/manage_person_service.rb'
-    - 'app/services/subscription_postback_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-
 # Offense count: 1
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: annotated, template, unannotated

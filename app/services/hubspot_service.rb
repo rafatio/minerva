@@ -1,6 +1,5 @@
 class HubspotService
-  def initialize
-  end
+  def initialize; end
 
   def create_contact(email)
     # we use the "create_or_update" method because the user may have entered an email that is already in use by us

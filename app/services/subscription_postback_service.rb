@@ -1,6 +1,5 @@
 class SubscriptionPostbackService
-  def initialize
-  end
+  def initialize; end
 
   def process_status_changed_postback(status_changed_params)
     subscription_id = status_changed_params[:id]
