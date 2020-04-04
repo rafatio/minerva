@@ -23,6 +23,7 @@ class PostbackController < ApplicationController
   end
 
     protected
+
   def valid_postback?
     raw_post  = request.raw_post
     signature = request.headers['HTTP_X_HUB_SIGNATURE']
