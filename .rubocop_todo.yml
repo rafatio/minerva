@@ -135,13 +135,6 @@ Naming/MethodParameterName:
     - 'app/services/manage_person_service.rb'
     - 'app/services/payment_service.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredName.
-Naming/RescuedExceptionsVariableName:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-
 # Offense count: 14
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: snake_case, camelCase

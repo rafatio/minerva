@@ -27,8 +27,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     flash[:notice] = nil
     Rails.logger.error e.message
     flash[:error] = 'Erro inesperado. Entre em contato com o suporte'
-  rescue Exception => ex
-    Rails.logger.error ex.message
+  rescue Exception => e
+    Rails.logger.error e.message
     raise
   end
 
