@@ -17,5 +17,4 @@ class ActiveSupport::TestCase
     assert_select 'p', 'Bem-vindo de volta! Use suas credenciais para acessar sua conta'
     assert_equal 'Você precisa se logar ou registrar antes de prosseguir.', flash[:alert]
   end
-
 end

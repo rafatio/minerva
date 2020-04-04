@@ -36,5 +36,4 @@ class PostbackControllerTest < ActionDispatch::IntegrationTest
     subscription = Subscription.find_by_pagarme_identifier(subscription_id)
     assert_not subscription.active
   end
-
 end

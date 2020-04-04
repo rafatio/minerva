@@ -1,5 +1,4 @@
 class ManagePersonService
-
   def initialize
   end
 

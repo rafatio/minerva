@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PreviousCompanyTest < ActiveSupport::TestCase
-
   test 'check number of professional information entries' do
     assert_equal 2, ProfessionalInformation.count
   end

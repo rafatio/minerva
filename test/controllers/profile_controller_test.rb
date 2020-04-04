@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ProfileControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @user1 = users(:user_1)
     @user2 = users(:user_2)
@@ -217,5 +216,4 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
       assert_select 'form input[name=' + checkbox_input_name + '][type=checkbox][checked]', 0
     end
   end
-
 end

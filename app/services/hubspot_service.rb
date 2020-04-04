@@ -84,5 +84,4 @@ class HubspotService
 
     deal = Hubspot::Deal.create!(0, [], [contact.vid], deal_properties)
   end
-
 end

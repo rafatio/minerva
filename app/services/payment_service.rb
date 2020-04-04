@@ -108,5 +108,4 @@ class PaymentService
     }
     return response
   end
-
 end

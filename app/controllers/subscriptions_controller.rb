@@ -1,5 +1,4 @@
 class SubscriptionsController < ApplicationController
-
   def new
     @active_subscriptions = current_user.nil?? [] : current_user.subscriptions.where({active: true})
     @subscription = Subscription.new
@@ -107,5 +106,4 @@ class SubscriptionsController < ApplicationController
     flash[:error] = e.message
     redirect_to new_subscription_path
   end
-
 end

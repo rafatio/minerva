@@ -8,5 +8,4 @@ class ApplicationMailer < ActionMailer::Base
     @payment = payment
     mail(to: @user.email, subject: 'Obrigado pela sua contribuição!')
   end
-
 end

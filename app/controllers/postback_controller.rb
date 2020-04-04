@@ -45,5 +45,4 @@ class PostbackController < ApplicationController
   def subscription_status_changed_params
     params.permit(:id, :old_status, :current_status)
   end
-
   end

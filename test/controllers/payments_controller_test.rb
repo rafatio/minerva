@@ -58,5 +58,4 @@ class PaymentsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Pagamento realizado com sucesso', flash[:notice]
     assert_equal initial_count + 1, Payment.count
   end
-
 end

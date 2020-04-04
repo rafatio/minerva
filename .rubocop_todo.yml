@@ -6,30 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 19
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
-Layout/EmptyLinesAroundClassBody:
-  Exclude:
-    - 'app/controllers/postback_controller.rb'
-    - 'app/controllers/profile_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/manage_person_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'test/controllers/payments_controller_test.rb'
-    - 'test/controllers/postback_controller_test.rb'
-    - 'test/controllers/profile_controller_test.rb'
-    - 'test/controllers/subscriptions_controller_test.rb'
-    - 'test/models/education_information_test.rb'
-    - 'test/models/payment_test.rb'
-    - 'test/models/previous_company_test.rb'
-    - 'test/models/professional_information_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Layout/EmptyLinesAroundExceptionHandlingKeywords:

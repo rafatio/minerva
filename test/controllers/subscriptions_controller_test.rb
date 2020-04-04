@@ -56,5 +56,4 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal initial_count_subscriptions + 1, Subscription.count
     assert_equal initial_count_payments + 1, Payment.count
   end
-
 end

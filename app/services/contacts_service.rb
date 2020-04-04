@@ -1,5 +1,4 @@
 class ContactsService
-
   def initialize(user)
     @user = user
   end

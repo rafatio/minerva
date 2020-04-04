@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PreviousCompanyTest < ActiveSupport::TestCase
-
   test 'check number of previous companies' do
     assert_equal 3, PreviousCompany.count
   end

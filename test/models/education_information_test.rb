@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EducationInformationTest < ActiveSupport::TestCase
-
   test 'check number of education information entries' do
     assert_equal 4, EducationInformation.count
   end
