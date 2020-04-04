@@ -42,7 +42,7 @@ class SubscriptionsController < ApplicationController
                                days: ENV['SUBSCRIPTION_PERIOD_DAYS'].to_i,
                                amount: integer_value,
                                payment_methods: ['credit_card'],
-                               invoice_reminder: ENV['SUBSCRIPTION_INVOICE_REMINDER_DAYS'].to_i,
+                               invoice_reminder: ENV['SUBSCRIPTION_INVOICE_REMINDER_DAYS'].to_i
                              })
     plan.create
 

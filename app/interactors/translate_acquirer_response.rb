@@ -107,7 +107,7 @@ class TranslateAcquirerResponse
       'RCPP' => 'Destinatario Invalido – O local para aonde a mensagem foi enviada esta invalida',
       'DPMG' => 'Mensagem Duplicada – Esta mensagem já foi recebida pela Stone.',
       'VERS' => 'Protocolo – A versão do protocolo enviada não é suportada.',
-      'MSGT' => 'Tipo da Mensagem – o Message Type enviado não é reconhecido.',
+      'MSGT' => 'Tipo da Mensagem – o Message Type enviado não é reconhecido.'
     }
     hash[code]
   end

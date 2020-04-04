@@ -319,16 +319,6 @@ Style/NumericPredicate:
     - 'app/helpers/payments_helper.rb'
     - 'db/seeds.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/interactors/translate_acquirer_response.rb'
-    - 'app/services/payment_service.rb'
-
 # Offense count: 169
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, Max, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.

@@ -56,7 +56,7 @@ class PaymentService
 
           }
         ],
-        phone_numbers: [params['person-phone'].delete('() -')],
+        phone_numbers: [params['person-phone'].delete('() -')]
       },
       billing: {
         name: params['person-name'],
