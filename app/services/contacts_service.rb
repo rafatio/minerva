@@ -29,7 +29,7 @@ class ContactsService
   end
 
   def manage_multiple_contact(contact_type_name, contact_values)
-    #simply delete the old ones and insert the new ones
+    # simply delete the old ones and insert the new ones
     contacts = get_contacts(contact_type_name)
     contacts.destroy_all
 

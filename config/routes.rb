@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :payments, only: [:index, :new, :create]
   resources :profile, only: [:index, :create]
   resources :subscriptions, only: [:new, :create]
-  #resources :mentors, only: :index
+  # resources :mentors, only: :index
   resources :postback, only: [:create]
 
   get '/terms' => 'static_pages#terms'

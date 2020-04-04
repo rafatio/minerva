@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
     @active_subscriptions = current_user.nil?? [] : current_user.subscriptions.where({active: true})
     @subscription = Subscription.new
 
-    @country_list = Country.where(name: 'Brasil') #only brazilian addresses are allowed for subscriptions
+    @country_list = Country.where(name: 'Brasil') # only brazilian addresses are allowed for subscriptions
     @address = current_user.nil?? nil : current_user.address
     @person = current_user.nil?? nil : current_user.person
   end
@@ -28,7 +28,7 @@ class SubscriptionsController < ApplicationController
       user.send_reset_password_instructions
     end
 
-    #1) create plan
+    # 1) create plan
     decimal_value = params[:subscription][:value].delete('.').gsub(',', '.').to_f
     integer_value = (decimal_value * 100).to_i
     @subscription = user.subscriptions.new(value: decimal_value, active:true)
@@ -42,7 +42,7 @@ class SubscriptionsController < ApplicationController
                              })
     plan.create
 
-    #2) create subscription
+    # 2) create subscription
     pagarme_subscription = PagarMe::Subscription.new({
                                                        :payment_method => 'credit_card',
                                                        :card_number => params['card-number'],

@@ -16,21 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
-Layout/LeadingCommentSpace:
-  Exclude:
-    - 'app/controllers/profile_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'config/routes.rb'
-    - 'test/controllers/payments_controller_test.rb'
-    - 'test/controllers/postback_controller_test.rb'
-    - 'test/controllers/profile_controller_test.rb'
-    - 'test/controllers/subscriptions_controller_test.rb'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

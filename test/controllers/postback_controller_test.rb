@@ -10,7 +10,7 @@ class PostbackControllerTest < ActionDispatch::IntegrationTest
   # called after every single test
   teardown do
     # when controller is using cache it may be a good idea to reset it afterwards
-    #Rails.cache.clear
+    # Rails.cache.clear
   end
 
   test 'handle subscription transaction created' do
