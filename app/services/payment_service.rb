@@ -1,7 +1,7 @@
 class PaymentService
     include PaymentsHelper
 
-    @@reason_codes_obj = {missing_fields: "MISSING_FIELDS"}
+    @@reason_codes_obj = {missing_fields: 'MISSING_FIELDS'}
 
     def initialize(user)
         @user = user
@@ -13,7 +13,7 @@ class PaymentService
 
     def single_payment(params, isNewUser)
 
-        decimal_value = params[:payment][:value].delete('.').gsub(",", ".").to_f
+        decimal_value = params[:payment][:value].delete('.').gsub(',', '.').to_f
         @payment = @user.payments.new(value: decimal_value)
 
         if !params[:payment][:type].nil?
@@ -22,7 +22,7 @@ class PaymentService
             @payment.payment_type = payment_type
         end
 
-        country_name = params['address-country'].gsub("_"," ")
+        country_name = params['address-country'].gsub('_',' ')
         country = Country.find_by_name(country_name)
         country_code = country.code
 
@@ -39,17 +39,17 @@ class PaymentService
             card_expiration_month: params['expiry-month'].rjust(2, '0'),
             card_expiration_year: '20' + params['expiry-year'],
             card_cvv: params['cvc'],
-            payment_method: "credit_card",
+            payment_method: 'credit_card',
             async: false,
             customer: {
                 external_id: @user.id.to_s,
                 name: params['person-name'],
-                type: "individual",
+                type: 'individual',
                 country: country_code,
                 email: @user.email,
                 documents: [
                 {
-                    type: "cpf",
+                    type: 'cpf',
                     number: params['person-cpf'].delete('.-')
 
                 }
@@ -70,8 +70,8 @@ class PaymentService
             },
             items: [
                 {
-                id: "Contrib-Unica-" + SecureRandom.uuid,
-                title: "Contribuição única " + params['person-name'] + " " + decimal_value.to_s,
+                id: 'Contrib-Unica-' + SecureRandom.uuid,
+                title: 'Contribuição única ' + params['person-name'] + ' ' + decimal_value.to_s,
                 unit_price: (decimal_value * 100).to_i,
                 quantity: 1,
                 tangible: false
@@ -84,9 +84,9 @@ class PaymentService
         @payment.pagarme_transaction = OpenStruct.new(charged_transaction_hash)
 
         if transaction.status != 'paid'
-            error_log = ErrorLog.new(category: "pagarme_transaction", message: @payment.pagarme_transaction)
+            error_log = ErrorLog.new(category: 'pagarme_transaction', message: @payment.pagarme_transaction)
             error_log.save
-            raise "Ocorreu um erro no pagamento. Entre em contato através do email contato@reditus.org.br"
+            raise 'Ocorreu um erro no pagamento. Entre em contato através do email contato@reditus.org.br'
         end
 
         begin
@@ -95,7 +95,7 @@ class PaymentService
             hubspotService.create_deal(@user, decimal_value, false, isNewUser)
         rescue => e
             Rails.logger.error e.message
-            error_log = ErrorLog.new(category: "hubspot_deal_transaction", message: e.message)
+            error_log = ErrorLog.new(category: 'hubspot_deal_transaction', message: e.message)
             error_log.save
         end
 
@@ -103,7 +103,7 @@ class PaymentService
         response = {
             success: save_ok,
             payment: @payment,
-            message: ""
+            message: ''
         }
         return response
     end

@@ -15,13 +15,13 @@ class HubspotService
         education_informations_formatted = []
 
         previous_companies.each do |item|
-            previous_companies_formatted.push("Empresa: " + (item[:name] || "") + " | Cargo: " + (item[:position] || ""))
+            previous_companies_formatted.push('Empresa: ' + (item[:name] || '') + ' | Cargo: ' + (item[:position] || ''))
         end
 
         education_informations.each do |item|
-            education_level = item.education_level.nil?? "" : item.education_level.name
-            conclusion_year = item.conclusion_year.nil?? "" : item.conclusion_year.to_s
-            education_informations_formatted.push("Nível: " + (education_level) + " | Instituição: " + (item.institution || "") + " | Curso: " + (item.course || "") + " | Ano de conclusão: " + (conclusion_year))
+            education_level = item.education_level.nil?? '' : item.education_level.name
+            conclusion_year = item.conclusion_year.nil?? '' : item.conclusion_year.to_s
+            education_informations_formatted.push('Nível: ' + (education_level) + ' | Instituição: ' + (item.institution || '') + ' | Curso: ' + (item.course || '') + ' | Ano de conclusão: ' + (conclusion_year))
         end
 
         hubspot_properties = {
@@ -43,8 +43,8 @@ class HubspotService
             secondary_email_addresses: secondary_emails.join("\n"),
 
             country: params['address-country'],
-            zip: params['address-country'] == "Brasil" ? params['address-cep'] : params['address-zipcode'],
-            address: (params['address-street'] || "") + ", " + (params['address-number'] || "") + ", " + (params['address-complement'] || ""),
+            zip: params['address-country'] == 'Brasil' ? params['address-cep'] : params['address-zipcode'],
+            address: (params['address-street'] || '') + ', ' + (params['address-number'] || '') + ', ' + (params['address-complement'] || ''),
             city: params['address-city'],
             state: params['address-state'],
             neighborhood: params['address-neighborhood'],
@@ -76,10 +76,10 @@ class HubspotService
 
 
         deal_properties = {
-            dealname: "Contribuição online " + (recurring ? "recorrente" : "única") + " " + Time.now.strftime("%Y-%m-%d"),
+            dealname: 'Contribuição online ' + (recurring ? 'recorrente' : 'única') + ' ' + Time.now.strftime('%Y-%m-%d'),
             amount: amount,
-            pipeline: "default",
-            dealstage: "closedwon",
+            pipeline: 'default',
+            dealstage: 'closedwon',
             closedate: Time.now.utc.to_datetime.strftime('%Q') # "%Q" means milliseconds
         }
 

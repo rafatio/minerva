@@ -11,7 +11,7 @@ class ManageAddressService
         end
 
         country = Country.find_by_name(country_name)
-        if country_name == "Brasil"
+        if country_name == 'Brasil'
             state = State.find_by_code(state_code)
             state_name = state.name
         else

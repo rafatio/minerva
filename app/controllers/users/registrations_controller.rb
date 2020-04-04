@@ -12,8 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
 
-    if params[:agreement] != "1"
-      flash[:error] = "É necessário aceitar os temos e condições"
+    if params[:agreement] != '1'
+      flash[:error] = 'É necessário aceitar os temos e condições'
       redirect_to new_user_registration_url
       return
     end
@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     rescue Hubspot::RequestError => e
       flash[:notice] = nil
       Rails.logger.error e.message
-      flash[:error] = "Erro inesperado. Entre em contato com o suporte"
+      flash[:error] = 'Erro inesperado. Entre em contato com o suporte'
     rescue Exception => ex
       Rails.logger.error ex.message
       raise

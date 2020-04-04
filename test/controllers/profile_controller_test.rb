@@ -8,16 +8,16 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     @user3 = users(:user_3)
   end
 
-  test "should be authenticated to show profile" do
+  test 'should be authenticated to show profile' do
     get profile_index_url
     perform_unauthenticated_checks
   end
 
-  test "should show profile user 1" do
+  test 'should show profile user 1' do
     sign_in(@user1)
     get profile_index_url
     assert_response :success
-    assert_select 'title', "Informações Cadastrais | Instituto Reditus"
+    assert_select 'title', 'Informações Cadastrais | Instituto Reditus'
 
     check_single_value_form_input('person-name', 'person 1')
     check_single_value_form_input('person-cpf', '85331077064')
@@ -70,11 +70,11 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "should show profile user 2" do
+  test 'should show profile user 2' do
     sign_in(@user2)
     get profile_index_url
     assert_response :success
-    assert_select 'title', "Informações Cadastrais | Instituto Reditus"
+    assert_select 'title', 'Informações Cadastrais | Instituto Reditus'
 
     check_single_value_form_input('person-name', 'person 2')
 
@@ -96,52 +96,52 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-  test "should fill profile" do
+  test 'should fill profile' do
     initial_count = Person.count
 
       sign_in(@user3)
       post profile_index_url, params: {
-        "person-name": "Nova Pessoa",
-        "person-gender": "M",
-        "person-birthdate": "1993-05-01",
-        "person-cpf": "260.100.740-02",
-        "person-rg": "5554443332",
-        "contact-mobile": "(21) 77777-6666",
-        "contact-facebook": "fb333",
-        "contact-linkedin": "linkedin333",
-        "contact-skype": "skype333",
-        "contact-preferred": "E-mail",
-        "no-content": "",
-        "contact-secondary-mail0": "email1@email.com",
-        "contact-secondary-mail1": "email2@email.com",
-        "address-country": "Brasil",
-        "address-cep": "99.888-777",
-        "address-zipcode": "99888777",
-        "address-street": "Rua Nova",
-        "address-number": "999",
-        "address-complement": "CASA 01",
-        "address-neighborhood": "Bairro Novo",
-        "address-city": "Cidade Nova",
-        "address-state": "AC",
-        "professional-company": "Empresa Nova 1",
-        "professional-position": "Cargo Novo 1",
-        "professional-admission-year": "2019",
-        "professional-previous-company-name0": "Empresa Antiga 111 teste",
-        "professional-previous-company-name1": "Empresa Antiga 222 teste",
-        "education-level0": "Graduação",
-        "education-institution0": "UFRJ",
-        "education-course0": "ECI",
-        "education-conclusion-year0": "2017",
-        "education-level1": "Mestrado",
-        "education-institution1": "UFRJ",
-        "education-course1": "ECI2",
-        "education-conclusion-year1": "2018",
-        "relationship-financial": "on",
-        "relationship-tutoring": "on",
-        "relationship-remarks": "obs teste 333",
-        "commit": "Enviar",
-        "controller": "profile",
-        "action": "create"
+        "person-name": 'Nova Pessoa',
+        "person-gender": 'M',
+        "person-birthdate": '1993-05-01',
+        "person-cpf": '260.100.740-02',
+        "person-rg": '5554443332',
+        "contact-mobile": '(21) 77777-6666',
+        "contact-facebook": 'fb333',
+        "contact-linkedin": 'linkedin333',
+        "contact-skype": 'skype333',
+        "contact-preferred": 'E-mail',
+        "no-content": '',
+        "contact-secondary-mail0": 'email1@email.com',
+        "contact-secondary-mail1": 'email2@email.com',
+        "address-country": 'Brasil',
+        "address-cep": '99.888-777',
+        "address-zipcode": '99888777',
+        "address-street": 'Rua Nova',
+        "address-number": '999',
+        "address-complement": 'CASA 01',
+        "address-neighborhood": 'Bairro Novo',
+        "address-city": 'Cidade Nova',
+        "address-state": 'AC',
+        "professional-company": 'Empresa Nova 1',
+        "professional-position": 'Cargo Novo 1',
+        "professional-admission-year": '2019',
+        "professional-previous-company-name0": 'Empresa Antiga 111 teste',
+        "professional-previous-company-name1": 'Empresa Antiga 222 teste',
+        "education-level0": 'Graduação',
+        "education-institution0": 'UFRJ',
+        "education-course0": 'ECI',
+        "education-conclusion-year0": '2017',
+        "education-level1": 'Mestrado',
+        "education-institution1": 'UFRJ',
+        "education-course1": 'ECI2',
+        "education-conclusion-year1": '2018',
+        "relationship-financial": 'on',
+        "relationship-tutoring": 'on',
+        "relationship-remarks": 'obs teste 333',
+        "commit": 'Enviar',
+        "controller": 'profile',
+        "action": 'create'
      }
 
     assert_redirected_to profile_index_url
@@ -151,7 +151,7 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select 'title', "Informações Cadastrais | Instituto Reditus"
+    assert_select 'title', 'Informações Cadastrais | Instituto Reditus'
 
     check_single_value_form_input('person-name', 'Nova Pessoa')
     check_single_value_form_input('person-cpf', '26010074002')
@@ -202,14 +202,14 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
 
   def check_single_value_form_input(input_name, value)
     assert_select 'form input[name=' + input_name + ']' do
-      assert_select "[value=?]", value
+      assert_select '[value=?]', value
     end
   end
 
   def check_form_selected_option(select_input_name, value)
     assert_select 'form select[name=' + select_input_name + ']' do
       assert_select 'option[selected=selected]' do
-        assert_select "[value=?]", value
+        assert_select '[value=?]', value
       end
     end
   end

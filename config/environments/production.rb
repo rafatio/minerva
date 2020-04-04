@@ -83,7 +83,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -92,18 +92,18 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => ENV["HOST_URL"]}
+  config.action_mailer.default_url_options = { :host => ENV['HOST_URL']}
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default :charset => 'utf-8'
 
   config.action_mailer.smtp_settings = {
-    :address => "smtp.zoho.com",
+    :address => 'smtp.zoho.com',
     :port => 587,
-    :user_name => ENV["EMAIL_USERNAME"],
-    :password => ENV["CREDENTIAL_SENDMAIL_PASSWORD"],
+    :user_name => ENV['EMAIL_USERNAME'],
+    :password => ENV['CREDENTIAL_SENDMAIL_PASSWORD'],
     :authentication       => :login,
     :enable_starttls_auto => true
   }

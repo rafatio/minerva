@@ -16,7 +16,7 @@ module Minerva
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.i18n.default_locale = "pt-BR"
+    config.i18n.default_locale = 'pt-BR'
     # config.time_zone = "Brasilia"
 
     def credentials
@@ -26,7 +26,7 @@ module Minerva
         encrypted(
           "config/credentials.#{Rails.env.downcase}.yml.enc",
           key_path: "config/#{Rails.env.downcase}.key",
-          env_key: "RAILS_MASTER_KEY"
+          env_key: 'RAILS_MASTER_KEY'
         )
       end
     end

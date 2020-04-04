@@ -13,8 +13,8 @@ class ActiveSupport::TestCase
     assert_redirected_to :new_user_session
     follow_redirect!
     assert_response :success
-    assert_select 'title', "Instituto Reditus"
-    assert_select "p", "Bem-vindo de volta! Use suas credenciais para acessar sua conta"
+    assert_select 'title', 'Instituto Reditus'
+    assert_select 'p', 'Bem-vindo de volta! Use suas credenciais para acessar sua conta'
     assert_equal 'Você precisa se logar ou registrar antes de prosseguir.', flash[:alert]
   end
 

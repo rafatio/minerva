@@ -22,12 +22,12 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "check user payments" do
+  test 'check user payments' do
     user = users(:user_1)
     assert_equal 1, user.payments.count
   end
 
-  test "check user profile" do
+  test 'check user profile' do
     user1 = users(:user_1)
     assert_equal 'person 1', user1.person.name
     assert_equal 'Travessa C', user1.address.street

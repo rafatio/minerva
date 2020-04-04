@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'pg'
 gem 'devise'
 gem 'interactor-rails', '~> 2.0'
-gem "nokogiri", ">= 1.10.4"
+gem 'nokogiri', '>= 1.10.4'
 
 gem 'groupdate'
 gem 'chartkick'
@@ -57,7 +57,7 @@ gem 'slim-rails'
 gem 'exception_handler', '~> 0.8.0.0'
 
 # Environment configuration
-gem "figaro"
+gem 'figaro'
 
 # HubSpot integration
 gem 'hubspot-ruby', '~> 0.9.0'

@@ -4,10 +4,10 @@ class PostbackController < ApplicationController
     def create
       if valid_postback?
         result = ''
-        if params[:object] == "subscription" && params[:event] == "transaction_created"
+        if params[:object] == 'subscription' && params[:event] == 'transaction_created'
           postback_service = TransactionPostbackService.new
           result = postback_service.process_transaction_postback(transaction_params)
-        elsif params[:object] == "subscription" && params[:event] == "subscription_status_changed"
+        elsif params[:object] == 'subscription' && params[:event] == 'subscription_status_changed'
           postback_service = SubscriptionPostbackService.new
           result = postback_service.process_status_changed_postback(subscription_status_changed_params)
         else

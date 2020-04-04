@@ -76,7 +76,7 @@ class ProfileController < ApplicationController
                 zipcode = params['address-zipcode']
             end
             ManageAddressService.new(current_user).call(
-                params['address-country'].gsub("_"," "),
+                params['address-country'].gsub('_',' '),
                 zipcode.delete('.-'),
                 params['address-state'],
                 params['address-city'],
@@ -117,7 +117,7 @@ class ProfileController < ApplicationController
         redirect_to profile_index_path
     rescue Hubspot::RequestError => e
         Rails.logger.error e.message
-        flash[:error] = "Erro inesperado. Entre em contato com o suporte"
+        flash[:error] = 'Erro inesperado. Entre em contato com o suporte'
         redirect_to profile_index_path
     rescue Exception => e
         flash[:error] = e.message

@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
         @active_subscriptions = current_user.nil?? [] : current_user.subscriptions.where({active: true})
         @subscription = Subscription.new
 
-        @country_list = Country.where(name: "Brasil") #only brazilian addresses are allowed for subscriptions
+        @country_list = Country.where(name: 'Brasil') #only brazilian addresses are allowed for subscriptions
         @address = current_user.nil?? nil : current_user.address
         @person = current_user.nil?? nil : current_user.person
     end
@@ -31,16 +31,16 @@ class SubscriptionsController < ApplicationController
         end
 
         #1) create plan
-        decimal_value = params[:subscription][:value].delete('.').gsub(",", ".").to_f
+        decimal_value = params[:subscription][:value].delete('.').gsub(',', '.').to_f
         integer_value = (decimal_value * 100).to_i
         @subscription = user.subscriptions.new(value: decimal_value, active:true)
 
         plan = PagarMe::Plan.new({
-            :name => "Plano " + ENV["SUBSCRIPTION_PERIOD_DAYS"] + " dias - " + decimal_value.to_s + " reais - " + user.email,
-            :days => ENV["SUBSCRIPTION_PERIOD_DAYS"].to_i,
+            :name => 'Plano ' + ENV['SUBSCRIPTION_PERIOD_DAYS'] + ' dias - ' + decimal_value.to_s + ' reais - ' + user.email,
+            :days => ENV['SUBSCRIPTION_PERIOD_DAYS'].to_i,
             :amount => integer_value,
-            :payment_methods => ["credit_card"],
-            :invoice_reminder => ENV["SUBSCRIPTION_INVOICE_REMINDER_DAYS"].to_i,
+            :payment_methods => ['credit_card'],
+            :invoice_reminder => ENV['SUBSCRIPTION_INVOICE_REMINDER_DAYS'].to_i,
         })
         plan.create
 
@@ -52,7 +52,7 @@ class SubscriptionsController < ApplicationController
             :card_expiration_month => params['expiry-month'].rjust(2, '0'),
             :card_expiration_year => '20' + params['expiry-year'],
             :card_cvv => params['cvc'],
-            :postback_url => ENV["HOST_URL"].delete_suffix('/') + postback_index_path,
+            :postback_url => ENV['HOST_URL'].delete_suffix('/') + postback_index_path,
             :customer => {
                 :name => params['person-name'],
                 :document_number => params['person-cpf'],
@@ -69,9 +69,9 @@ class SubscriptionsController < ApplicationController
         pagarme_subscription.create
 
         if pagarme_subscription.status != 'paid'
-            error_log = ErrorLog.new(category: "pagarme_subscription", message: OpenStruct.new(pagarme_subscription.to_hash))
+            error_log = ErrorLog.new(category: 'pagarme_subscription', message: OpenStruct.new(pagarme_subscription.to_hash))
             error_log.save
-            raise "Ocorreu um erro na criação da assinatura. Entre em contato através do email contato@reditus.org.br"
+            raise 'Ocorreu um erro na criação da assinatura. Entre em contato através do email contato@reditus.org.br'
         end
 
         @subscription.pagarme_identifier = pagarme_subscription.id
@@ -89,7 +89,7 @@ class SubscriptionsController < ApplicationController
                 hubspotService.create_deal(user, decimal_value, true, isNewUser)
             rescue => e
                 Rails.logger.error e.message
-                error_log = ErrorLog.new(category: "hubspot_deal_subscription", message: e.message)
+                error_log = ErrorLog.new(category: 'hubspot_deal_subscription', message: e.message)
                 error_log.save
             end
 

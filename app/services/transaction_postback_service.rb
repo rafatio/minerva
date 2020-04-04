@@ -4,7 +4,7 @@ class TransactionPostbackService
     end
 
     def process_transaction_postback(transaction_params)
-        raise 'A transação não foi paga' unless transaction_params[:status] == "paid"
+        raise 'A transação não foi paga' unless transaction_params[:status] == 'paid'
         subscription_id = transaction_params[:subscription_id]
         if (!subscription_id.empty?)
             #we need to create a new payment and link it to the corresponding subscription
@@ -23,7 +23,7 @@ class TransactionPostbackService
                 HubspotService.new.create_deal(subscription.user, decimal_value, true)
             rescue => e
                 Rails.logger.error e.message
-                error_log = ErrorLog.new(category: "hubspot_deal_subscription_postback", message: e.message)
+                error_log = ErrorLog.new(category: 'hubspot_deal_subscription_postback', message: e.message)
                 error_log.save
             end
 

@@ -969,48 +969,6 @@ Style/RescueStandardError:
     - 'app/services/payment_service.rb'
     - 'app/services/transaction_postback_service.rb'
 
-# Offense count: 770
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'Gemfile'
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/postback_controller.rb'
-    - 'app/controllers/profile_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'app/helpers/payments_helper.rb'
-    - 'app/interactors/translate_acquirer_response.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/person.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/manage_address_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'config/application.rb'
-    - 'config/environments/development.rb'
-    - 'config/environments/production.rb'
-    - 'config/environments/staging.rb'
-    - 'config/initializers/devise.rb'
-    - 'config/initializers/pagarme.rb'
-    - 'config/puma.rb'
-    - 'config/routes.rb'
-    - 'db/migrate/20180729193414_devise_create_users.rb'
-    - 'db/seeds.rb'
-    - 'test/application_system_test_case.rb'
-    - 'test/controllers/payments_controller_test.rb'
-    - 'test/controllers/postback_controller_test.rb'
-    - 'test/controllers/profile_controller_test.rb'
-    - 'test/controllers/subscriptions_controller_test.rb'
-    - 'test/models/education_information_test.rb'
-    - 'test/models/payment_test.rb'
-    - 'test/models/previous_company_test.rb'
-    - 'test/models/professional_information_test.rb'
-    - 'test/models/user_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.
