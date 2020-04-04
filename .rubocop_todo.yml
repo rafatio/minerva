@@ -319,14 +319,6 @@ Style/NumericPredicate:
     - 'app/helpers/payments_helper.rb'
     - 'db/seeds.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'app/models/person.rb'
-    - 'config/initializers/assets.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 Style/RedundantParentheses:
