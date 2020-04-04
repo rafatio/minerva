@@ -23,13 +23,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # HubSpot integration
       HubspotService.new.create_contact(params[:user][:email])
     end
-    rescue Hubspot::RequestError => e
-      flash[:notice] = nil
-      Rails.logger.error e.message
-      flash[:error] = 'Erro inesperado. Entre em contato com o suporte'
-    rescue Exception => ex
-      Rails.logger.error ex.message
-      raise
+  rescue Hubspot::RequestError => e
+    flash[:notice] = nil
+    Rails.logger.error e.message
+    flash[:error] = 'Erro inesperado. Entre em contato com o suporte'
+  rescue Exception => ex
+    Rails.logger.error ex.message
+    raise
   end
 
   # GET /resource/edit

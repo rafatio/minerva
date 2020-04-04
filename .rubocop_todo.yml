@@ -16,12 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Layout/RescueEnsureAlignment:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-
 # Offense count: 205
 # Cop supports --auto-correct.
 Layout/SpaceAfterColon:
