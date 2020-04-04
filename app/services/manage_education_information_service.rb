@@ -9,7 +9,7 @@ class ManageEducationInformationService
     current_list = @user.education_informations
     current_list.destroy_all
 
-    if !education_informations_list.empty?
+    unless education_informations_list.empty?
       education_informations_list.each do |value|
         @user.education_informations.push(value)
       end

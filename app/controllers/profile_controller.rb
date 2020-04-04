@@ -14,7 +14,7 @@ class ProfileController < ApplicationController
     @address = current_user.address
     @professional_information = current_user.professional_information
     @previous_companies = []
-    if !@professional_information.nil?
+    unless @professional_information.nil?
       @previous_companies = @professional_information.previous_companies
     end
     @education_informations = current_user.education_informations

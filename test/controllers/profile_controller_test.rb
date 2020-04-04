@@ -213,7 +213,7 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
 
   def check_form_checkbox_selected(checkbox_input_name, checked)
     assert_select 'form input[name=' + checkbox_input_name + '][type=checkbox]' + (checked ? '[checked]' : ''), 1
-    if (!checked)
+    unless (checked)
       # must also assert that it is not checked
       assert_select 'form input[name=' + checkbox_input_name + '][type=checkbox][checked]', 0
     end

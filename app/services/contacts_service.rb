@@ -14,7 +14,7 @@ class ContactsService
     contact = get_contacts(contact_type_name).first
     preferred = preferred_contact_type.casecmp?(contact_type_name)
     if contact.nil?
-      if !contact_value.empty?
+      unless contact_value.empty?
         contact_type = ContactType.find_by(name: contact_type_name)
         contact = @user.contacts.new(contact_type: contact_type, value: contact_value, preferred: preferred)
         contact.save
@@ -35,7 +35,7 @@ class ContactsService
     contacts = get_contacts(contact_type_name)
     contacts.destroy_all
 
-    if !contact_values.empty?
+    unless contact_values.empty?
       contact_type = ContactType.find_by(name: contact_type_name)
       contact_values.each do |value|
         contact = @user.contacts.new(contact_type: contact_type, value: value)
