@@ -101,7 +101,6 @@ class SubscriptionsController < ApplicationController
         end
       end
     end
-
   rescue => e
     flash[:error] = e.message
     redirect_to new_subscription_path
