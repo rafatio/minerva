@@ -26,12 +26,12 @@ class ProfileController < ApplicationController
     User.transaction do
       ###### PERSON
       ManagePersonService.new.call(
-          current_user,
-          params['person-name'],
-          params['person-gender'],
-          params['person-birthdate'],
-          params['person-cpf'].delete('.-'),
-          params['person-rg'])
+        current_user,
+        params['person-name'],
+        params['person-gender'],
+        params['person-birthdate'],
+        params['person-cpf'].delete('.-'),
+        params['person-rg'])
 
       ###### CONTACT
       contacts_service = ContactsService.new(current_user)
@@ -57,11 +57,11 @@ class ProfileController < ApplicationController
           #position 15 because the string 'education-level' has 15 characters
           education_level = EducationLevel.find_by_name(params['education-level' + number].presence)
           education_information = EducationInformation.new(
-              education_level: education_level,
-              institution: params['education-institution' + number].presence,
-              course: params['education-course' + number].presence,
-              conclusion_year: params['education-conclusion-year' + number].presence,
-            )
+            education_level: education_level,
+            institution: params['education-institution' + number].presence,
+            course: params['education-course' + number].presence,
+            conclusion_year: params['education-conclusion-year' + number].presence,
+          )
           education_informations.push(education_information)
         end
       end
@@ -74,21 +74,21 @@ class ProfileController < ApplicationController
         zipcode = params['address-zipcode']
       end
       ManageAddressService.new(current_user).call(
-          params['address-country'].gsub('_',' '),
-          zipcode.delete('.-'),
-          params['address-state'],
-          params['address-city'],
-          params['address-neighborhood'],
-          params['address-street'],
-          params['address-number'],
-          params['address-complement'])
+        params['address-country'].gsub('_',' '),
+        zipcode.delete('.-'),
+        params['address-state'],
+        params['address-city'],
+        params['address-neighborhood'],
+        params['address-street'],
+        params['address-number'],
+        params['address-complement'])
 
       ###### PROFESSIONAL INFORMATION
       ManageProfessionalInformationService.new(current_user).call(
-          params['professional-company'],
-          params['professional-position'],
-          params['professional-admission-year'],
-          previous_companies)
+        params['professional-company'],
+        params['professional-position'],
+        params['professional-admission-year'],
+        previous_companies)
 
       ###### EDUCATION INFORMATION
       ManageEducationInformationService.new(current_user).call(education_informations)
@@ -99,11 +99,11 @@ class ProfileController < ApplicationController
       mentoring = !params['relationship-mentoring'].nil?
       tutoring = !params['relationship-tutoring'].nil?
       ManageIntendedRelationshipService.new(current_user).call(
-          associate,
-          financial,
-          mentoring,
-          tutoring,
-          params['relationship-remarks'])
+        associate,
+        financial,
+        mentoring,
+        tutoring,
+        params['relationship-remarks'])
 
       ###### HUBSPOT INTEGRATION
       intended_relationships = {associate: associate, financial: financial, mentoring: mentoring, tutoring: tutoring, remarks: params['relationship-remarks']}

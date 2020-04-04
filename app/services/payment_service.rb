@@ -33,51 +33,51 @@ class PaymentService
     end
 
     transaction = PagarMe::Transaction.new(
-        amount: (decimal_value * 100).to_i, # in cents
-        card_number: params['card-number'],
-        card_holder_name: params['card-holders-name']&.upcase,
-        card_expiration_month: params['expiry-month'].rjust(2, '0'),
-        card_expiration_year: '20' + params['expiry-year'],
-        card_cvv: params['cvc'],
-        payment_method: 'credit_card',
-        async: false,
-        customer: {
-            external_id: @user.id.to_s,
-            name: params['person-name'],
-            type: 'individual',
-            country: country_code,
-            email: @user.email,
-            documents: [
-            {
-                type: 'cpf',
-                number: params['person-cpf'].delete('.-')
+      amount: (decimal_value * 100).to_i, # in cents
+      card_number: params['card-number'],
+      card_holder_name: params['card-holders-name']&.upcase,
+      card_expiration_month: params['expiry-month'].rjust(2, '0'),
+      card_expiration_year: '20' + params['expiry-year'],
+      card_cvv: params['cvc'],
+      payment_method: 'credit_card',
+      async: false,
+      customer: {
+          external_id: @user.id.to_s,
+          name: params['person-name'],
+          type: 'individual',
+          country: country_code,
+          email: @user.email,
+          documents: [
+          {
+              type: 'cpf',
+              number: params['person-cpf'].delete('.-')
 
-            }
-            ],
-            phone_numbers: [ params['person-phone'].delete('() -')],
-        },
-        billing: {
-            name: params['person-name'],
-            address: {
-            country: country_code,
-            state: params['address-state'],
-            city: params['address-city'],
-            neighborhood: params['address-neighborhood'],
-            street: params['address-street'],
-            street_number: params['address-number'],
-            zipcode: zipcode.delete('.-')
-            }
-        },
-        items: [
-            {
-            id: 'Contrib-Unica-' + SecureRandom.uuid,
-            title: 'Contribuição única ' + params['person-name'] + ' ' + decimal_value.to_s,
-            unit_price: (decimal_value * 100).to_i,
-            quantity: 1,
-            tangible: false
-            }
-        ]
-      )
+          }
+          ],
+          phone_numbers: [ params['person-phone'].delete('() -')],
+      },
+      billing: {
+          name: params['person-name'],
+          address: {
+          country: country_code,
+          state: params['address-state'],
+          city: params['address-city'],
+          neighborhood: params['address-neighborhood'],
+          street: params['address-street'],
+          street_number: params['address-number'],
+          zipcode: zipcode.delete('.-')
+          }
+      },
+      items: [
+          {
+          id: 'Contrib-Unica-' + SecureRandom.uuid,
+          title: 'Contribuição única ' + params['person-name'] + ' ' + decimal_value.to_s,
+          unit_price: (decimal_value * 100).to_i,
+          quantity: 1,
+          tangible: false
+          }
+      ]
+    )
 
     charged_transaction = transaction.charge
     charged_transaction_hash = charged_transaction.to_hash
