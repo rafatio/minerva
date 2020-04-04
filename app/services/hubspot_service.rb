@@ -74,7 +74,7 @@ class HubspotService
     end
 
     deal_properties = {
-      dealname: 'Contribuição online ' + (recurring ? 'recorrente' : 'única') + ' ' + Time.now.strftime('%Y-%m-%d'),
+      dealname: 'Contribuição online ' + (recurring ? 'recorrente' : 'única') + ' ' + Time.zone.now.strftime('%Y-%m-%d'),
       amount: amount,
       pipeline: 'default',
       dealstage: 'closedwon',

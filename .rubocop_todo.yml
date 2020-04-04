@@ -183,14 +183,6 @@ Rails/ReversibleMigration:
     - 'db/migrate/20181110162115_remove_previous_companies_column.rb'
     - 'db/migrate/20181117192755_drop_education_information.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: strict, flexible
-Rails/TimeZone:
-  Exclude:
-    - 'app/services/hubspot_service.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle.
