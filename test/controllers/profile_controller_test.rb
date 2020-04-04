@@ -138,7 +138,7 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
         "commit": 'Enviar',
         "controller": 'profile',
         "action": 'create'
-     }
+      }
 
     assert_redirected_to profile_index_url
     assert_equal 'Perfil atualizado com sucesso', flash[:notice]

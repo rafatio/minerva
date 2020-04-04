@@ -16,19 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 17
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/FirstHashElementIndentation:
-  Exclude:
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'test/controllers/payments_controller_test.rb'
-    - 'test/controllers/profile_controller_test.rb'
-    - 'test/controllers/subscriptions_controller_test.rb'
-
 # Offense count: 8
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.

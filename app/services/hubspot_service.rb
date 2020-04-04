@@ -24,42 +24,42 @@ class HubspotService
     end
 
     hubspot_properties = {
-        email: user.email,
-        firstname: params['person-name'].split[0],
-        lastname: params['person-name'].split.count > 1 ? params['person-name'].split[-1] : nil,
-        full_name: params['person-name'],
-        gender: params['person-gender'],
-        date_of_birth: params['person-birthdate'],
-        cpf: params['person-cpf'].delete('.-'),
-        rg: params['person-rg'],
+      email: user.email,
+      firstname: params['person-name'].split[0],
+      lastname: params['person-name'].split.count > 1 ? params['person-name'].split[-1] : nil,
+      full_name: params['person-name'],
+      gender: params['person-gender'],
+      date_of_birth: params['person-birthdate'],
+      cpf: params['person-cpf'].delete('.-'),
+      rg: params['person-rg'],
 
-        phone: params['contact-mobile'],
-        mobilephone: params['contact-mobile'],
-        skype: params['contact-skype'],
-        facebook: params['contact-facebook'],
-        linkedin: params['contact-linkedin'],
-        preferred_contact_type: params['contact-preferred'].downcase,
-        secondary_email_addresses: secondary_emails.join("\n"),
+      phone: params['contact-mobile'],
+      mobilephone: params['contact-mobile'],
+      skype: params['contact-skype'],
+      facebook: params['contact-facebook'],
+      linkedin: params['contact-linkedin'],
+      preferred_contact_type: params['contact-preferred'].downcase,
+      secondary_email_addresses: secondary_emails.join("\n"),
 
-        country: params['address-country'],
-        zip: params['address-country'] == 'Brasil' ? params['address-cep'] : params['address-zipcode'],
-        address: (params['address-street'] || '') + ', ' + (params['address-number'] || '') + ', ' + (params['address-complement'] || ''),
-        city: params['address-city'],
-        state: params['address-state'],
-        neighborhood: params['address-neighborhood'],
+      country: params['address-country'],
+      zip: params['address-country'] == 'Brasil' ? params['address-cep'] : params['address-zipcode'],
+      address: (params['address-street'] || '') + ', ' + (params['address-number'] || '') + ', ' + (params['address-complement'] || ''),
+      city: params['address-city'],
+      state: params['address-state'],
+      neighborhood: params['address-neighborhood'],
 
-        company: params['professional-company'],
-        jobtitle: params['professional-position'],
-        admission_year: params['professional-admission-year'],
-        previous_companies: previous_companies_formatted.join("\n"),
+      company: params['professional-company'],
+      jobtitle: params['professional-position'],
+      admission_year: params['professional-admission-year'],
+      previous_companies: previous_companies_formatted.join("\n"),
 
-        education: education_informations_formatted.join("\n"),
+      education: education_informations_formatted.join("\n"),
 
-        wishes_to_associate: intended_relationships[:associate].to_s,
-        wishes_to_be_mentor: intended_relationships[:mentoring].to_s,
-        wishes_to_be_tutor: intended_relationships[:tutoring].to_s,
-        wishes_to_contribue_financially: intended_relationships[:financial].to_s,
-        intended_relationships_remarks: intended_relationships[:remarks]
+      wishes_to_associate: intended_relationships[:associate].to_s,
+      wishes_to_be_mentor: intended_relationships[:mentoring].to_s,
+      wishes_to_be_tutor: intended_relationships[:tutoring].to_s,
+      wishes_to_contribue_financially: intended_relationships[:financial].to_s,
+      intended_relationships_remarks: intended_relationships[:remarks]
 
     }
 
@@ -74,11 +74,11 @@ class HubspotService
     end
 
     deal_properties = {
-        dealname: 'Contribuição online ' + (recurring ? 'recorrente' : 'única') + ' ' + Time.now.strftime('%Y-%m-%d'),
-        amount: amount,
-        pipeline: 'default',
-        dealstage: 'closedwon',
-        closedate: Time.now.utc.to_datetime.strftime('%Q') # "%Q" means milliseconds
+      dealname: 'Contribuição online ' + (recurring ? 'recorrente' : 'única') + ' ' + Time.now.strftime('%Y-%m-%d'),
+      amount: amount,
+      pipeline: 'default',
+      dealstage: 'closedwon',
+      closedate: Time.now.utc.to_datetime.strftime('%Q') # "%Q" means milliseconds
     }
 
     deal = Hubspot::Deal.create!(0, [], [contact.vid], deal_properties)

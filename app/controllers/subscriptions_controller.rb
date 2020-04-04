@@ -34,17 +34,17 @@ class SubscriptionsController < ApplicationController
     @subscription = user.subscriptions.new(value: decimal_value, active:true)
 
     plan = PagarMe::Plan.new({
-        :name => 'Plano ' + ENV['SUBSCRIPTION_PERIOD_DAYS'] + ' dias - ' + decimal_value.to_s + ' reais - ' + user.email,
+                               :name => 'Plano ' + ENV['SUBSCRIPTION_PERIOD_DAYS'] + ' dias - ' + decimal_value.to_s + ' reais - ' + user.email,
         :days => ENV['SUBSCRIPTION_PERIOD_DAYS'].to_i,
         :amount => integer_value,
         :payment_methods => ['credit_card'],
         :invoice_reminder => ENV['SUBSCRIPTION_INVOICE_REMINDER_DAYS'].to_i,
-    })
+                             })
     plan.create
 
     #2) create subscription
     pagarme_subscription = PagarMe::Subscription.new({
-        :payment_method => 'credit_card',
+                                                       :payment_method => 'credit_card',
         :card_number => params['card-number'],
         :card_holder_name => params['card-holders-name']&.upcase,
         :card_expiration_month => params['expiry-month'].rjust(2, '0'),
@@ -52,17 +52,17 @@ class SubscriptionsController < ApplicationController
         :card_cvv => params['cvc'],
         :postback_url => ENV['HOST_URL'].delete_suffix('/') + postback_index_path,
         :customer => {
-            :name => params['person-name'],
+          :name => params['person-name'],
             :document_number => params['person-cpf'],
             :email => user.email,
             :address => {
-                :street => params['address-street'],
+              :street => params['address-street'],
                 :neighborhood => params['address-neighborhood'],
                 :zipcode => params['address-cep'],
                 :street_number => params['address-number']
             }
         }
-    })
+                                                     })
     pagarme_subscription.plan = plan
     pagarme_subscription.create
 

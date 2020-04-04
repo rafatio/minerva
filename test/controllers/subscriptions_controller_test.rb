@@ -33,23 +33,23 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
 
     sign_in(@user1)
     post subscriptions_url, params: {
-        subscription: { value: 100 },
-        "card-number": '4611275892282287',
-        "cvc": '332',
-        "card-holders-name": 'teste',
-        "expiry-month": '8',
-        "expiry-year": '23',
-        "person-name": @user1.person.name,
-        "person-cpf": @user1.person.cpf,
-        "person-phone": '+55 21 99999-9999',
-        "address-country": 'Brasil',
-        "address-cep": '23030006',
-        "address-street": 'Travessa C',
-        "address-number": '123',
-        "address-complement": 'cs 1',
-        "address-neighborhood": 'Guaratiba',
-        "address-city": 'Rio de Janeiro',
-        "address-state": 'RJ'
+      subscription: { value: 100 },
+      "card-number": '4611275892282287',
+      "cvc": '332',
+      "card-holders-name": 'teste',
+      "expiry-month": '8',
+      "expiry-year": '23',
+      "person-name": @user1.person.name,
+      "person-cpf": @user1.person.cpf,
+      "person-phone": '+55 21 99999-9999',
+      "address-country": 'Brasil',
+      "address-cep": '23030006',
+      "address-street": 'Travessa C',
+      "address-number": '123',
+      "address-complement": 'cs 1',
+      "address-neighborhood": 'Guaratiba',
+      "address-city": 'Rio de Janeiro',
+      "address-state": 'RJ'
     }
     assert_redirected_to payments_url
     assert_equal 'Assinatura realizada com sucesso', flash[:notice]
