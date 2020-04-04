@@ -12,7 +12,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
     unless params[:type].nil?
       payment_type = PaymentType.find_by code: params[:type]
-      raise 'Tipo de pagamento inválido' unless !payment_type.nil?
+      raise 'Tipo de pagamento inválido' if payment_type.nil?
 
       @payment.payment_type = payment_type
     end
