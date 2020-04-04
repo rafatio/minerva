@@ -3,6 +3,7 @@ class TranslateAcquirerResponse
 
   def call
     return nil if context.code.nil?
+
     context.message = get_response_from_code(context.code)
   end
 

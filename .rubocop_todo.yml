@@ -6,16 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 5
-# Cop supports --auto-correct.
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/interactors/translate_acquirer_response.rb'
-    - 'app/models/user.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowAdjacentOneLineDefs, NumberOfEmptyLines.

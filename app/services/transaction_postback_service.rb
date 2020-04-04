@@ -5,6 +5,7 @@ class TransactionPostbackService
 
   def process_transaction_postback(transaction_params)
     raise 'A transação não foi paga' unless transaction_params[:status] == 'paid'
+
     subscription_id = transaction_params[:subscription_id]
     if (!subscription_id.empty?)
       #we need to create a new payment and link it to the corresponding subscription

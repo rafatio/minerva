@@ -11,6 +11,7 @@ class PaymentsController < ApplicationController
     if !params[:type].nil?
       payment_type = PaymentType.find_by  code: params[:type]
       raise 'Tipo de pagamento inválido' unless !payment_type.nil?
+
       @payment.payment_type = payment_type
     end
     @country_list = Country.all
