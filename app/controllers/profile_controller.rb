@@ -75,7 +75,7 @@ class ProfileController < ApplicationController
         zipcode = params['address-zipcode']
       end
       ManageAddressService.new(current_user).call(
-        params['address-country'].gsub('_',' '),
+        params['address-country'].gsub('_', ' '),
         zipcode.delete('.-'),
         params['address-state'],
         params['address-city'],

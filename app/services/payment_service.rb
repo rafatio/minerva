@@ -22,7 +22,7 @@ class PaymentService
       @payment.payment_type = payment_type
     end
 
-    country_name = params['address-country'].gsub('_',' ')
+    country_name = params['address-country'].gsub('_', ' ')
     country = Country.find_by_name(country_name)
     country_code = country.code
 
