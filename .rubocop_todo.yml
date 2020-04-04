@@ -6,14 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Layout/CommentIndentation:
-  Exclude:
-    - 'test/controllers/payments_controller_test.rb'
-    - 'test/controllers/postback_controller_test.rb'
-    - 'test/controllers/subscriptions_controller_test.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 Layout/EmptyLineAfterGuardClause:

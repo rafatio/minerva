@@ -1,15 +1,15 @@
 require 'test_helper'
 
 class PaymentsControllerTest < ActionDispatch::IntegrationTest
-    # called before every single test
+  # called before every single test
   setup do
     @user1 = users(:user_1)
   end
 
-    # called after every single test
+  # called after every single test
   teardown do
-      # when controller is using cache it may be a good idea to reset it afterwards
-      #Rails.cache.clear
+    # when controller is using cache it may be a good idea to reset it afterwards
+    #Rails.cache.clear
   end
 
   test 'should be authenticated to list payments' do

@@ -1,16 +1,16 @@
 require 'test_helper'
 
 class PostbackControllerTest < ActionDispatch::IntegrationTest
-    # called before every single test
+  # called before every single test
   setup do
     @subscription1 = subscriptions(:subscription_1)
     @subscription2 = subscriptions(:subscription_2)
   end
 
-    # called after every single test
+  # called after every single test
   teardown do
-      # when controller is using cache it may be a good idea to reset it afterwards
-      #Rails.cache.clear
+    # when controller is using cache it may be a good idea to reset it afterwards
+    #Rails.cache.clear
   end
 
   test 'handle subscription transaction created' do

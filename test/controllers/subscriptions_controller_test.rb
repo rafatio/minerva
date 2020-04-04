@@ -1,16 +1,16 @@
 require 'test_helper'
 
 class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
-    # called before every single test
+  # called before every single test
   setup do
     @user1 = users(:user_1)
     @user2 = users(:user_2)
   end
 
-    # called after every single test
+  # called after every single test
   teardown do
-      # when controller is using cache it may be a good idea to reset it afterwards
-      #Rails.cache.clear
+    # when controller is using cache it may be a good idea to reset it afterwards
+    #Rails.cache.clear
   end
 
   test 'should be authenticated to list subscriptions' do
