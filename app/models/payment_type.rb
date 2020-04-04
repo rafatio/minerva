@@ -8,5 +8,5 @@
 #
 
 class PaymentType < ApplicationRecord
-    has_many :payments
+  has_many :payments
 end

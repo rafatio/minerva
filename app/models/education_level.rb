@@ -7,5 +7,5 @@
 #
 
 class EducationLevel < ApplicationRecord
-    has_many :education_informations
+  has_many :education_informations
 end

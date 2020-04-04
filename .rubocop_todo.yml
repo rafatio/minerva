@@ -210,46 +210,6 @@ Layout/IndentationConsistency:
     - 'app/models/country.rb'
     - 'test/controllers/profile_controller_test.rb'
 
-# Offense count: 219
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/postback_controller.rb'
-    - 'app/controllers/profile_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/helpers/email_helper.rb'
-    - 'app/helpers/payments_helper.rb'
-    - 'app/models/contact.rb'
-    - 'app/models/contact_type.rb'
-    - 'app/models/country.rb'
-    - 'app/models/education_information.rb'
-    - 'app/models/education_level.rb'
-    - 'app/models/error_log.rb'
-    - 'app/models/intended_relationship.rb'
-    - 'app/models/payment_type.rb'
-    - 'app/models/person.rb'
-    - 'app/models/previous_company.rb'
-    - 'app/models/professional_information.rb'
-    - 'app/models/state.rb'
-    - 'app/models/subscription.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/manage_address_service.rb'
-    - 'app/services/manage_education_information_service.rb'
-    - 'app/services/manage_intended_relationship_service.rb'
-    - 'app/services/manage_person_service.rb'
-    - 'app/services/manage_professional_information_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/subscription_postback_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'db/migrate/20181001002236_add_admin_flag_to_users.rb'
-    - 'db/seeds.rb'
-    - 'test/controllers/payments_controller_test.rb'
-    - 'test/controllers/postback_controller_test.rb'
-    - 'test/controllers/subscriptions_controller_test.rb'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.

@@ -14,7 +14,7 @@
 #
 
 class IntendedRelationship < ApplicationRecord
-    belongs_to :user
+  belongs_to :user
 
-    validates :user, presence: true
+  validates :user, presence: true
 end

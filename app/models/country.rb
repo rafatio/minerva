@@ -10,5 +10,5 @@
 class Country < ApplicationRecord
   default_scope { order('order_index ASC, name ASC') }
 
-    has_many :states
+  has_many :states
 end
