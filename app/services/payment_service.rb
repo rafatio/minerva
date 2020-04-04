@@ -16,7 +16,7 @@ class PaymentService
     @payment = @user.payments.new(value: decimal_value)
 
     if !params[:payment][:type].nil?
-      payment_type = PaymentType.find_by  code: params[:payment][:type]
+      payment_type = PaymentType.find_by code: params[:payment][:type]
       raise 'Tipo de pagamento inválido' unless !payment_type.nil?
 
       @payment.payment_type = payment_type

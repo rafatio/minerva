@@ -16,19 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/models/user.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'db/migrate/20181007223739_create_contact_type.rb'
-    - 'db/migrate/20181007224416_create_contact.rb'
-    - 'db/migrate/20181020193233_create_professional_information.rb'
-
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.

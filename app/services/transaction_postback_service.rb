@@ -13,7 +13,7 @@ class TransactionPostbackService
 
       decimal_value = transaction_params[:amount].to_f / 100.0
       user = subscription.user
-      payment_type = PaymentType.find_by  code: 'normal'
+      payment_type = PaymentType.find_by code: 'normal'
       payment = user.payments.new(value: decimal_value,
           pagarme_transaction: OpenStruct.new(transaction_params.to_hash),
           subscription: subscription,
