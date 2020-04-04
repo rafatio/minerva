@@ -56,7 +56,7 @@ class ProfileController < ApplicationController
         elsif item[0].starts_with?('education-level')
           number = item[0][15..-1] # gets the substring from position 15 to the end of the string
           # position 15 because the string 'education-level' has 15 characters
-          education_level = EducationLevel.find_by_name(params['education-level' + number].presence)
+          education_level = EducationLevel.find_by(name: params['education-level' + number].presence)
           education_information = EducationInformation.new(
             education_level: education_level,
             institution: params['education-institution' + number].presence,

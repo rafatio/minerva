@@ -214,19 +214,19 @@ if Country.count == 0
 
 end
 
-if Country.find_by_name('Brasil').order_index != 0
+if Country.find_by(name: 'Brasil').order_index != 0
   Country.all.order(:name).each_with_index do |c, i|
     c.order_index = i + 1
     c.save!
   end
 
-  brasil = Country.find_by_name('Brasil')
+  brasil = Country.find_by(name: 'Brasil')
   brasil.order_index = 0
   brasil.save!
 end
 
 if State.count == 0
-  c = Country.find_by_name('Brasil')
+  c = Country.find_by(name: 'Brasil')
 
   State.create(country: c, name: 'Acre', code: 'AC')
   State.create(country: c, name: 'Alagoas', code: 'AL')
@@ -268,116 +268,116 @@ if PaymentType.count == 0
   PaymentType.create(name: 'Jantar de Gala', code: 'gala')
 end
 
-if Country.count > 0 && Country.find_by_name('Brasil').code.nil?
-  c = Country.find_by_name('Brasil')
+if Country.count > 0 && Country.find_by(name: 'Brasil').code.nil?
+  c = Country.find_by(name: 'Brasil')
   c.code = 'br'
   c.save!
-  c = Country.find_by_name('Alemanha')
+  c = Country.find_by(name: 'Alemanha')
   c.code = 'de'
   c.save!
-  c = Country.find_by_name('Argentina')
+  c = Country.find_by(name: 'Argentina')
   c.code = 'ar'
   c.save!
-  c = Country.find_by_name('Austrália')
+  c = Country.find_by(name: 'Austrália')
   c.code = 'au'
   c.save!
-  c = Country.find_by_name('Áustria')
+  c = Country.find_by(name: 'Áustria')
   c.code = 'at'
   c.save!
-  c = Country.find_by_name('Bélgica')
+  c = Country.find_by(name: 'Bélgica')
   c.code = 'be'
   c.save!
-  c = Country.find_by_name('Bolívia')
+  c = Country.find_by(name: 'Bolívia')
   c.code = 'bo'
   c.save!
-  c = Country.find_by_name('Canadá')
+  c = Country.find_by(name: 'Canadá')
   c.code = 'ca'
   c.save!
-  c = Country.find_by_name('Chile')
+  c = Country.find_by(name: 'Chile')
   c.code = 'cl'
   c.save!
-  c = Country.find_by_name('China')
+  c = Country.find_by(name: 'China')
   c.code = 'cn'
   c.save!
-  c = Country.find_by_name('Colômbia')
+  c = Country.find_by(name: 'Colômbia')
   c.code = 'co'
   c.save!
-  c = Country.find_by_name('Croácia')
+  c = Country.find_by(name: 'Croácia')
   c.code = 'hr'
   c.save!
-  c = Country.find_by_name('Dinamarca')
+  c = Country.find_by(name: 'Dinamarca')
   c.code = 'dk'
   c.save!
-  c = Country.find_by_name('Equador')
+  c = Country.find_by(name: 'Equador')
   c.code = 'ec'
   c.save!
-  c = Country.find_by_name('Espanha')
+  c = Country.find_by(name: 'Espanha')
   c.code = 'es'
   c.save!
-  c = Country.find_by_name('Estados Unidos')
+  c = Country.find_by(name: 'Estados Unidos')
   c.code = 'us'
   c.save!
-  c = Country.find_by_name('França')
+  c = Country.find_by(name: 'França')
   c.code = 'fr'
   c.save!
-  c = Country.find_by_name('Grécia')
+  c = Country.find_by(name: 'Grécia')
   c.code = 'gr'
   c.save!
-  c = Country.find_by_name('Índia')
+  c = Country.find_by(name: 'Índia')
   c.code = 'in'
   c.save!
-  c = Country.find_by_name('Irlanda')
+  c = Country.find_by(name: 'Irlanda')
   c.code = 'ie'
   c.save!
-  c = Country.find_by_name('Itália')
+  c = Country.find_by(name: 'Itália')
   c.code = 'it'
   c.save!
-  c = Country.find_by_name('Japão')
+  c = Country.find_by(name: 'Japão')
   c.code = 'jp'
   c.save!
-  c = Country.find_by_name('México')
+  c = Country.find_by(name: 'México')
   c.code = 'mx'
   c.save!
-  c = Country.find_by_name('Noruega')
+  c = Country.find_by(name: 'Noruega')
   c.code = 'no'
   c.save!
-  c = Country.find_by_name('Nova Zelândia')
+  c = Country.find_by(name: 'Nova Zelândia')
   c.code = 'nz'
   c.save!
-  c = Country.find_by_name('Países Baixos')
+  c = Country.find_by(name: 'Países Baixos')
   c.code = 'nl'
   c.save!
-  c = Country.find_by_name('Paraguai')
+  c = Country.find_by(name: 'Paraguai')
   c.code = 'py'
   c.save!
-  c = Country.find_by_name('Peru')
+  c = Country.find_by(name: 'Peru')
   c.code = 'pe'
   c.save!
-  c = Country.find_by_name('Polónia')
+  c = Country.find_by(name: 'Polónia')
   c.code = 'pl'
   c.save!
-  c = Country.find_by_name('Polónia')
+  c = Country.find_by(name: 'Polónia')
   c.code = 'pt'
   c.save!
-  c = Country.find_by_name('Reino Unido')
+  c = Country.find_by(name: 'Reino Unido')
   c.code = 'gb'
   c.save!
-  c = Country.find_by_name('Rússia')
+  c = Country.find_by(name: 'Rússia')
   c.code = 'gb'
   c.save!
-  c = Country.find_by_name('Suécia')
+  c = Country.find_by(name: 'Suécia')
   c.code = 'se'
   c.save!
-  c = Country.find_by_name('Suíça')
+  c = Country.find_by(name: 'Suíça')
   c.code = 'ch'
   c.save!
-  c = Country.find_by_name('Ucrânia')
+  c = Country.find_by(name: 'Ucrânia')
   c.code = 'ua'
   c.save!
-  c = Country.find_by_name('Uruguai')
+  c = Country.find_by(name: 'Uruguai')
   c.code = 'uy'
   c.save!
-  c = Country.find_by_name('Venezuela')
+  c = Country.find_by(name: 'Venezuela')
   c.code = 've'
   c.save!
 end

@@ -68,7 +68,7 @@ class HubspotService
 
   def create_deal(user, amount, recurring, isNewUser)
     if (!isNewUser)
-      contact = Hubspot::Contact.find_by_email(user.email)
+      contact = Hubspot::Contact.find_by(email: user.email)
     else
       contact = Hubspot::Contact.create!(user.email)
     end

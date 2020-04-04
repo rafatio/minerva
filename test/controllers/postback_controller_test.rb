@@ -24,7 +24,7 @@ class PostbackControllerTest < ActionDispatch::IntegrationTest
 
   test 'handle subscription cancelled' do
     subscription_id = '430164'
-    subscription = Subscription.find_by_pagarme_identifier(subscription_id)
+    subscription = Subscription.find_by(pagarme_identifier: subscription_id)
     assert subscription.active
 
     postback_service = SubscriptionPostbackService.new
@@ -33,7 +33,7 @@ class PostbackControllerTest < ActionDispatch::IntegrationTest
     result = postback_service.process_status_changed_postback(subscription_status_changed_params)
 
     assert_equal 'Assinatura atualizada com sucesso', result
-    subscription = Subscription.find_by_pagarme_identifier(subscription_id)
+    subscription = Subscription.find_by(pagarme_identifier: subscription_id)
     assert_not subscription.active
   end
 end

@@ -10,9 +10,9 @@ class ManageAddressService
       address = @user.address
     end
 
-    country = Country.find_by_name(country_name)
+    country = Country.find_by(name: country_name)
     if country_name == 'Brasil'
-      state = State.find_by_code(state_code)
+      state = State.find_by(code: state_code)
       state_name = state.name
     else
       state = nil

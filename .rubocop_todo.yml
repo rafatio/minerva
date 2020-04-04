@@ -155,23 +155,6 @@ Rails/CreateTableWithTimestamps:
     - 'db/migrate/20181117193241_create_education_information2.rb'
     - 'db/migrate/20190406202707_create_payment_type.rb'
 
-# Offense count: 53
-# Cop supports --auto-correct.
-# Configuration parameters: Whitelist.
-# Whitelist: find_by_sql
-Rails/DynamicFindBy:
-  Exclude:
-    - 'app/controllers/profile_controller.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/manage_address_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/subscription_postback_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'db/seeds.rb'
-    - 'test/controllers/postback_controller_test.rb'
-    - 'test/models/payment_test.rb'
-
 # Offense count: 2
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments

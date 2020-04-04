@@ -8,7 +8,7 @@ class TransactionPostbackService
     subscription_id = transaction_params[:subscription_id]
     if (!subscription_id.empty?)
       # we need to create a new payment and link it to the corresponding subscription
-      subscription = Subscription.find_by_pagarme_identifier(subscription_id)
+      subscription = Subscription.find_by(pagarme_identifier: subscription_id)
       raise 'Assinatura não encontrada' unless !subscription.nil?
 
       decimal_value = transaction_params[:amount].to_f / 100.0

@@ -6,7 +6,7 @@ class SubscriptionPostbackService
     subscription_id = status_changed_params[:id]
     raise 'O id da assinatura não foi informado' unless !subscription_id.empty?
 
-    subscription = Subscription.find_by_pagarme_identifier(subscription_id)
+    subscription = Subscription.find_by(pagarme_identifier: subscription_id)
     raise 'Assinatura não encontrada' unless !subscription.nil?
 
     any_changes = false

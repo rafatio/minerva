@@ -23,7 +23,7 @@ class PaymentService
     end
 
     country_name = params['address-country'].gsub('_', ' ')
-    country = Country.find_by_name(country_name)
+    country = Country.find_by(name: country_name)
     country_code = country.code
 
     if country_name == 'Brasil'
