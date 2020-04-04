@@ -77,7 +77,7 @@ class PaymentService
             tangible: false
             }
         ]
-    )
+      )
 
     charged_transaction = transaction.charge
     charged_transaction_hash = charged_transaction.to_hash

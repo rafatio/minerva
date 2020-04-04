@@ -63,7 +63,7 @@ class ProfileController < ApplicationController
               institution: params['education-institution' + number].presence,
               course: params['education-course' + number].presence,
               conclusion_year: params['education-conclusion-year' + number].presence,
-              )
+            )
           education_informations.push(education_information)
         end
       end
