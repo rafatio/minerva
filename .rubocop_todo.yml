@@ -321,17 +321,6 @@ Style/NumericPredicate:
 
 # Offense count: 7
 # Cop supports --auto-correct.
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'app/helpers/payments_helper.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/subscription_postback_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, explicit
 Style/RescueStandardError:

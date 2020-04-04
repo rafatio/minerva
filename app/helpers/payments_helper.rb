@@ -71,6 +71,6 @@ module PaymentsHelper
     end
 
     response = { valid: !incomplete_registration, message: error_message, mobile_phone_contact: mobile_phone_contact.first }
-    return response
+    response
   end
 end

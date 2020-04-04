@@ -19,9 +19,9 @@ class SubscriptionPostbackService
     end
 
     if !any_changes
-      return 'Nenhuma ação feita - O novo status da assinatura não é tratado'
+      'Nenhuma ação feita - O novo status da assinatura não é tratado'
     elsif subscription.save
-      return 'Assinatura atualizada com sucesso'
+      'Assinatura atualizada com sucesso'
     else
       raise 'Erro ao atualizar assinatura'
     end

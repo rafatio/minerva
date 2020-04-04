@@ -7,7 +7,7 @@ class ContactsService
 
   def get_contacts(contact_type_name)
     contact = @user.contacts.joins(:contact_type).where(contact_types: { name: contact_type_name })
-    return contact
+    contact
   end
 
   def manage_unique_contact(contact_type_name, contact_value, preferred_contact_type)

@@ -40,6 +40,6 @@ class TransactionPostbackService
 
     end
 
-    return 'Nenhuma ação feita - Pagamento sem assinatura'
+    'Nenhuma ação feita - Pagamento sem assinatura'
   end
 end

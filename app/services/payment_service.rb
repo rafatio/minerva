@@ -10,7 +10,7 @@ class PaymentService
   end
 
   def self.reason_codes
-    return @@reason_codes_obj
+    @@reason_codes_obj
   end
 
   def single_payment(params, isNewUser)
@@ -107,6 +107,6 @@ class PaymentService
       payment: @payment,
       message: ''
     }
-    return response
+    response
   end
 end
