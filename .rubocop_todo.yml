@@ -18,15 +18,6 @@ Layout/EndAlignment:
 
 # Offense count: 3
 # Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment.
-Layout/SpaceBeforeFirstArg:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
 # SupportedStyles: space, no_space, compact
 # SupportedStylesForEmptyBrackets: space, no_space
