@@ -60,19 +60,19 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
-  config.action_mailer.default_url_options = { :host => ENV['HOST_URL'] }
+  config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
 
   config.action_mailer.delivery_method = :file
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default :charset => 'utf-8'
+  config.action_mailer.default charset: 'utf-8'
 
   config.action_mailer.smtp_settings = {
-    :address => 'smtp.zoho.com',
-    :port => 587,
-    :user_name => ENV['EMAIL_USERNAME'],
-    :password => ENV['CREDENTIAL_SENDMAIL_PASSWORD'],
-    :authentication => :login,
-    :enable_starttls_auto => true
+    address: 'smtp.zoho.com',
+    port: 587,
+    user_name: ENV['EMAIL_USERNAME'],
+    password: ENV['CREDENTIAL_SENDMAIL_PASSWORD'],
+    authentication: :login,
+    enable_starttls_auto: true
   }
 end

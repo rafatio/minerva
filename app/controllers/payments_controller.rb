@@ -33,14 +33,14 @@ class PaymentsController < ApplicationController
     if user.nil?
       raise 'Os emails informados não batem' unless params['user-email'] == params['user-email-confirmation']
 
-      user = User.where(:email => params['user-email']).first
+      user = User.where(email: params['user-email']).first
     end
 
     isNewUser = false
     # if there's no user with this email, create a new user
     if user.nil?
       isNewUser = true
-      user = User.new({ :email => params['user-email'] })
+      user = User.new({ email: params['user-email'] })
       user.skip_password_validation = true
       user.save
       user.send_reset_password_instructions
@@ -70,7 +70,7 @@ class PaymentsController < ApplicationController
     if params[:payment][:type].nil?
       redirect_to new_payment_path
     else
-      redirect_to new_payment_path(:type => params[:payment][:type])
+      redirect_to new_payment_path(type: params[:payment][:type])
     end
   end
 

@@ -303,18 +303,6 @@ Style/GuardClause:
     - 'app/services/transaction_postback_service.rb'
     - 'test/controllers/profile_controller_test.rb'
 
-# Offense count: 50
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'config/environments/development.rb'
-    - 'config/environments/production.rb'
-    - 'config/environments/staging.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowIfModifier.
 Style/IfInsideElse:
