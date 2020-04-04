@@ -319,13 +319,6 @@ Style/NumericPredicate:
     - 'app/helpers/payments_helper.rb'
     - 'db/seeds.rb'
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline.

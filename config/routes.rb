@@ -12,9 +12,9 @@ Rails.application.routes.draw do
     root 'devise/sessions#new', as: :unauthenticated_root
   end
 
-  resources :payments, only: [:index, :new, :create]
-  resources :profile, only: [:index, :create]
-  resources :subscriptions, only: [:new, :create]
+  resources :payments, only: %i[index new create]
+  resources :profile, only: %i[index create]
+  resources :subscriptions, only: %i[new create]
   # resources :mentors, only: :index
   resources :postback, only: [:create]
 
