@@ -82,7 +82,6 @@ class SubscriptionsController < ApplicationController
                                         subscription: @subscription)
 
     Payment.transaction do
-
       begin
         # HubSpot integration
         hubspotService = HubspotService.new

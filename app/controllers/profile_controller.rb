@@ -25,7 +25,6 @@ class ProfileController < ApplicationController
 
   def create
     User.transaction do
-
       ###### PERSON
       ManagePersonService.new.call(
           current_user,
@@ -110,7 +109,6 @@ class ProfileController < ApplicationController
       ###### HUBSPOT INTEGRATION
       intended_relationships = {associate: associate, financial: financial, mentoring: mentoring, tutoring: tutoring, remarks: params['relationship-remarks']}
       HubspotService.new.update_contact(current_user, params, secondary_emails, previous_companies, education_informations, intended_relationships)
-
     end
 
     flash[:notice] = 'Perfil atualizado com sucesso'

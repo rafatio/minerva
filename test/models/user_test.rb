@@ -46,6 +46,5 @@ class UserTest < ActiveSupport::TestCase
     assert_equal '(11) 88888-8888', user2.contacts[2].value
     assert_equal 'email23', user2.contacts[3].value
     assert_equal 1, user2.education_informations.count
-
   end
 end

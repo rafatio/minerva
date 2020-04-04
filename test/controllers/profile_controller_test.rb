@@ -67,7 +67,6 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_form_checkbox_selected('relationship-mentoring', true)
     check_form_checkbox_selected('relationship-tutoring', false)
     check_single_value_form_input('relationship-remarks', '')
-
   end
 
   test 'should show profile user 2' do
@@ -92,7 +91,6 @@ class ProfileControllerTest < ActionDispatch::IntegrationTest
     check_form_checkbox_selected('relationship-mentoring', false)
     check_form_checkbox_selected('relationship-tutoring', true)
     check_single_value_form_input('relationship-remarks', 'obs 123')
-
   end
 
   test 'should fill profile' do

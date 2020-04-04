@@ -6,19 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'app/controllers/profile_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'config/environments/development.rb'
-    - 'config/initializers/rails_admin.rb'
-    - 'test/controllers/profile_controller_test.rb'
-    - 'test/models/user_test.rb'
-
 # Offense count: 19
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
