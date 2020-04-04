@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionsController < ApplicationController
   def new
     @active_subscriptions = current_user.nil? ? [] : current_user.subscriptions.where({ active: true })

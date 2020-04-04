@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ManageEducationInformationService
   def initialize(user)
     @user = user

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsToAddress < ActiveRecord::Migration[5.2]
   def change
     add_column :addresses, :street, :string

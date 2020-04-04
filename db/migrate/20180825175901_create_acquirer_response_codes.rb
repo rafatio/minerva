@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAcquirerResponseCodes < ActiveRecord::Migration[5.2]
   def change
     create_table :acquirer_response_codes do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateIntendedRelationship < ActiveRecord::Migration[5.2]
   def change
     create_table :intended_relationships do |t|
