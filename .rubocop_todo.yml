@@ -320,35 +320,6 @@ Layout/Tab:
   Exclude:
     - 'db/migrate/20181001002236_add_admin_flag_to_users.rb'
 
-# Offense count: 22
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-Layout/TrailingEmptyLines:
-  Exclude:
-    - 'app/controllers/postback_controller.rb'
-    - 'app/helpers/email_helper.rb'
-    - 'app/helpers/payments_helper.rb'
-    - 'app/interactors/translate_acquirer_response.rb'
-    - 'app/models/error_log.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/manage_address_service.rb'
-    - 'app/services/manage_education_information_service.rb'
-    - 'app/services/manage_intended_relationship_service.rb'
-    - 'app/services/manage_person_service.rb'
-    - 'app/services/manage_professional_information_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'app/services/subscription_postback_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-    - 'config/initializers/hubspot.rb'
-    - 'config/initializers/time_formats.rb'
-    - 'db/seeds.rb'
-    - 'test/models/education_information_test.rb'
-    - 'test/models/payment_test.rb'
-    - 'test/models/previous_company_test.rb'
-    - 'test/models/professional_information_test.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: AllowInHeredoc.
