@@ -16,14 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Layout/FirstArrayElementIndentation:
-  Exclude:
-    - 'app/services/payment_service.rb'
-
 # Offense count: 17
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.

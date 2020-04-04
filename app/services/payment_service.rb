@@ -48,11 +48,11 @@ class PaymentService
           country: country_code,
           email: @user.email,
           documents: [
-          {
-              type: 'cpf',
-              number: params['person-cpf'].delete('.-')
+            {
+                type: 'cpf',
+                number: params['person-cpf'].delete('.-')
 
-          }
+            }
           ],
           phone_numbers: [ params['person-phone'].delete('() -')],
       },
@@ -69,13 +69,13 @@ class PaymentService
           }
       },
       items: [
-          {
-          id: 'Contrib-Unica-' + SecureRandom.uuid,
-          title: 'Contribuição única ' + params['person-name'] + ' ' + decimal_value.to_s,
-          unit_price: (decimal_value * 100).to_i,
-          quantity: 1,
-          tangible: false
-          }
+        {
+        id: 'Contrib-Unica-' + SecureRandom.uuid,
+        title: 'Contribuição única ' + params['person-name'] + ' ' + decimal_value.to_s,
+        unit_price: (decimal_value * 100).to_i,
+        quantity: 1,
+        tangible: false
+        }
       ]
     )
 
