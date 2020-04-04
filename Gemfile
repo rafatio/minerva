@@ -3,17 +3,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
 
-gem 'rails', '~> 5.2.0'
-gem 'puma', '~> 3.11'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'pg'
 gem 'devise'
 gem 'interactor-rails', '~> 2.0'
 gem 'nokogiri', '>= 1.10.4'
+gem 'pg'
+gem 'puma', '~> 3.11'
+gem 'rails', '~> 5.2.0'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
 
-gem 'groupdate'
 gem 'chartkick'
+gem 'groupdate'
 
 # Boostrap 4 dependencies
 gem 'bootstrap', '>= 4.3.1'
@@ -64,22 +64,22 @@ gem 'hubspot-ruby', '~> 0.9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  gem 'pry-byebug'          # local debugging
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'parity'              # automate deployment
+  gem 'pry-byebug'          # local debugging
   gem 'sqlite3'             # database for local development
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'annotate'
+  gem 'html2slim'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'html2slim'
-  gem 'annotate'
 
   # Code Quality tools
   gem 'rubocop', require: false
