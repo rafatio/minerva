@@ -6,7 +6,7 @@ class HubspotService
     # we use the "create_or_update" method because the user may have entered an email that is already in use by us
     # in this case, we will call the hubspot update method, passing no properties whatsoever
     # since the only properties that are updated are the ones that we pass, in reality nothing will happen
-    Hubspot::Contact.create_or_update!([{email: email}])
+    Hubspot::Contact.create_or_update!([{ email: email }])
   end
 
   def update_contact(user, params, secondary_emails, previous_companies, education_informations, intended_relationships)

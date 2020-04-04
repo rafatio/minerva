@@ -38,7 +38,7 @@ class PaymentsController < ApplicationController
     # if there's no user with this email, create a new user
     if user.nil?
       isNewUser = true
-      user = User.new({:email => params['user-email'] })
+      user = User.new({ :email => params['user-email'] })
       user.skip_password_validation = true
       user.save
       user.send_reset_password_instructions

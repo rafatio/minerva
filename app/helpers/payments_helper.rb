@@ -68,7 +68,7 @@ module PaymentsHelper
       error_message = 'Os seguintes campos são obrigatórios para a contribuição: ' + required_fields.join(', ')
     end
 
-    response = {valid: !incomplete_registration, message: error_message, mobile_phone_contact: mobile_phone_contact.first}
+    response = { valid: !incomplete_registration, message: error_message, mobile_phone_contact: mobile_phone_contact.first }
     return response
   end
 end

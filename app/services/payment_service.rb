@@ -1,7 +1,7 @@
 class PaymentService
   include PaymentsHelper
 
-  @@reason_codes_obj = {missing_fields: 'MISSING_FIELDS'}
+  @@reason_codes_obj = { missing_fields: 'MISSING_FIELDS' }
 
   def initialize(user)
     @user = user

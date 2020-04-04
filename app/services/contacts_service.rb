@@ -4,7 +4,7 @@ class ContactsService
   end
 
   def get_contacts(contact_type_name)
-    contact = @user.contacts.joins(:contact_type).where(contact_types: {name: contact_type_name})
+    contact = @user.contacts.joins(:contact_type).where(contact_types: { name: contact_type_name })
     return contact
   end
 

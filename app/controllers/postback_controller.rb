@@ -30,11 +30,11 @@ class PostbackController < ApplicationController
   end
 
   def render_invalid_postback_response(message)
-    render json: {error: message}, status: 400
+    render json: { error: message }, status: 400
   end
 
   def render_valid_postback_response(message)
-    render json: {message: message}, status: 200
+    render json: { message: message }, status: 200
   end
 
   def transaction_params

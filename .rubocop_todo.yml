@@ -16,26 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 25
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/controllers/postback_controller.rb'
-    - 'app/controllers/profile_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/helpers/payments_helper.rb'
-    - 'app/services/contacts_service.rb'
-    - 'app/services/hubspot_service.rb'
-    - 'app/services/payment_service.rb'
-    - 'config/environments/development.rb'
-    - 'config/environments/production.rb'
-    - 'config/environments/staging.rb'
-    - 'test/controllers/postback_controller_test.rb'
-
 # Offense count: 11
 # Cop supports --auto-correct.
 Layout/SpaceInsidePercentLiteralDelimiters:

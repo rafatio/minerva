@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   def new
-    @active_subscriptions = current_user.nil? ? [] : current_user.subscriptions.where({active: true})
+    @active_subscriptions = current_user.nil? ? [] : current_user.subscriptions.where({ active: true })
     @subscription = Subscription.new
 
     @country_list = Country.where(name: 'Brasil') # only brazilian addresses are allowed for subscriptions
@@ -22,7 +22,7 @@ class SubscriptionsController < ApplicationController
     isNewUser = false
     if user.nil?
       isNewUser = true
-      user = User.new({:email => params['user-email'] })
+      user = User.new({ :email => params['user-email'] })
       user.skip_password_validation = true
       user.save
       user.send_reset_password_instructions
