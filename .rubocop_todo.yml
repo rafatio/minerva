@@ -16,15 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, indented_internal_methods
-Layout/IndentationConsistency:
-  Exclude:
-    - 'app/models/country.rb'
-    - 'test/controllers/profile_controller_test.rb'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
