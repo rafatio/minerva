@@ -15,7 +15,9 @@ class SubscriptionsController < ApplicationController
 
     # if user is not logged in, try to get the user based on his email
     if user.nil?
-      raise 'Os emails informados não batem' unless params['user-email'] == params['user-email-confirmation']
+      unless params['user-email'] == params['user-email-confirmation']
+        raise 'Os emails informados não batem'
+      end
 
       user = User.where(email: params['user-email']).first
     end

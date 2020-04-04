@@ -309,15 +309,6 @@ Style/IfInsideElse:
   Exclude:
     - 'app/services/contacts_service.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/services/subscription_postback_service.rb'
-    - 'app/services/transaction_postback_service.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

@@ -4,7 +4,9 @@ class TransactionPostbackService
   def initialize; end
 
   def process_transaction_postback(transaction_params)
-    raise 'A transação não foi paga' unless transaction_params[:status] == 'paid'
+    unless transaction_params[:status] == 'paid'
+      raise 'A transação não foi paga'
+    end
 
     subscription_id = transaction_params[:subscription_id]
     if (!subscription_id.empty?)
