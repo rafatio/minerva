@@ -16,14 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineMethodCallBraceLayout:
-  Exclude:
-    - 'app/controllers/profile_controller.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Layout/RescueEnsureAlignment:
