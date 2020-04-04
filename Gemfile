@@ -80,6 +80,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'html2slim'
   gem 'annotate'
+
+  # Code Quality tools
+  gem 'rubocop', require: false
+  gem 'rubocop-minitest', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
