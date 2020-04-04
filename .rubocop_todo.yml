@@ -16,16 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
-# SupportedStylesForExponentOperator: space, no_space
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'app/controllers/payments_controller.rb'
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'app/services/hubspot_service.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.

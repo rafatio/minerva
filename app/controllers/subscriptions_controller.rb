@@ -1,11 +1,11 @@
 class SubscriptionsController < ApplicationController
   def new
-    @active_subscriptions = current_user.nil?? [] : current_user.subscriptions.where({active: true})
+    @active_subscriptions = current_user.nil? ? [] : current_user.subscriptions.where({active: true})
     @subscription = Subscription.new
 
     @country_list = Country.where(name: 'Brasil') # only brazilian addresses are allowed for subscriptions
-    @address = current_user.nil?? nil : current_user.address
-    @person = current_user.nil?? nil : current_user.person
+    @address = current_user.nil? ? nil : current_user.address
+    @person = current_user.nil? ? nil : current_user.person
   end
 
   def create
