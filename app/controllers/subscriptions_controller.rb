@@ -31,7 +31,7 @@ class SubscriptionsController < ApplicationController
     # 1) create plan
     decimal_value = params[:subscription][:value].delete('.').gsub(',', '.').to_f
     integer_value = (decimal_value * 100).to_i
-    @subscription = user.subscriptions.new(value: decimal_value, active:true)
+    @subscription = user.subscriptions.new(value: decimal_value, active: true)
 
     plan = PagarMe::Plan.new({
                                :name => 'Plano ' + ENV['SUBSCRIPTION_PERIOD_DAYS'] + ' dias - ' + decimal_value.to_s + ' reais - ' + user.email,

@@ -16,18 +16,6 @@ Layout/EndAlignment:
     - 'app/models/contact.rb'
     - 'app/models/person.rb'
 
-# Offense count: 205
-# Cop supports --auto-correct.
-Layout/SpaceAfterColon:
-  Exclude:
-    - 'app/controllers/subscriptions_controller.rb'
-    - 'db/migrate/20181007223739_create_contact_type.rb'
-    - 'db/migrate/20181110161507_create_previous_company.rb'
-    - 'db/migrate/20181117193241_create_education_information2.rb'
-    - 'db/migrate/20190119182435_create_subscriptions.rb'
-    - 'db/migrate/20190406202707_create_payment_type.rb'
-    - 'db/seeds.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Layout/SpaceAfterComma:
