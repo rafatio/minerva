@@ -37,8 +37,17 @@ class User < ApplicationRecord
   has_many :education_informations
   has_one  :intended_relationship
   has_many :subscriptions
+  belongs_to  :ambassador, optional: true
 
   attr_accessor :skip_password_validation # virtual attribute to skip password validation while saving
+
+  def custom_name
+    return ((first_name.nil? ? "" : first_name) + " " + (last_name.nil? ? "" : last_name)).strip()
+  end
+
+  def custom_id
+    return "User ##{id}"
+  end
 
   protected
 
@@ -47,4 +56,6 @@ class User < ApplicationRecord
 
     super
   end
+
+
 end

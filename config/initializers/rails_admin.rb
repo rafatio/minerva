@@ -30,6 +30,27 @@ RailsAdmin.config do |config|
     redirect_to main_app.authenticated_root_path unless current_user.admin
   end
 
+  config.model 'User' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Ambassador' do
+    field :user do
+      label 'User (Ambassador)' # Change the label of this field
+    end
+
+    field :users do
+      label 'Users (Referees)' # Change the label of this field
+    end
+
+    field :admission_year
+    field :is_active
+
+  end
+
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -44,5 +65,13 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+end
+
+def custom_label_method
+  if custom_name.blank?
+    custom_id
+  else
+    custom_name + " (#{custom_id})"
   end
 end
