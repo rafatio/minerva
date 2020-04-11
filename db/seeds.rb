@@ -383,3 +383,11 @@ if Country.count > 0 && Country.find_by(name: 'Brasil').code.nil?
   c.code = 've'
   c.save!
 end
+
+if Role.count == 0
+  Role.create(name: Role.Constants[:show_reports])
+  Role.create(name: Role.Constants[:create_reports])
+  Role.create(name: Role.Constants[:delete_reports])
+  Role.create(name: Role.Constants[:update_reports])
+  Role.create(name: Role.Constants[:run_reports])
+end

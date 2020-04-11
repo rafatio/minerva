@@ -38,8 +38,13 @@ class User < ApplicationRecord
   has_one  :intended_relationship
   has_many :subscriptions
   belongs_to  :ambassador, optional: true
+  has_and_belongs_to_many :roles
 
   attr_accessor :skip_password_validation # virtual attribute to skip password validation while saving
+
+  def can_view_reports?
+    return true if self.admin? || self.roles.where(:name => Role.Constants[:show_reports]).count > 0
+  end
 
   def custom_name
     return ((first_name.nil? ? "" : first_name) + " " + (last_name.nil? ? "" : last_name)).strip()
