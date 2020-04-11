@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    @ambassadors = Ambassador.all
     super
   end
 
@@ -20,8 +21,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
     User.transaction do
       super
 
+      user_email = params[:user][:email]
+      ambassador_id = params[:ambassador]
+      if !ambassador_id.blank?
+        ambassador_id = ambassador_id.to_i
+        response = UserService.new.assign_ambassador(user_email, ambassador_id)
+        if !response[:success]
+          flash[:notice] = nil
+          Rails.logger.error response[:message]
+          flash[:error] = 'Erro inesperado ao associar embaixador. Entre em contato com o suporte'
+          raise ActiveRecord::Rollback
+          return
+        end
+
+      end
+
       # HubSpot integration
-      HubspotService.new.create_contact(params[:user][:email])
+      HubspotService.new.create_contact(user_email)
     end
   rescue Hubspot::RequestError => e
     flash[:notice] = nil

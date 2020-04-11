@@ -12,10 +12,25 @@
             = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Senha'
           .form-group
             = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirmar senha'
+          .row
+            .col-4
+              label.col-form-label[for="ambassador"]
+                | Embaixador
+            .col-8
+              select.form-control.selectpicker[name="ambassador"]
+                option[selected value]
+                - @ambassadors.each do |amb|
+                  |  <option value=
+                  = amb.id
+                  - if (!request.query_parameters['ambassador'].nil?) && request.query_parameters['ambassador'] == amb.id.to_s
+                    |  selected="selected"
+                  |  >
+                  = amb.user.custom_name
+          br
           .form-group
             = check_box_tag 'agreement'
             = " Eu concordo com os #{ link_to 'termos e condições', terms_path }".html_safe
           .form-group
-            = f.submit "Criar conta", class: "btn btn-primary btn-block btn-lg register-form-submit" 
+            = f.submit "Criar conta", class: "btn btn-primary btn-block btn-lg register-form-submit"
         = render "devise/shared/links"
     = render "devise/shared/background"
