@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
         head 401
     elsif current_user.admin?
         # OK
+    elsif params[:controller].downcase != "blazer/queries"
+        head 403 #for now, we are mapping only the query actions
     else
         if params[:action].downcase == "new" || params[:action].downcase == "show" || params[:action].downcase == "home"
             # basic methods. User must have the "Show" role
