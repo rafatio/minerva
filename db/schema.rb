@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_213407) do
+ActiveRecord::Schema.define(version: 2020_04_11_205152) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2019_09_24_213407) do
     t.index ["country_id"], name: "index_addresses_on_country_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "ambassadors", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.integer "admission_year", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_active", default: true
+    t.index ["course_id"], name: "index_ambassadors_on_course_id"
+    t.index ["user_id"], name: "index_ambassadors_on_user_id"
   end
 
   create_table "contact_types", force: :cascade do |t|
@@ -48,6 +59,13 @@ ActiveRecord::Schema.define(version: 2019_09_24_213407) do
   create_table "countries", force: :cascade do |t|
     t.string "name", null: false
     t.integer "order_index"
+    t.string "code"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "education_informations", force: :cascade do |t|
@@ -64,6 +82,13 @@ ActiveRecord::Schema.define(version: 2019_09_24_213407) do
 
   create_table "education_levels", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "error_logs", force: :cascade do |t|
+    t.string "category"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "intended_relationships", force: :cascade do |t|
@@ -161,6 +186,9 @@ ActiveRecord::Schema.define(version: 2019_09_24_213407) do
     t.datetime "updated_at", null: false
     t.boolean "admin"
     t.boolean "agreement"
+    t.integer "ambassador_id"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
