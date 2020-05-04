@@ -45,6 +45,7 @@ RailsAdmin.config do |config|
       label 'Users (Referees)' # Change the label of this field
     end
 
+    field :course
     field :admission_year
     field :is_active
 
