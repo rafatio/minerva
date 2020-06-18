@@ -19,5 +19,4 @@ Rails.application.routes.draw do
   # resources :mentors, only: :index
   resources :postback, only: [:create]
 
-  get '/terms' => 'static_pages#terms'
 end
