@@ -27,9 +27,7 @@
                   |  >
                   = amb.user.custom_name
           br
-          .form-group
-            = check_box_tag 'agreement'
-            = " Eu concordo com os #{ link_to 'termos e condições', terms_path }".html_safe
+
           .form-group
             = f.submit "Criar conta", class: "btn btn-primary btn-block btn-lg register-form-submit"
         = render "devise/shared/links"
