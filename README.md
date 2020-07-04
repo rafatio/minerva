@@ -37,15 +37,11 @@ brew install heroku/brew/heroku
 heroku login
 ```
 
-## Testing
-
-To test the Pagar.me postbacks, you can create a request bin in https://requestbin.com and use it as the postback URL to capture the requests
-
-## Deploy
-
+## Docker
 ```
-# deploy
-git remote add production https://git.heroku.com/reditus-production.git
-git remote add testing https://git.heroku.com/reditus-testing.git
-git push testing master
+# build image
+docker build -t minerva_fundo .
+
+# run the app
+docker run -v `pwd`:/app -p 3000:3000 -d minerva_fundo
 ```
