@@ -17,11 +17,11 @@ RUN yum install -y postgresql-devel \
 
 RUN npm install yarn -g
 
-RUN curl http://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz -o /usr/local/src/ruby.tar.gz
+RUN curl https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.gz -o /usr/local/src/ruby.tar.gz
 
 RUN tar -xvf /usr/local/src/ruby.tar.gz -C /usr/local/src/
 
-WORKDIR /usr/local/src/ruby-2.5.1
+WORKDIR /usr/local/src/ruby-2.6.0
 
 RUN ./configure --disable-install-rdoc
 
