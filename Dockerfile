@@ -29,7 +29,9 @@ RUN make
 
 RUN make install
 
-RUN gem install bundler
+RUN gem update --system
+
+RUN gem install bundler:1.16.3
 
 ARG INSTALL_PATH=/app/
 
