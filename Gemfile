@@ -75,6 +75,10 @@ group :development, :test do
 end
 
 group :development do
+  # Healthcheck 
+  gem 'rails-healthcheck'
+  gem 'dotenv-rails'
+
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'parity'              # automate deployment
   gem 'pry-byebug'          # local debugging

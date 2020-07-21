@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount Blazer::Engine, at: "reports"
   devise_for :users, controllers: { registrations: 'users/registrations' }
+  Healthcheck.routes(self)
 
   authenticated :user do
     root 'home#index', as: :authenticated_root
