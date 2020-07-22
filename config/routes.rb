@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     root 'devise/sessions#new', as: :unauthenticated_root
   end
 
+  resources :deploy, only: %i[index]
+
   resources :payments, only: %i[index new create]
   resources :profile, only: %i[index create]
   resources :subscriptions, only: %i[new create]
