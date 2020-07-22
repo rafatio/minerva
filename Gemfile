@@ -49,8 +49,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-gem 'mini_racer'
+gem 'libv8', '7.3.492.27.1'
+gem 'mini_racer', '0.2.9'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -75,7 +75,7 @@ group :development, :test do
 end
 
 group :development do
-  # Healthcheck 
+  # Healthcheck
   gem 'rails-healthcheck'
   gem 'dotenv-rails'
 
